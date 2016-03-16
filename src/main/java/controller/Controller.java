@@ -20,8 +20,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.ArcType;
 import model.*;
 
-jkjjljlkjkljlkjlkjl
-
 public class Controller implements Observer {
     //constants
     private static final String mainPropertiesFile = "mainProperties.prop";
