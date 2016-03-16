@@ -131,6 +131,9 @@ public class Controller implements Observer {
     private static Color temperatureColor = Color.YELLOW;
     private static Color humidityColor = Color.LIGHTBLUE;
     private static Color moistureColor = Color.BLUE;
+
+    File resourcesPath;
+    File imagesPath;
     private void loadMainProperties() {
         try {
             FileInputStream propFile = new FileInputStream(mainPropertiesFile);
@@ -154,6 +157,8 @@ public class Controller implements Observer {
 
     @FXML
     void initialize() {
+        resourcesPath = new File(new File("").getAbsolutePath()+File.separator+"src"+File.separator+"main"+File.separator+"resources");
+        imagesPath = new File(resourcesPath,"images");
         assert tabMoistureText != null : "fx:id=\"tabMoistureText\" was not injected: check your FXML file 'sample.fxml'.";
         assert flowPane != null : "fx:id=\"flowPane\" was not injected: check your FXML file 'sample.fxml'.";
         assert canvasCurrentMoisture != null : "fx:id=\"canvasCurrentMoisture\" was not injected: check your FXML file 'sample.fxml'.";
@@ -171,10 +176,10 @@ public class Controller implements Observer {
             comboSetMoistureOptimum.getItems().add(i * 10);
             comboSetHumidityOptimum.getItems().add(i * 10);
         }
-        imageViewMoisture.setImage(new Image("file:"+new File("waterdrop.png").getAbsolutePath()));
-        imageViewTemperature.setImage(new Image("file:"+new File("thermometer.png").getAbsolutePath()));
-        imageViewHumidity.setImage(new Image("file:"+new File("humidityIcon.png").getAbsolutePath()));
-        imageViewSettings.setImage(new Image("file:"+new File("settings.png").getAbsolutePath()));
+        imageViewMoisture.setImage(new Image("file:"+new File(imagesPath,"waterdrop.png").getAbsolutePath()));
+        imageViewTemperature.setImage(new Image("file:"+new File(imagesPath,"thermometer.png").getAbsolutePath()));
+        imageViewHumidity.setImage(new Image("file:"+new File(imagesPath,"humidityIcon.png").getAbsolutePath()));
+        imageViewSettings.setImage(new Image("file:"+new File(imagesPath,"settings.png").getAbsolutePath()));
 
         loadMainProperties();
         tfSetIP.setText(model.getPlant().getIp());
