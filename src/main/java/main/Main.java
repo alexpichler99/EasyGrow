@@ -16,7 +16,9 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/sample.fxml"));
         primaryStage.setTitle("EasyGrow");
-        primaryStage.getIcons().add(new Image("file:" +System.getProperty("user.dir") + System.getProperty("file.separator") + "plant.png"));
+        String separator = System.getProperty("file.separator");
+        primaryStage.getIcons().add(new Image("file:" +System.getProperty("user.dir") + separator +
+                "resources" + separator + "images" + separator + "plant.png"));
 
         primaryStage.setScene(new Scene(root, 675, 500));
         primaryStage.setResizable(false);

@@ -7,18 +7,18 @@ import java.util.Date;
  */
 public class Measurement {
     private Date date;
-    private double value;
-    public Measurement(double value,Date date)
+    private float value;
+    public Measurement(float value, Date date)
     {
-        this.date=date;
+        this.date = date;
         this.value = value;
     }
     public Measurement(float value)
     {
-        this.value=value;
-        this.date=new Date();
+        this.value = value;
+        this.date = new Date();
     }
-    public double getValue() {
+    public float getValue() {
         return value;
     }
 

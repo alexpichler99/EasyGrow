@@ -58,12 +58,8 @@ public class Plant {
         temperatureHistory=new MeasurementHistory(PlantModel.maxTemperature,PlantModel.minTemperature,temperatureOptimum);
     }
 
-    /***
-     * Fix parseFloat, try - catch for every parseFloat_MAYRHOFERSUXCOX_(EASTEREGG)
-     */
     public void refreshInformation() {
         try {
-            /*
             String sentence;
             Socket clientSocket;
             clientSocket = new Socket(ip, 80);
@@ -74,32 +70,35 @@ public class Plant {
             String split[] = sentence.split(";");
             if (split.length != 3)
                 return;
-            float moisture = -1, temperature = -1, humidity = -1;
+            float moist = Float.NaN, temp = Float.NaN, hum = Float.NaN;
             try {
-                moisture = Float.parseFloat(split[0]);
-                temperature = Float.parseFloat(split[1]);
-                humidity = Float.parseFloat(split[2]);
+                moist = Float.parseFloat(split[0]);
             }
-            catch (Exception ex) {
-
+            catch (Exception ex) { }
+            try {
+                temp = Float.parseFloat(split[1]);
             }
-            */
-            //moistureHistory.addMeasurement(new Measurement(moisture));
-            //temperatureHistory.addMeasurement(new Measurement(temperature));
-            //humidityHistory.addMeasurement(new Measurement(humidity));
+            catch (Exception ex) { }
+            try {
+                hum = Float.parseFloat(split[2]);
+            }
+            catch (Exception ex) { }
+            /*
+            //moistureHistory.addMeasurement(new Measurement(moist));
+            //temperatureHistory.addMeasurement(new Measurement(temp));
+            //humidityHistory.addMeasurement(new Measurement(hum));
             //clientSocket.close();
+            /*
             Random random = new Random();
             int i = random.nextInt();
             i = (i%60);
             if(i<0)
                 i*=-1;
-            i-=10;
-            moistureHistory.addMeasurement(new Measurement(i));
-            temperatureHistory.addMeasurement(new Measurement(-10));
-            humidityHistory.addMeasurement(new Measurement(i));
+            i-=10;*/
+            moistureHistory.addMeasurement(new Measurement(moist));
+            temperatureHistory.addMeasurement(new Measurement(temp));
+            humidityHistory.addMeasurement(new Measurement(hum));
         }
-        catch (Exception e) {
-            System.out.println("fatal_error");
-        }
+        catch (Exception e) { }
     }
 }

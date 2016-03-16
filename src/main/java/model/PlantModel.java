@@ -8,7 +8,7 @@ import java.util.*;
 public class PlantModel extends Observable {
     //constants
     public static int refreshTime = 1000; //ms
-    public static long spanTime = 100000;//ms
+    public static long spanTime = 300000; //ms
     public static final float minTemperature = -15;
     public static final float maxTemperature = 50;
 
@@ -16,7 +16,7 @@ public class PlantModel extends Observable {
 
     public  PlantModel(Observer obs) {
         addObserver(obs);
-        plant = new Plant(95, 95, 30, "192.168.43.39", "");
+        plant = new Plant(95, 95, 30, "192.168.1.5", "");
         Timer timer = new Timer(true);
         timer.schedule(new TimerTask() {
             @Override
