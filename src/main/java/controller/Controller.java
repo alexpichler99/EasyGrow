@@ -126,8 +126,8 @@ public class Controller implements Observer {
     @FXML
     private ImageView imageViewSettings;
 
-    private static long historyBeginningDrawTimeMoisture=0;
-    private static long historyEndingDrawTimeMoisture=100000;
+    private static long historyBeginningDrawTimeMoisture = 0;
+    private static long historyEndingDrawTimeMoisture = 30000;
     private static Color temperatureColor = Color.YELLOW;
     private static Color humidityColor = Color.LIGHTBLUE;
     private static Color moistureColor = Color.BLUE;
@@ -196,15 +196,18 @@ public class Controller implements Observer {
     @Override
     public void update(Observable o, Object arg) {
         Platform.runLater(() -> {
-            if (model.getPlant().getMoistureHistory().getLastMeasurement() !=null)
+            if (model.getPlant().getMoistureHistory().getFirstMeasurement() != null
+                    && !Float.isNaN(model.getPlant().getMoistureHistory().getFirstMeasurement().getValue()))
                 labelCurrentMoisturePercent.setText(model.getPlant().getMoistureHistory().getFirstMeasurement().getValue() + "%");
             else
                 labelCurrentMoisturePercent.setText("Not available");
-            if(model.getPlant().getTemperatureHistory().getLastMeasurement() != null)
+            if (model.getPlant().getTemperatureHistory().getFirstMeasurement() != null
+                    && !Float.isNaN(model.getPlant().getTemperatureHistory().getFirstMeasurement().getValue()))
                 labelCurrentTemperaturePercent.setText(model.getPlant().getTemperatureHistory().getFirstMeasurement().getValue() + "°C");
             else
                 labelCurrentTemperaturePercent.setText("Not available");
-            if (model.getPlant().getHumidityHistory().getLastMeasurement() != null)
+            if (model.getPlant().getHumidityHistory().getFirstMeasurement() != null
+                    && !Float.isNaN(model.getPlant().getHumidityHistory().getFirstMeasurement().getValue()))
                 labelCurrentHumidityPercent.setText(model.getPlant().getHumidityHistory().getFirstMeasurement().getValue() + "%");
             else
                 labelCurrentMoisturePercent.setText("Not available");
@@ -222,7 +225,7 @@ public class Controller implements Observer {
         redrawCurrentMeasurement(model.getPlant().getTemperatureHistory(),canvasCurrentTemperature,temperatureColor);
         redrawHistroy(model.getPlant().getTemperatureHistory(),canvasTemperatureHistory,temperatureColor);
     }
-    private void redrawHistroy(MeasurementHistory history, Canvas canvas,Color color)
+    private void redrawHistroy(MeasurementHistory history, Canvas canvas, Color color)
     {
         List<Measurement> list = history.getMeasurements();
         double width = canvas.getWidth();
@@ -274,7 +277,7 @@ public class Controller implements Observer {
             graphicsContext.strokeLine(i*(width/7)+width/7,0,i*(width/7)+width/7,height);
         }
     }
-    private void redrawCurrentMeasurement(MeasurementHistory history,Canvas canvas, Color color)
+    private void redrawCurrentMeasurement(MeasurementHistory history, Canvas canvas, Color color)
     {
         double height = canvas.getHeight();
         double width = canvas.getWidth();
