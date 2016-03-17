@@ -302,7 +302,7 @@ public class Controller implements Observer {
 
         double percentage=(measurement.getValue()-history.getMinumum())/(history.getMaximum()-history.getMinumum());
         double power = height-((height-lineWidth*2)*percentage);
-        graphicsContext.clearRect(0,0,width,height-((height-lineWidth*2)*((measurement.getValue()-history.getMinumum())/(history.getMaximum()-history.getMinumum()))));
+        graphicsContext.clearRect(0,0,width,(height-lineWidth*2)-((height-lineWidth*2)*((measurement.getValue()-history.getMinumum())/(history.getMaximum()-history.getMinumum()))));
         graphicsContext.strokeArc(lineWidth,height-(width-lineWidth*2)-lineWidth,width-lineWidth*2,width-lineWidth*2,180,180,ArcType.OPEN);
         graphicsContext.strokeLine(lineWidth,0,lineWidth,height-width/2+lineWidth);
         graphicsContext.strokeLine(width-lineWidth,0,width-lineWidth,height-width/2+lineWidth);
