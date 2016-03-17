@@ -128,9 +128,9 @@ public class Controller implements Observer {
 
     private static long historyBeginningDrawTimeMoisture = 0;
     private static long historyEndingDrawTimeMoisture = 30000;
-    private static Color temperatureColor = Color.YELLOW;
-    private static Color humidityColor = Color.LIGHTBLUE;
-    private static Color moistureColor = Color.BLUE;
+    private static Color temperatureColor = Color.web("#d35400");
+    private static Color humidityColor = Color.web("#1abc9c");
+    private static Color moistureColor = Color.web("#2980b9");
 
     File resourcesPath;
     File imagesPath;
@@ -176,10 +176,10 @@ public class Controller implements Observer {
             comboSetMoistureOptimum.getItems().add(i * 10);
             comboSetHumidityOptimum.getItems().add(i * 10);
         }
-        imageViewMoisture.setImage(new Image("file:"+new File(imagesPath,"waterdrop.png").getAbsolutePath()));
-        imageViewTemperature.setImage(new Image("file:"+new File(imagesPath,"thermometer.png").getAbsolutePath()));
+        imageViewMoisture.setImage(new Image("file:"+new File(imagesPath,"moistureIcon.png").getAbsolutePath()));
+        imageViewTemperature.setImage(new Image("file:"+new File(imagesPath,"temperatureIcon.png").getAbsolutePath()));
         imageViewHumidity.setImage(new Image("file:"+new File(imagesPath,"humidityIcon.png").getAbsolutePath()));
-        imageViewSettings.setImage(new Image("file:"+new File(imagesPath,"settings.png").getAbsolutePath()));
+        imageViewSettings.setImage(new Image("file:"+new File(imagesPath,"settingsIcon.png").getAbsolutePath()));
 
         loadMainProperties();
         tfSetIP.setText(model.getPlant().getIp());
@@ -250,14 +250,16 @@ public class Controller implements Observer {
 
         GraphicsContext graphicsContext = canvas.getGraphicsContext2D();
         graphicsContext.clearRect(0, 0, width, height);
-        graphicsContext.setFill(Color.WHEAT);
+        graphicsContext.setFill(Color.web("#ecf0f1"));
         graphicsContext.fillRect(0, 0, width, height);
         graphicsContext.setFill(Color.LIGHTBLUE);
         if(minimum<0)
         graphicsContext.fillRect(0,height+(minimum*elementPower),width,height);
         graphicsContext.setLineWidth(2);
+        graphicsContext.setStroke(color);
+        Color fillColor =new Color(color.getRed(),color.getGreen(),color.getBlue(),0.5);
+        graphicsContext.setFill(fillColor);
         if(last!=null) {
-            graphicsContext.setFill(color);
             for (Measurement m : list) {
                 mDate=m.getDate().getTime();
                 mValue=m.getValue();
@@ -265,12 +267,14 @@ public class Controller implements Observer {
                 double[] yPoints = {height - (lastValue-minimum) * elementPower, height - (mValue-minimum) * elementPower, height, height};
                 graphicsContext.fillPolygon(xPoints, yPoints, 4);
                 graphicsContext.strokeLine(width - ((lastDate - time) * -1) / elementSpan, height - elementPower * (lastValue-minimum), width - ((mDate - time) * -1) / elementSpan, height - (mValue-minimum) * elementPower);
+
                 lastDate=mDate;
                 lastValue=mValue;
             }
-            graphicsContext.setLineWidth(1);
-            graphicsContext.strokeRect(0,0,width,height);
         }
+        graphicsContext.setStroke(new Color(0,0,0,1));
+        graphicsContext.setLineWidth(1);
+        graphicsContext.strokeRect(0,0,width,height);
         graphicsContext.strokeLine(0,height-(optimum-minimum)*elementPower,width,height-(optimum-minimum)*elementPower);
         graphicsContext.setLineWidth(1);
         int textOffset=-5;

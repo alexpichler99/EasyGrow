@@ -17,8 +17,8 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/sample.fxml"));
         primaryStage.setTitle("EasyGrow");
         String separator = System.getProperty("file.separator");
-        primaryStage.getIcons().add(new Image("file:" +System.getProperty("user.dir") + separator +
-                "resources" + separator + "images" + separator + "plant.png"));
+        primaryStage.getIcons().add(new Image("file:" +System.getProperty("user.dir") + separator + "src" + separator +
+                "main" + separator + "resources" + separator + "images" + separator + "programmIcon.png"));
 
         primaryStage.setScene(new Scene(root, 675, 500));
         primaryStage.setResizable(false);
