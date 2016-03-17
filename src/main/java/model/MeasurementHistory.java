@@ -24,13 +24,17 @@ public class MeasurementHistory {
         this.measurementList=linkedList;
     }
     public void addMeasurement(Measurement measurement) {
-        measurementList.add(measurement);
-        while (new Date().getTime() - measurementList.get(0).getDate().getTime() > PlantModel.spanTime && measurementList.size() != 1){
-            if (new Date().getTime() - measurementList.get(1).getDate().getTime() > PlantModel.spanTime)
-                measurementList.remove(0);
-            else
-                break;
+        if(measurement.getValue()<=maximum&&measurement.getValue()>=maximum) {
+            measurementList.add(measurement);
+            while (new Date().getTime() - measurementList.get(0).getDate().getTime() > PlantModel.spanTime && measurementList.size() != 1) {
+                if (new Date().getTime() - measurementList.get(1).getDate().getTime() > PlantModel.spanTime)
+                    measurementList.remove(0);
+                else
+                    break;
+            }
         }
+        else
+            System.out.println("wrong value");
     }
     public List<Measurement> getMeasurements()
     {
