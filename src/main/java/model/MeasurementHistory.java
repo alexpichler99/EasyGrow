@@ -12,16 +12,19 @@ public class MeasurementHistory {
     private float minumum;
     private float optimum;
     List<Measurement>measurementList;
-    public MeasurementHistory(float maximum,float minumum,float optimum)
+    public MeasurementHistory(float maximum, float minimum, float optimum)
     {
-        this.maximum=maximum;
-        this.minumum=minumum;
-        this.optimum=optimum;
-        this.measurementList=new LinkedList<Measurement>();
+        this.maximum = maximum;
+        this.minumum = minimum;
+        this.optimum = optimum;
+        this.measurementList=new LinkedList<>();
     }
-    public MeasurementHistory(LinkedList linkedList)
+    public MeasurementHistory(LinkedList linkedList, float maximum, float minumum, float optimum)
     {
-        this.measurementList=linkedList;
+        this.measurementList = linkedList;
+        this.maximum = maximum;
+        this.minumum = minumum;
+        this.optimum = optimum;
     }
     public void addMeasurement(Measurement measurement) {
         if(measurement.getValue()<=maximum&&measurement.getValue()>=minumum) {
