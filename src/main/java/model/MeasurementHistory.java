@@ -24,7 +24,7 @@ public class MeasurementHistory {
         this.measurementList=linkedList;
     }
     public void addMeasurement(Measurement measurement) {
-        if(measurement.getValue()<=maximum&&measurement.getValue()>=maximum) {
+        if(measurement.getValue()<=maximum&&measurement.getValue()>=minumum) {
             measurementList.add(measurement);
             while (new Date().getTime() - measurementList.get(0).getDate().getTime() > PlantModel.spanTime && measurementList.size() != 1) {
                 if (new Date().getTime() - measurementList.get(1).getDate().getTime() > PlantModel.spanTime)

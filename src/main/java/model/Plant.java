@@ -60,41 +60,42 @@ public class Plant {
 
     public void refreshInformation() {
         try {
-            String sentence;
-            Socket clientSocket;
-            clientSocket = new Socket(ip, 80);
-            DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream());
-            BufferedReader inFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-            outToServer.writeBytes("GET / HTTP/1.1");
-            sentence = inFromServer.readLine();
-            String split[] = sentence.split(";");
-            if (split.length != 3)
-                return;
             float moist = Float.NaN, temp = Float.NaN, hum = Float.NaN;
-            try {
-                moist = Float.parseFloat(split[0]);
+            int mode = 1;
+            if(mode ==0) {
+                String sentence;
+                Socket clientSocket;
+                clientSocket = new Socket(ip, 80);
+                DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream());
+                BufferedReader inFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+                outToServer.writeBytes("GET / HTTP/1.1");
+                sentence = inFromServer.readLine();
+                String split[] = sentence.split(";");
+                if (split.length != 3)
+                    return;
+                try {
+                    moist = Float.parseFloat(split[0]);
+                } catch (Exception ex) {
+                }
+                try {
+                    temp = Float.parseFloat(split[1]);
+                } catch (Exception ex) {
+                }
+                try {
+                    hum = Float.parseFloat(split[2]);
+                } catch (Exception ex) {
+                }
             }
-            catch (Exception ex) { }
-            try {
-                temp = Float.parseFloat(split[1]);
+            else {
+                Random random = new Random();
+                int i = random.nextInt();
+                i = (i % 60);
+                if (i < 0)
+                    i *= -1;
+                moist=i;
+                temp=i;
+                hum=i;
             }
-            catch (Exception ex) { }
-            try {
-                hum = Float.parseFloat(split[2]);
-            }
-            catch (Exception ex) { }
-            /*
-            //moistureHistory.addMeasurement(new Measurement(moist));
-            //temperatureHistory.addMeasurement(new Measurement(temp));
-            //humidityHistory.addMeasurement(new Measurement(hum));
-            //clientSocket.close();
-            /*
-            Random random = new Random();
-            int i = random.nextInt();
-            i = (i%60);
-            if(i<0)
-                i*=-1;
-            i-=10;*/
             moistureHistory.addMeasurement(new Measurement(moist));
             temperatureHistory.addMeasurement(new Measurement(temp));
             humidityHistory.addMeasurement(new Measurement(hum));
