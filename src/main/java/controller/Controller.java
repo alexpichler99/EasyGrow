@@ -240,6 +240,8 @@ public class Controller implements Observer {
         float optimum = history.getOptimum();
         Measurement first = history.getFirstMeasurement();
         Measurement last = history.getLastMeasurement();
+        if (first == null || last == null)
+            return;
         long time = first.getDate().getTime();
         double elementSpan=(historyEndingDrawTimeMoisture-historyBeginningDrawTimeMoisture)/width;
         double elementPower=height/(maximum-minimum);
@@ -291,6 +293,8 @@ public class Controller implements Observer {
         double height = canvas.getHeight();
         double width = canvas.getWidth();
         Measurement measurement = history.getFirstMeasurement();
+        if (measurement == null)
+            return;
         GraphicsContext graphicsContext=canvas.getGraphicsContext2D();
         graphicsContext.clearRect(0,0,width,height);
         graphicsContext.setFill(color);

@@ -61,8 +61,8 @@ public class Plant {
     public void refreshInformation() {
         try {
             float moist = Float.NaN, temp = Float.NaN, hum = Float.NaN;
-            int mode = 1;
-            if(mode ==0) {
+            boolean mode = true; //used for testing
+            if(mode) {
                 String sentence;
                 Socket clientSocket;
                 clientSocket = new Socket(ip, 80);
@@ -75,16 +75,13 @@ public class Plant {
                     return;
                 try {
                     moist = Float.parseFloat(split[0]);
-                } catch (Exception ex) {
-                }
+                } catch (Exception ex) { }
                 try {
                     temp = Float.parseFloat(split[1]);
-                } catch (Exception ex) {
-                }
+                } catch (Exception ex) { }
                 try {
                     hum = Float.parseFloat(split[2]);
-                } catch (Exception ex) {
-                }
+                } catch (Exception ex) { }
             }
             else {
                 Random random = new Random();
