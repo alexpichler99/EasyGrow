@@ -16,7 +16,7 @@ public class PlantModel extends Observable {
 
     public  PlantModel(Observer obs) {
         addObserver(obs);
-        plant = new Plant(95, 95, 30, "192.168.1.5", "");
+        plant = new Plant(95, 95, 30, "192.168.43.39", "");
         Timer timer = new Timer(true);
         timer.schedule(new TimerTask() {
             @Override

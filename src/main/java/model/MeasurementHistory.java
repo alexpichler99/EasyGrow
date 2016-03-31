@@ -11,16 +11,14 @@ public class MeasurementHistory {
     private float maximum;
     private float minumum;
     private float optimum;
-    List<Measurement>measurementList;
-    public MeasurementHistory(float maximum, float minimum, float optimum)
-    {
+    List<Measurement> measurementList;
+    public MeasurementHistory(float maximum, float minimum, float optimum) {
         this.maximum = maximum;
         this.minumum = minimum;
         this.optimum = optimum;
-        this.measurementList=new LinkedList<>();
+        this.measurementList = new LinkedList<>();
     }
-    public MeasurementHistory(LinkedList linkedList, float maximum, float minumum, float optimum)
-    {
+    public MeasurementHistory(LinkedList<Measurement> linkedList, float maximum, float minumum, float optimum) {
         this.measurementList = linkedList;
         this.maximum = maximum;
         this.minumum = minumum;
@@ -39,20 +37,17 @@ public class MeasurementHistory {
         else
             System.out.println("wrong value");
     }
-    public List<Measurement> getMeasurements()
-    {
+    public List<Measurement> getMeasurements() {
         return measurementList;
     }
-    public Measurement getLastMeasurement()
-    {
-        if(measurementList.size()!=0)
+    public Measurement getLastMeasurement() {
+        if(measurementList.size() != 0)
             return measurementList.get(0);
         return null;
     }
-    public Measurement getFirstMeasurement()
-    {
-        if(measurementList.size()!=0)
-            return measurementList.get(measurementList.size()-1);
+    public Measurement getFirstMeasurement() {
+        if(measurementList.size() != 0)
+            return measurementList.get(measurementList.size() - 1);
         return null;
     }
 
