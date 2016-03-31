@@ -8,13 +8,12 @@ import java.util.Date;
 public class Measurement {
     private Date date;
     private float value;
-    public Measurement(float value, Date date)
-    {
+
+    public Measurement(float value, Date date)  {
         this.date = date;
         this.value = value;
     }
-    public Measurement(float value)
-    {
+    public Measurement(float value) {
         this.value = value;
         this.date = new Date();
     }

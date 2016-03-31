@@ -176,11 +176,10 @@ public class Controller implements Observer {
             comboSetMoistureOptimum.getItems().add(i * 10);
             comboSetHumidityOptimum.getItems().add(i * 10);
         }
-        imageViewMoisture.setImage(new Image("file:"+new File(imagesPath,"moistureIcon.png").getAbsolutePath()));
-        imageViewTemperature.setImage(new Image("file:"+new File(imagesPath,"temperatureIcon.png").getAbsolutePath()));
-        imageViewHumidity.setImage(new Image("file:"+new File(imagesPath,"humidityIcon.png").getAbsolutePath()));
-        imageViewSettings.setImage(new Image("file:"+new File(imagesPath,"settingsIcon.png").getAbsolutePath()));
-
+        imageViewMoisture.setImage(new Image("file:" + new File(imagesPath,"moistureIcon.png").getAbsolutePath()));
+        imageViewTemperature.setImage(new Image("file:" + new File(imagesPath,"temperatureIcon.png").getAbsolutePath()));
+        imageViewHumidity.setImage(new Image("file:" + new File(imagesPath,"humidityIcon.png").getAbsolutePath()));
+        imageViewSettings.setImage(new Image("file:" + new File(imagesPath,"settingsIcon.png").getAbsolutePath()));
         loadMainProperties();
         tfSetIP.setText(model.getPlant().getIp());
     }
@@ -223,15 +222,16 @@ public class Controller implements Observer {
         //moisture
         redrawCurrentMeasurement(model.getPlant().getMoistureHistory(),canvasCurrentMoisture,moistureColor);
         redrawHistroy(model.getPlant().getMoistureHistory(),canvasMoistureHistory,moistureColor);
+
         //humidity
         redrawCurrentMeasurement(model.getPlant().getHumidityHistory(),canvasCurrentHumidity,humidityColor);
         redrawHistroy(model.getPlant().getHumidityHistory(),canvasHumidityHistory,humidityColor);
+
         //temperature
         redrawCurrentMeasurement(model.getPlant().getTemperatureHistory(),canvasCurrentTemperature,temperatureColor);
         redrawHistroy(model.getPlant().getTemperatureHistory(),canvasTemperatureHistory,temperatureColor);
     }
-    private void redrawHistroy(MeasurementHistory history, Canvas canvas, Color color)
-    {
+    private void redrawHistroy(MeasurementHistory history, Canvas canvas, Color color) {
         List<Measurement> list = history.getMeasurements();
         double width = canvas.getWidth();
         double height = canvas.getHeight();
@@ -243,8 +243,8 @@ public class Controller implements Observer {
         if (first == null || last == null)
             return;
         long time = first.getDate().getTime();
-        double elementSpan=(historyEndingDrawTimeMoisture-historyBeginningDrawTimeMoisture)/width;
-        double elementPower=height/(maximum-minimum);
+        double elementSpan= (historyEndingDrawTimeMoisture-historyBeginningDrawTimeMoisture) / width;
+        double elementPower= height / (maximum-minimum);
         long mDate;
         double mValue;
         long lastDate = last.getDate().getTime();
@@ -255,61 +255,71 @@ public class Controller implements Observer {
         graphicsContext.setFill(Color.web("#ecf0f1"));
         graphicsContext.fillRect(0, 0, width, height);
         graphicsContext.setFill(Color.LIGHTBLUE);
-        if(minimum<0)
-        graphicsContext.fillRect(0,height+(minimum*elementPower),width,height);
+        if(minimum < 0)
+            graphicsContext.fillRect(0, height + (minimum * elementPower), width, height);
         graphicsContext.setLineWidth(2);
         graphicsContext.setStroke(color);
-        Color fillColor =new Color(color.getRed(),color.getGreen(),color.getBlue(),0.5);
+        Color fillColor = new Color(color.getRed(), color.getGreen(),color.getBlue(), 0.5);
         graphicsContext.setFill(fillColor);
-        if(last!=null) {
+        if(last != null) {
             for (Measurement m : list) {
-                mDate=m.getDate().getTime();
-                mValue=m.getValue();
-                double[] xPoints = {width - 1 - ((lastDate - time) * -1) / elementSpan, width - ((mDate - time) * -1) / elementSpan, width - ((mDate - time) * -1) / elementSpan, width - 1 - ((lastDate - time) * -1) / elementSpan};
-                double[] yPoints = {height - (lastValue-minimum) * elementPower, height - (mValue-minimum) * elementPower, height, height};
+                mDate = m.getDate().getTime();
+                mValue = m.getValue();
+                double[] xPoints = {
+                        width - 1 - ((lastDate - time) * -1) / elementSpan, width - ((mDate - time) * -1) / elementSpan,
+                        width - ((mDate - time) * -1) / elementSpan, width - 1 - ((lastDate - time) * -1) / elementSpan
+                };
+                double[] yPoints = {
+                        height - (lastValue - minimum) * elementPower,
+                        height - (mValue - minimum) * elementPower, height, height
+                };
                 graphicsContext.fillPolygon(xPoints, yPoints, 4);
-                graphicsContext.strokeLine(width - ((lastDate - time) * -1) / elementSpan, height - elementPower * (lastValue-minimum), width - ((mDate - time) * -1) / elementSpan, height - (mValue-minimum) * elementPower);
+                graphicsContext.strokeLine(width - ((lastDate - time) * -1) / elementSpan, height - elementPower * (lastValue-minimum),
+                        width - ((mDate - time) * -1) / elementSpan, height - (mValue - minimum) * elementPower);
 
-                lastDate=mDate;
-                lastValue=mValue;
+                lastDate = mDate;
+                lastValue = mValue;
             }
         }
-        graphicsContext.setStroke(new Color(0,0,0,1));
+        graphicsContext.setStroke(new Color(0, 0, 0, 1));
         graphicsContext.setLineWidth(1);
-        graphicsContext.strokeRect(0,0,width,height);
-        graphicsContext.strokeLine(0,height-(optimum-minimum)*elementPower,width,height-(optimum-minimum)*elementPower);
+        graphicsContext.strokeRect(0, 0, width, height);
+        graphicsContext.strokeLine(0, height - (optimum - minimum) * elementPower, width, height - (optimum - minimum) * elementPower);
         graphicsContext.setLineWidth(1);
-        int textOffset=-5;
-        if((optimum*elementPower*100)/height>90)
-            textOffset=15;
-        graphicsContext.strokeText("Optimum",width/200,height-(optimum-minimum)*elementPower+textOffset);
+        int textOffset = -5;
+        if((optimum * elementPower * 100) / height > 90)
+            textOffset = 15;
+        graphicsContext.strokeText("Optimum", width / 200, height - (optimum - minimum) * elementPower + textOffset);
         for(int i = 0; i < 6; i++)
-        {
-            graphicsContext.strokeLine(i*(width/7)+width/7,0,i*(width/7)+width/7,height);
-        }
+            graphicsContext.strokeLine(i* (width / 7) + width / 7, 0, i * (width / 7) + width / 7, height);
     }
-    private void redrawCurrentMeasurement(MeasurementHistory history, Canvas canvas, Color color)
-    {
+    private void redrawCurrentMeasurement(MeasurementHistory history, Canvas canvas, Color color) {
         double height = canvas.getHeight();
         double width = canvas.getWidth();
         Measurement measurement = history.getFirstMeasurement();
         if (measurement == null)
             return;
         GraphicsContext graphicsContext=canvas.getGraphicsContext2D();
-        graphicsContext.clearRect(0,0,width,height);
+        graphicsContext.clearRect(0, 0, width, height);
         graphicsContext.setFill(color);
         int lineWidth = 5;
         graphicsContext.setLineWidth(lineWidth);
 
-        graphicsContext.fillArc(lineWidth*2,height-(width-lineWidth*4)-lineWidth*2,width-lineWidth*4,width-lineWidth*4,360,360,ArcType.OPEN);
-        graphicsContext.fillRect(lineWidth*2,0,width-lineWidth*4,height-width/2);//fehler
+        graphicsContext.fillArc(lineWidth * 2, height - (width - lineWidth * 4) - lineWidth * 2, width - lineWidth * 4, width - lineWidth * 4,
+                360, 360, ArcType.OPEN);
 
-        double percentage=(measurement.getValue()-history.getMinumum())/(history.getMaximum()-history.getMinumum());
-        double power = height-((height-lineWidth*2)*percentage);
-        graphicsContext.clearRect(0,0,width,(height-lineWidth*2)-((height-lineWidth*2)*((measurement.getValue()-history.getMinumum())/(history.getMaximum()-history.getMinumum()))));
-        graphicsContext.strokeArc(lineWidth,height-(width-lineWidth*2)-lineWidth,width-lineWidth*2,width-lineWidth*2,180,180,ArcType.OPEN);
-        graphicsContext.strokeLine(lineWidth,0,lineWidth,height-width/2+lineWidth);
-        graphicsContext.strokeLine(width-lineWidth,0,width-lineWidth,height-width/2+lineWidth);
+        graphicsContext.fillRect(lineWidth * 2, 0, width - lineWidth * 4, height - width / 2);//fehler
+
+        double percentage = (measurement.getValue() - history.getMinumum()) / (history.getMaximum() - history.getMinumum());
+        double power = height - ((height -lineWidth * 2) * percentage);
+        graphicsContext.clearRect(0, 0, width, (height - lineWidth * 2) - ((height - lineWidth * 2) *
+                ((measurement.getValue() - history.getMinumum()) / (history.getMaximum() - history.getMinumum()))));
+
+        graphicsContext.strokeArc(lineWidth,height - (width - lineWidth * 2) - lineWidth, width - lineWidth * 2,
+                width - lineWidth * 2, 180, 180, ArcType.OPEN);
+
+        graphicsContext.strokeLine(lineWidth, 0, lineWidth, height - width / 2 + lineWidth);
+        graphicsContext.strokeLine(width - lineWidth, 0, width - lineWidth, height - width / 2 + lineWidth);
 
     }
 }
