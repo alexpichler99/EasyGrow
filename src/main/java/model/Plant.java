@@ -61,7 +61,7 @@ public class Plant {
     public void refreshInformation() {
         try {
             float moist = Float.NaN, temp = Float.NaN, hum = Float.NaN;
-            boolean mode = true; //used for testing
+            boolean mode = false; //used for testing
             if(mode) {
                 String sentence;
                 Socket clientSocket;
