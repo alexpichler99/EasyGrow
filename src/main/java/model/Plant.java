@@ -50,7 +50,7 @@ public class Plant {
     }
 
 
-    public Plant(float moistureOptimum, float humidityOptimum,float temperatureOptimum, String ip, String name) {
+    public Plant(float moistureOptimum, float humidityOptimum, float temperatureOptimum, String ip, String name) {
         this.ip = ip;
         this.name = name;
         moistureHistory=new MeasurementHistory(100,0,moistureOptimum);
