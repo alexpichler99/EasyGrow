@@ -1,13 +1,11 @@
 package controller;
 
 import java.io.*;
-import java.net.URL;
 import java.util.*;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.geometry.Point2D;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
@@ -157,8 +155,8 @@ public class Controller implements Observer {
 
     @FXML
     void initialize() {
-        resourcesPath = new File(new File("").getAbsolutePath()+File.separator+"src"+File.separator+"main"+File.separator+"resources");
-        imagesPath = new File(resourcesPath,"images");
+        resourcesPath = new File(new File("").getAbsolutePath()+File.separator+"src"+File.separator+ "main" +File.separator+"resources");
+        imagesPath = new File(resourcesPath, "images");
         assert tabMoistureText != null : "fx:id=\"tabMoistureText\" was not injected: check your FXML file 'sample.fxml'.";
         assert flowPane != null : "fx:id=\"flowPane\" was not injected: check your FXML file 'sample.fxml'.";
         assert canvasCurrentMoisture != null : "fx:id=\"canvasCurrentMoisture\" was not injected: check your FXML file 'sample.fxml'.";
