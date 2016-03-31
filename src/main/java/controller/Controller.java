@@ -220,15 +220,15 @@ public class Controller implements Observer {
     }
     private void redraw() {
         //moisture
-        redrawCurrentMeasurement(model.getPlant().getMoistureHistory(),canvasCurrentMoisture,moistureColor);
+        redrawCurrentMeasurement(model.getPlant().getMoistureHistory(),canvasCurrentMoisture,moistureColor,5,0);
         redrawHistroy(model.getPlant().getMoistureHistory(),canvasMoistureHistory,moistureColor);
 
         //humidity
-        redrawCurrentMeasurement(model.getPlant().getHumidityHistory(),canvasCurrentHumidity,humidityColor);
+        redrawCurrentMeasurement(model.getPlant().getHumidityHistory(),canvasCurrentHumidity,humidityColor,5,0);
         redrawHistroy(model.getPlant().getHumidityHistory(),canvasHumidityHistory,humidityColor);
 
         //temperature
-        redrawCurrentMeasurement(model.getPlant().getTemperatureHistory(),canvasCurrentTemperature,temperatureColor);
+        redrawCurrentMeasurement(model.getPlant().getTemperatureHistory(),canvasCurrentTemperature,temperatureColor,5,1);
         redrawHistroy(model.getPlant().getTemperatureHistory(),canvasTemperatureHistory,temperatureColor);
     }
     private void redrawHistroy(MeasurementHistory history, Canvas canvas, Color color) {
@@ -293,33 +293,56 @@ public class Controller implements Observer {
         for(int i = 0; i < 6; i++)
             graphicsContext.strokeLine(i* (width / 7) + width / 7, 0, i * (width / 7) + width / 7, height);
     }
-    private void redrawCurrentMeasurement(MeasurementHistory history, Canvas canvas, Color color) {
+    private void redrawCurrentMeasurement(MeasurementHistory history, Canvas canvas, Color color, int lineWidth, int mode) {
         double height = canvas.getHeight();
         double width = canvas.getWidth();
         Measurement measurement = history.getFirstMeasurement();
         if (measurement == null)
             return;
+        float minimum = history.getMinumum();
+        float maximum = history.getMaximum();
+        float value = measurement.getValue();
         GraphicsContext graphicsContext=canvas.getGraphicsContext2D();
         graphicsContext.clearRect(0, 0, width, height);
         graphicsContext.setFill(color);
-        int lineWidth = 5;
         graphicsContext.setLineWidth(lineWidth);
+        switch (mode) {
+            case 0: //moisture
 
-        graphicsContext.fillArc(lineWidth * 2, height - (width - lineWidth * 4) - lineWidth * 2, width - lineWidth * 4, width - lineWidth * 4,
-                360, 360, ArcType.OPEN);
+                graphicsContext.fillArc(lineWidth * 2, height - (width - lineWidth * 4) - lineWidth * 2, width - lineWidth * 4, width - lineWidth * 4,
+                        360, 360, ArcType.OPEN);
 
-        graphicsContext.fillRect(lineWidth * 2, 0, width - lineWidth * 4, height - width / 2);//fehler
+                graphicsContext.fillRect(lineWidth * 2, 0, width - lineWidth * 4, height - width / 2);//fehler
 
-        double percentage = (measurement.getValue() - history.getMinumum()) / (history.getMaximum() - history.getMinumum());
-        double power = height - ((height -lineWidth * 2) * percentage);
-        graphicsContext.clearRect(0, 0, width, (height - lineWidth * 2) - ((height - lineWidth * 2) *
-                ((measurement.getValue() - history.getMinumum()) / (history.getMaximum() - history.getMinumum()))));
+                double percentage = (measurement.getValue() - history.getMinumum()) / (history.getMaximum() - history.getMinumum());
+                double power = height - ((height - lineWidth * 2) * percentage);
+                graphicsContext.clearRect(0, 0, width, (height - lineWidth * 2) - ((height - lineWidth * 2) *
+                        ((measurement.getValue() - history.getMinumum()) / (history.getMaximum() - history.getMinumum()))));
 
-        graphicsContext.strokeArc(lineWidth,height - (width - lineWidth * 2) - lineWidth, width - lineWidth * 2,
-                width - lineWidth * 2, 180, 180, ArcType.OPEN);
+                graphicsContext.strokeArc(lineWidth, height - (width - lineWidth * 2) - lineWidth, width - lineWidth * 2,
+                        width - lineWidth * 2, 180, 180, ArcType.OPEN);
 
-        graphicsContext.strokeLine(lineWidth, 0, lineWidth, height - width / 2 + lineWidth);
-        graphicsContext.strokeLine(width - lineWidth, 0, width - lineWidth, height - width / 2 + lineWidth);
+                graphicsContext.strokeLine(lineWidth, 0, lineWidth, height - width / 2 + lineWidth);
+                graphicsContext.strokeLine(width - lineWidth, 0, width - lineWidth, height - width / 2 + lineWidth);
+                break;
+            case 1: //temperature
+                double circlewidth = width-4*lineWidth;
+                double stickwidth = (width-4*lineWidth)*0.66;
+                graphicsContext.fillArc(lineWidth * 2, height - circlewidth - lineWidth * 2, circlewidth, circlewidth,
+                        360, 360, ArcType.OPEN);
+                graphicsContext.fillArc(lineWidth*2+(circlewidth-stickwidth)/2,lineWidth*2,stickwidth,stickwidth,360,360,ArcType.OPEN);
+                graphicsContext.fillRect(lineWidth*2+(circlewidth-stickwidth)/2,lineWidth*2+stickwidth/2,stickwidth,height-(lineWidth*2+stickwidth/2)-lineWidth*2-circlewidth/2);
+
+                double per =1-(value-minimum)/(maximum-minimum);
+                graphicsContext.clearRect(0,0,width,lineWidth*2+(height-lineWidth*4)*per);
+
+                graphicsContext.strokeArc((circlewidth-stickwidth)/2,lineWidth/2,stickwidth+lineWidth*4,stickwidth+lineWidth*4,0,180,ArcType.OPEN);
+                graphicsContext.strokeLine((circlewidth-stickwidth)/2,stickwidth*0.5+lineWidth*2+lineWidth/2,(circlewidth-stickwidth)/2,height-lineWidth*4-circlewidth+lineWidth/2);
+                double Angle = Math.atan((stickwidth/2+lineWidth*2)/(circlewidth/2))/Math.PI*180;
+                graphicsContext.strokeArc(0,height-4*lineWidth+lineWidth/2-circlewidth,circlewidth+lineWidth*4,circlewidth+lineWidth*4,90+Angle,360-Angle*2,ArcType.OPEN);
+
+                break;
+        }
 
     }
 }

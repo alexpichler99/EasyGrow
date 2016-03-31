@@ -92,7 +92,7 @@
                                         </HBox>
                                     </children>
                                 </AnchorPane>
-                                <Canvas fx:id="canvasCurrentTemperature" height="229.0" layoutX="370.0" width="148.0" />
+                                <Canvas fx:id="canvasCurrentTemperature" height="229.0" layoutX="425.0" width="93.0" />
                                 <Canvas fx:id="canvasTemperatureHistory" height="230.0" layoutX="21.0" layoutY="233.0" width="497.0" />
                             </AnchorPane>
                             <BorderPane.margin>
