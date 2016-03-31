@@ -2,48 +2,46 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="af53ecee-ee6e-4b21-8531-373f5e9bf447" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/documents/Pflichtenheft_Koubachi.docx" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/documents/Projektstrukturplan.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/images/humidityIcon.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/images/moistureIcon.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/images/programmIcon.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/images/settingsIcon.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/images/temperatureIcon.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/controller/Controller.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/documents/Pflichtenheft_Koubachi.docx" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/documents/Projektstrukturplan.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/images/humidityIcon.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/images/moistureIcon.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/images/programmIcon.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/images/settingsIcon.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/images/temperatureIcon.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/main/Main.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/model/Measurement.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/model/MeasurementHistory.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/model/Plant.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/model/PlantModel$1.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/model/PlantModel.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/.name" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/EasyGrow.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/easygrow.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mainProperties.prop" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pom.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/main/Main.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/model/Measurement.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/model/MeasurementHistory.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/model/Plant.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/model/PlantModel.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/fxml/sample.fxml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/fxml/sample.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/controller/Controller.java" afterPath="$PROJECT_DIR$/src/main/java/controller/Controller.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../.idea/workspace.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../target/classes/controller/Controller.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../target/classes/fxml/sample.fxml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../target/classes/images/humidityIcon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../target/classes/images/moistureIcon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../target/classes/images/programmIcon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../target/classes/images/settingsIcon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../target/classes/images/temperatureIcon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../target/classes/main/Main.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../target/classes/model/Measurement.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../target/classes/model/MeasurementHistory.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../target/classes/model/Plant.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../target/classes/model/PlantModel$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../target/classes/model/PlantModel.class" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/../.idea/.name" afterPath="$PROJECT_DIR$/.idea/.name" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/../.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/../.idea/copyright/profiles_settings.xml" afterPath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/../.idea/encodings.xml" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/../.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/../.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/../.idea/uiDesigner.xml" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/../.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/../EasyGrow.iml" afterPath="$PROJECT_DIR$/EasyGrow.iml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/../easygrow.iml" afterPath="$PROJECT_DIR$/easygrow.iml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/../mainProperties.prop" afterPath="$PROJECT_DIR$/mainProperties.prop" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/../pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/../src/main/java/controller/Controller.java" afterPath="$PROJECT_DIR$/src/main/java/controller/Controller.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/../src/main/java/main/Main.java" afterPath="$PROJECT_DIR$/src/main/java/main/Main.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/../src/main/java/model/Measurement.java" afterPath="$PROJECT_DIR$/src/main/java/model/Measurement.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/../src/main/java/model/MeasurementHistory.java" afterPath="$PROJECT_DIR$/src/main/java/model/MeasurementHistory.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/../src/main/java/model/Plant.java" afterPath="$PROJECT_DIR$/src/main/java/model/Plant.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/../src/main/java/model/PlantModel.java" afterPath="$PROJECT_DIR$/src/main/java/model/PlantModel.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/../src/main/resources/documents/Pflichtenheft_Koubachi.docx" afterPath="$PROJECT_DIR$/src/main/resources/documents/Pflichtenheft_Koubachi.docx" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/../src/main/resources/documents/Projektstrukturplan.jpg" afterPath="$PROJECT_DIR$/src/main/resources/documents/Projektstrukturplan.jpg" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/../src/main/resources/fxml/sample.fxml" afterPath="$PROJECT_DIR$/src/main/resources/fxml/sample.fxml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/../src/main/resources/images/humidityIcon.png" afterPath="$PROJECT_DIR$/src/main/resources/images/humidityIcon.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/../src/main/resources/images/moistureIcon.png" afterPath="$PROJECT_DIR$/src/main/resources/images/moistureIcon.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/../src/main/resources/images/programmIcon.png" afterPath="$PROJECT_DIR$/src/main/resources/images/programmIcon.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/../src/main/resources/images/settingsIcon.png" afterPath="$PROJECT_DIR$/src/main/resources/images/settingsIcon.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/../src/main/resources/images/temperatureIcon.png" afterPath="$PROJECT_DIR$/src/main/resources/images/temperatureIcon.png" />
     </list>
     <ignored path="easygrow.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -67,18 +65,7 @@
     </favorites_list>
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="Controller.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/controller/Controller.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.2970297">
-              <caret line="26" column="29" selection-start-line="26" selection-start-column="29" selection-end-line="26" selection-end-column="29" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -96,12 +83,12 @@
       <list>
         <option value="$PROJECT_DIR$/src/main/java/model/PlantModel.java" />
         <option value="$PROJECT_DIR$/src/main/java/main/Main.java" />
+        <option value="$PROJECT_DIR$/src/main/java/controller/Controller.java" />
         <option value="$PROJECT_DIR$/src/main/java/model/MeasurementHistory.java" />
         <option value="$PROJECT_DIR$/src/main/java/model/Plant.java" />
         <option value="$PROJECT_DIR$/EasyGrow.iml" />
         <option value="$PROJECT_DIR$/.idea/workspace.xml" />
         <option value="$PROJECT_DIR$/JavaFX/.idea/workspace.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/controller/Controller.java" />
       </list>
     </option>
   </component>
@@ -123,10 +110,10 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="65" />
-    <option name="y" value="24" />
+    <option name="x" value="-1855" />
+    <option name="y" value="-4" />
     <option name="width" value="1855" />
-    <option name="height" value="1056" />
+    <option name="height" value="1084" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -153,8 +140,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -272,6 +257,8 @@
         </subPane>
       </pane>
       <pane id="PackagesPane" />
+      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -281,7 +268,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="ChangesBrowser.SHOW_FLATTEN" value="false" />
     <property name="SearchEverywhereHistoryKey" value="Increase F&#9;ACTION&#9;EditorIncreaseFontSize&#10;fontsize&#9;ACTION&#9;EditorIncreaseFontSize" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -756,7 +743,6 @@
       <workItem from="1459362050072" duration="2368000" />
       <workItem from="1459402498943" duration="606000" />
       <workItem from="1459443583941" duration="211000" />
-      <workItem from="1459446207617" duration="81000" />
     </task>
     <task id="LOCAL-00001" summary="test neger">
       <created>1458137512563</created>
@@ -818,33 +804,27 @@
       <option name="project" value="LOCAL" />
       <updated>1459443243829</updated>
     </task>
-    <task id="LOCAL-00011" summary="Test">
-      <created>1459446256921</created>
-      <option name="number" value="00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1459446256921</updated>
-    </task>
-    <option name="localTasksCounter" value="12" />
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="12011000" />
+    <option name="totallyTimeSpent" value="11930000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="65" y="24" width="1855" height="1056" extended-state="6" />
-    <editor active="true" />
+    <frame x="-1855" y="-4" width="1855" height="1084" extended-state="6" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32912722" sideWeight="0.5045822" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32912722" sideWeight="0.5083558" order="0" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32912722" sideWeight="0.5040431" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27970558" sideWeight="0.49811321" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32912722" sideWeight="0.4916442" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32912722" sideWeight="0.49595687" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21563342" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21563342" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -876,9 +856,9 @@
     <MESSAGE value="Maximum and Minimum overflow protection" />
     <MESSAGE value="Better History View" />
     <MESSAGE value="Fixed some bugs" />
-    <MESSAGE value="Merge branch 'master' of https://github.com/alexpichler99/EasyGrow&#10;&#10;Conflicts:&#10;&#9;.idea/workspace.xml&#10;" />
     <MESSAGE value="Test" />
-    <option name="LAST_COMMIT_MESSAGE" value="Test" />
+    <MESSAGE value="Merge branch 'master' of https://github.com/alexpichler99/EasyGrow&#10;&#10;Conflicts:&#10;&#9;.idea/workspace.xml&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merge branch 'master' of https://github.com/alexpichler99/EasyGrow&#10;&#10;Conflicts:&#10;&#9;.idea/workspace.xml&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -889,15 +869,5 @@
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
     <option name="FILTER_TARGETS" value="false" />
-  </component>
-  <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/controller/Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2970297">
-          <caret line="26" column="29" selection-start-line="26" selection-start-column="29" selection-end-line="26" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
   </component>
 </project>
