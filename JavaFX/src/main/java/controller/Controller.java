@@ -25,7 +25,6 @@ public class Controller implements Observer {
     private static final String mainPropertiesFile = "mainProperties.prop";
 
     private PlantModel model;
-
     @FXML
     private Tab tabMoisture;
 
