@@ -161,7 +161,6 @@ public class Controller implements Observer {
         }
         catch (Exception e){ }
     }
-    //push-test
     private void storeMainProperties() {
         try {
             FileOutputStream propFile = new FileOutputStream(mainPropertiesFile);
