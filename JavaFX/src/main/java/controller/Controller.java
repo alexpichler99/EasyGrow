@@ -1,4 +1,5 @@
 package controller;
+//fsf
 
 import java.io.*;
 import java.util.*;
@@ -161,7 +162,6 @@ public class Controller implements Observer {
         }
         catch (Exception e){ }
     }
-    //push-test
     private void storeMainProperties() {
         try {
             FileOutputStream propFile = new FileOutputStream(mainPropertiesFile);
