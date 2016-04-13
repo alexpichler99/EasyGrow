@@ -22,7 +22,6 @@ import model.*;
 
 public class Controller implements Observer {
     //constants
-    int x = 5;
     private static final String mainPropertiesFile = "mainProperties.prop";
 
     private PlantModel model;
@@ -154,8 +153,6 @@ public class Controller implements Observer {
     File imagesPath;
     private void loadMainProperties() {
         try {
-            x++;
-            for (int i = 0; i < 10; i++);
             FileInputStream propFile = new FileInputStream(mainPropertiesFile);
             Properties prop = new Properties();
             prop.load(propFile);

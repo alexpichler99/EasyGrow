@@ -24,7 +24,7 @@
 
 <TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="675.0" side="LEFT" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="1000.0" tabMaxWidth="1000.0" tabMinHeight="150.0" tabMinWidth="75.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Controller">
     <tabs>
-        <Tab fx:id="tabMoisture1">
+        <Tab fx:id="tabMoisture">
             <graphic>
                 <HBox alignment="CENTER" prefHeight="0.0" spacing="10.0">
                     <children>
