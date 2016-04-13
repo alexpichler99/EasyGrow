@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.canvas.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.control.Button?>
@@ -15,7 +22,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="675.0" side="LEFT" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="1000.0" tabMaxWidth="1000.0" tabMinHeight="150.0" tabMinWidth="75.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Controller">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="675.0" side="LEFT" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="1000.0" tabMaxWidth="1000.0" tabMinHeight="150.0" tabMinWidth="75.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Controller">
     <tabs>
         <Tab fx:id="tabMoisture">
             <graphic>
@@ -30,28 +37,32 @@
                 <BorderPane>
                     <center>
                         <FlowPane fx:id="flowPane" alignment="CENTER_RIGHT" hgap="10" orientation="HORIZONTAL" vgap="10">
-                            <AnchorPane prefHeight="466.0" prefWidth="497.0">
-                                <AnchorPane layoutX="57.0" layoutY="33.0" prefHeight="200.0" prefWidth="294.0">
-                                    <children>
-                                        <HBox prefHeight="50.0" prefWidth="333.0" spacing="5">
-                                            <children>
-                                                <Label fx:id="labelCurrentMoisture" text="Current Moisture:">
-                                                    <font>
-                                                        <Font size="15.0" />
-                                                    </font>
-                                                </Label>
-                                                <Label fx:id="labelCurrentMoisturePercent" text="Not available">
-                                                    <font>
-                                                        <Font size="15.0" />
-                                                    </font>
-                                                </Label>
-                                            </children>
-                                        </HBox>
-                                    </children>
-                                </AnchorPane>
-                                <Canvas fx:id="canvasCurrentMoisture" height="229.0" layoutX="370.0" width="148.0" />
-                                <Canvas fx:id="canvasMoistureHistory" height="230.0" layoutX="21.0" layoutY="233.0" width="497.0" />
-                            </AnchorPane>
+                           <children>
+                               <AnchorPane prefHeight="466.0" prefWidth="497.0">
+                                  <children>
+                                      <AnchorPane layoutX="57.0" layoutY="33.0" prefHeight="200.0" prefWidth="294.0">
+                                          <children>
+                                              <HBox prefHeight="50.0" prefWidth="333.0" spacing="5">
+                                                  <children>
+                                                      <Label fx:id="labelCurrentMoisture" text="Current Moisture:">
+                                                          <font>
+                                                              <Font size="15.0" />
+                                                          </font>
+                                                      </Label>
+                                                      <Label fx:id="labelCurrentMoisturePercent" text="Not available">
+                                                          <font>
+                                                              <Font size="15.0" />
+                                                          </font>
+                                                      </Label>
+                                                  </children>
+                                              </HBox>
+                                          </children>
+                                      </AnchorPane>
+                                      <Canvas fx:id="canvasCurrentMoisture" height="229.0" layoutX="370.0" width="148.0" />
+                                      <Canvas fx:id="canvasMoistureHistory" height="230.0" layoutX="21.0" layoutY="233.0" width="497.0" />
+                                  </children>
+                               </AnchorPane>
+                           </children>
                             <BorderPane.margin>
                                 <Insets right="10.0" />
                             </BorderPane.margin>
@@ -73,28 +84,32 @@
                 <BorderPane>
                     <center>
                         <FlowPane alignment="CENTER_RIGHT" hgap="10" orientation="HORIZONTAL" vgap="10">
-                            <AnchorPane prefHeight="466.0" prefWidth="497.0">
-                                <AnchorPane layoutX="57.0" layoutY="33.0" prefHeight="200.0" prefWidth="294.0">
-                                    <children>
-                                        <HBox prefHeight="50.0" prefWidth="333.0" spacing="5">
-                                            <children>
-                                                <Label fx:id="labelCurrentTemperature" text="Current Temperature:">
-                                                    <font>
-                                                        <Font size="15.0" />
-                                                    </font>
-                                                </Label>
-                                                <Label fx:id="labelCurrentTemperaturePercent" text="Not available">
-                                                    <font>
-                                                        <Font size="15.0" />
-                                                    </font>
-                                                </Label>
-                                            </children>
-                                        </HBox>
-                                    </children>
-                                </AnchorPane>
-                                <Canvas fx:id="canvasCurrentTemperature" height="229.0" layoutX="425.0" width="93.0" />
-                                <Canvas fx:id="canvasTemperatureHistory" height="230.0" layoutX="21.0" layoutY="233.0" width="497.0" />
-                            </AnchorPane>
+                           <children>
+                               <AnchorPane prefHeight="466.0" prefWidth="497.0">
+                                  <children>
+                                      <AnchorPane layoutX="57.0" layoutY="33.0" prefHeight="200.0" prefWidth="294.0">
+                                          <children>
+                                              <HBox prefHeight="50.0" prefWidth="333.0" spacing="5">
+                                                  <children>
+                                                      <Label fx:id="labelCurrentTemperature" text="Current Temperature:">
+                                                          <font>
+                                                              <Font size="15.0" />
+                                                          </font>
+                                                      </Label>
+                                                      <Label fx:id="labelCurrentTemperaturePercent" text="Not available">
+                                                          <font>
+                                                              <Font size="15.0" />
+                                                          </font>
+                                                      </Label>
+                                                  </children>
+                                              </HBox>
+                                          </children>
+                                      </AnchorPane>
+                                      <Canvas fx:id="canvasCurrentTemperature" height="229.0" layoutX="425.0" width="93.0" />
+                                      <Canvas fx:id="canvasTemperatureHistory" height="230.0" layoutX="21.0" layoutY="233.0" width="497.0" />
+                                  </children>
+                               </AnchorPane>
+                           </children>
                             <BorderPane.margin>
                                 <Insets right="10.0" />
                             </BorderPane.margin>
@@ -117,28 +132,32 @@
                 <BorderPane>
                     <center>
                         <FlowPane alignment="CENTER_RIGHT" hgap="10" orientation="HORIZONTAL" vgap="10">
-                            <AnchorPane prefHeight="466.0" prefWidth="497.0">
-                                <AnchorPane layoutX="57.0" layoutY="33.0" prefHeight="200.0" prefWidth="294.0">
-                                    <children>
-                                        <HBox prefHeight="50.0" prefWidth="333.0" spacing="5">
-                                            <children>
-                                                <Label fx:id="labelCurrentHumidity" text="Current Humidity:">
-                                                    <font>
-                                                        <Font size="15.0" />
-                                                    </font>
-                                                </Label>
-                                                <Label fx:id="labelCurrentHumidityPercent" text="Not available">
-                                                    <font>
-                                                        <Font size="15.0" />
-                                                    </font>
-                                                </Label>
-                                            </children>
-                                        </HBox>
-                                    </children>
-                                </AnchorPane>
-                                <Canvas fx:id="canvasCurrentHumidity" height="229.0" layoutX="370.0" width="148.0" />
-                                <Canvas fx:id="canvasHumidityHistory" height="230.0" layoutX="21.0" layoutY="233.0" width="497.0" />
-                            </AnchorPane>
+                           <children>
+                               <AnchorPane prefHeight="466.0" prefWidth="497.0">
+                                  <children>
+                                      <AnchorPane layoutX="57.0" layoutY="33.0" prefHeight="200.0" prefWidth="294.0">
+                                          <children>
+                                              <HBox prefHeight="50.0" prefWidth="333.0" spacing="5">
+                                                  <children>
+                                                      <Label fx:id="labelCurrentHumidity" text="Current Humidity:">
+                                                          <font>
+                                                              <Font size="15.0" />
+                                                          </font>
+                                                      </Label>
+                                                      <Label fx:id="labelCurrentHumidityPercent" text="Not available">
+                                                          <font>
+                                                              <Font size="15.0" />
+                                                          </font>
+                                                      </Label>
+                                                  </children>
+                                              </HBox>
+                                          </children>
+                                      </AnchorPane>
+                                      <Canvas fx:id="canvasCurrentHumidity" height="229.0" layoutX="370.0" width="148.0" />
+                                      <Canvas fx:id="canvasHumidityHistory" height="230.0" layoutX="21.0" layoutY="233.0" width="497.0" />
+                                  </children>
+                               </AnchorPane>
+                           </children>
                             <BorderPane.margin>
                                 <Insets right="10.0" />
                             </BorderPane.margin>
@@ -147,6 +166,53 @@
                 </BorderPane>
             </content>
         </Tab>
+      <Tab fx:id="tabSunlight">
+         <content>
+            <BorderPane>
+               <center>
+                  <FlowPane alignment="CENTER_RIGHT" hgap="10" orientation="HORIZONTAL" vgap="10">
+                     <children>
+                        <AnchorPane prefHeight="466.0" prefWidth="497.0">
+                           <children>
+                              <AnchorPane layoutX="57.0" layoutY="33.0" prefHeight="200.0" prefWidth="294.0">
+                                 <children>
+                                    <HBox prefHeight="50.0" prefWidth="333.0" spacing="5">
+                                       <children>
+                                          <Label fx:id="labelCurrentSunlight" text="Current Sunlight:">
+                                             <font>
+                                                <Font size="15.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="labelCurrentSunlightPercent" text="Not available">
+                                             <font>
+                                                <Font size="15.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </AnchorPane>
+                              <Canvas fx:id="canvasCurrentSunlight" height="229.0" layoutX="370.0" width="148.0" />
+                              <Canvas fx:id="canvasSunlightHistory" height="230.0" layoutX="21.0" layoutY="233.0" width="497.0" />
+                           </children>
+                        </AnchorPane>
+                     </children>
+                     <BorderPane.margin>
+                        <Insets right="10.0" />
+                     </BorderPane.margin>
+                  </FlowPane>
+               </center>
+            </BorderPane>
+         </content>
+         <graphic>
+            <HBox alignment="CENTER" prefHeight="0.0" spacing="10.0">
+               <children>
+                  <ImageView fx:id="imageViewSunlight" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label fx:id="tabSunlightText" text="Sunlight" />
+               </children>
+            </HBox>
+         </graphic>
+      </Tab>
 
         <Tab fx:id="tabSettings">
             <graphic>
