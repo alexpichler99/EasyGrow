@@ -1,5 +1,4 @@
 package controller;
-//fsf
 
 import java.io.*;
 import java.util.*;
@@ -18,6 +17,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.ArcType;
 import model.*;
+
 
 
 public class Controller implements Observer {
