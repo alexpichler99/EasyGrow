@@ -1,4 +1,3 @@
-//test
 package controller;
 
 import java.io.*;
@@ -45,6 +44,12 @@ public class Controller implements Observer {
     private Canvas canvasMoistureHistory;
 
     @FXML
+    private Canvas canvasSunlightHistory;
+
+    @FXML
+    private Canvas canvasCurrentSunlight;
+
+    @FXML
     private Canvas canvasCurrentTemperature;
 
     @FXML
@@ -60,6 +65,9 @@ public class Controller implements Observer {
     private Tab tabSettings;
 
     @FXML
+    private Tab tabSunlight;
+
+    @FXML
     private Label tabSettingsText;
 
     @FXML
@@ -73,6 +81,9 @@ public class Controller implements Observer {
 
     @FXML
     private Label tabHumidityText;
+
+    @FXML
+    private Label tabSunlightText;
 
     @FXML
     private TextField tfSetIP;
@@ -117,10 +128,16 @@ public class Controller implements Observer {
     private Label labelCurrentHumidity;
 
     @FXML
+    private Label labelCurrentSunlight;
+
+    @FXML
     private ImageView imageViewTemperature;
 
     @FXML
     private ImageView imageViewHumidity;
+
+    @FXML
+    private ImageView imageViewSunlight;
 
     @FXML
     private ImageView imageViewSettings;
@@ -144,6 +161,7 @@ public class Controller implements Observer {
         }
         catch (Exception e){ }
     }
+    //push-test
     private void storeMainProperties() {
         try {
             FileOutputStream propFile = new FileOutputStream(mainPropertiesFile);
@@ -178,7 +196,9 @@ public class Controller implements Observer {
         imageViewMoisture.setImage(new Image("file:" + new File(imagesPath,"moistureIcon.png").getAbsolutePath()));
         imageViewTemperature.setImage(new Image("file:" + new File(imagesPath,"temperatureIcon.png").getAbsolutePath()));
         imageViewHumidity.setImage(new Image("file:" + new File(imagesPath,"humidityIcon.png").getAbsolutePath()));
+        imageViewSunlight.setImage(new Image("file:" + new File(imagesPath,"sunlightIcon.png").getAbsolutePath()));
         imageViewSettings.setImage(new Image("file:" + new File(imagesPath,"settingsIcon.png").getAbsolutePath()));
+
         loadMainProperties();
         tfSetIP.setText(model.getPlant().getIp());
     }
