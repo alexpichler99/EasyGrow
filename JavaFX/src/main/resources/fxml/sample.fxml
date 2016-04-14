@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-
 <?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.canvas.*?>
@@ -261,6 +260,8 @@
                                 <ComboBox fx:id="comboSetHumidityOptimum" onAction="#onComboSetHumidityOptimumAction" prefWidth="150.0" />
                             </children>
                         </HBox>
+                  <ImageView fx:id="imageViewFlag1" fitHeight="63.0" fitWidth="108.0" layoutX="278.0" layoutY="429.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="imageViewFlag2" fitHeight="63.0" fitWidth="113.0" layoutX="398.0" layoutY="429.0" pickOnBounds="true" preserveRatio="true" />
                     </children>
                 </AnchorPane>
             </content>
