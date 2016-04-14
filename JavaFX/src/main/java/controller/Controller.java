@@ -255,7 +255,7 @@ public class Controller implements Observer {
         redrawHistroy(model.getPlant().getHumidityHistory(),canvasHumidityHistory,humidityColor);
 
         //temperature
-        redrawCurrentMeasurement(model.getPlant().getTemperatureHistory(),canvasCurrentTemperature,temperatureColor,5,1);
+        redrawCurrentMeasurement(model.getPlant().getTemperatureHistory(),canvasCurrentTemperature,temperatureColor,1,1);
         redrawHistroy(model.getPlant().getTemperatureHistory(),canvasTemperatureHistory,temperatureColor);
     }
     private void redrawHistroy(MeasurementHistory history, Canvas canvas, Color color) {
@@ -293,8 +293,8 @@ public class Controller implements Observer {
                 mDate = m.getDate().getTime();
                 mValue = m.getValue();
                 double[] xPoints = {
-                        width - 1 - ((lastDate - time) * -1) / elementSpan, width - ((mDate - time) * -1) / elementSpan,
-                        width - ((mDate - time) * -1) / elementSpan, width - 1 - ((lastDate - time) * -1) / elementSpan
+                        width - 1 - ((lastDate - time) * -1) / elementSpan, width - 0.9 -((mDate - time) * -1) / elementSpan,
+                        width - 0.9 -((mDate - time) * -1) / elementSpan, width - 1 - ((lastDate - time) * -1) / elementSpan
                 };
                 double[] yPoints = {
                         height - (lastValue - minimum) * elementPower,
@@ -329,7 +329,7 @@ public class Controller implements Observer {
         float minimum = history.getMinumum();
         float maximum = history.getMaximum();
         float value = measurement.getValue();
-        GraphicsContext graphicsContext=canvas.getGraphicsContext2D();
+        GraphicsContext graphicsContext = canvas.getGraphicsContext2D();
         graphicsContext.clearRect(0, 0, width, height);
         graphicsContext.setFill(color);
         graphicsContext.setLineWidth(lineWidth);
@@ -349,8 +349,8 @@ public class Controller implements Observer {
                 graphicsContext.strokeArc(lineWidth, height - (width - lineWidth * 2) - lineWidth, width - lineWidth * 2,
                         width - lineWidth * 2, 180, 180, ArcType.OPEN);
 
-                graphicsContext.strokeLine(lineWidth, 0, lineWidth, height - width / 2 + lineWidth);
-                graphicsContext.strokeLine(width - lineWidth, 0, width - lineWidth, height - width / 2 + lineWidth);
+                graphicsContext.strokeLine(lineWidth, 0, lineWidth, height - width / 2 - lineWidth + 1);
+                graphicsContext.strokeLine(width - lineWidth, 0, width - lineWidth, height - width / 2 - lineWidth + 1 );
                 break;
             case 1: //temperature
                 double circlewidth = width-4*lineWidth;
@@ -363,10 +363,13 @@ public class Controller implements Observer {
                 double per =1-(value-minimum)/(maximum-minimum);
                 graphicsContext.clearRect(0,0,width,lineWidth*2+(height-lineWidth*4)*per);
 
-                graphicsContext.strokeArc((circlewidth-stickwidth)/2,lineWidth/2,stickwidth+lineWidth*4,stickwidth+lineWidth*4,0,180,ArcType.OPEN);
-                graphicsContext.strokeLine((circlewidth-stickwidth)/2,stickwidth*0.5+lineWidth*2+lineWidth/2,(circlewidth-stickwidth)/2,height-lineWidth*4-circlewidth+lineWidth/2);
-                double Angle = Math.atan((stickwidth/2+lineWidth*2)/(circlewidth/2))/Math.PI*180;
-                graphicsContext.strokeArc(0,height-4*lineWidth+lineWidth/2-circlewidth,circlewidth+lineWidth*4,circlewidth+lineWidth*4,90+Angle,360-Angle*2,ArcType.OPEN);
+                double Angle = Math.atan((stickwidth/2+lineWidth*3)/(circlewidth/2))/Math.PI*180;
+                System.out.println((stickwidth/2+lineWidth*2.5)/(circlewidth/2));
+                double multi = Math.sin(Angle/180*Math.PI);
+                graphicsContext.strokeArc((circlewidth-stickwidth)/2+lineWidth/2,lineWidth/2,stickwidth+lineWidth*3,stickwidth+lineWidth*3,0,180,ArcType.OPEN);
+                graphicsContext.strokeLine((circlewidth-stickwidth)/2+lineWidth/2,stickwidth*0.5+lineWidth*2+lineWidth/2,(circlewidth-stickwidth)/2+lineWidth/2,height-lineWidth*4-circlewidth*multi+lineWidth/2);
+                graphicsContext.strokeLine((circlewidth-stickwidth)/2+lineWidth/2+stickwidth+lineWidth*3,stickwidth*0.5+lineWidth*2+lineWidth/2,(circlewidth-stickwidth)/2+lineWidth/2+lineWidth*3+stickwidth,height-lineWidth*4-circlewidth*multi+lineWidth/2);
+                graphicsContext.strokeArc(lineWidth/2,height-4*lineWidth+lineWidth/2-circlewidth,circlewidth+lineWidth*4-lineWidth,circlewidth+lineWidth*4-lineWidth,90+Angle,360-Angle*2,ArcType.OPEN);
 
                 break;
         }
