@@ -328,7 +328,7 @@
                         </HBox>
                         <HBox layoutX="14.0" layoutY="53.0" prefWidth="200.0">
                             <children>
-                                <Label fx:id="labelSetMoistureOptimum" text="Set Moisture Optimum:" />
+                                <Label fx:id="labelSetMoistureOptimum" text="Set moisture Optimum(%):" />
                             </children>
                         </HBox>
                         <HBox layoutX="14.0" layoutY="70.0" prefWidth="200.0">
@@ -338,7 +338,7 @@
                         </HBox>
                         <HBox layoutX="14.0" layoutY="102.0" prefWidth="200.0">
                             <children>
-                                <Label fx:id="labelSetHumidityOptimum" text="Set Humidity Optimum:" />
+                                <Label fx:id="labelSetHumidityOptimum" text="Set humidity Optimum(%):" />
                             </children>
                         </HBox>
                         <HBox layoutX="14.0" layoutY="119.0" prefWidth="200.0">
@@ -346,6 +346,16 @@
                                 <ComboBox fx:id="comboSetHumidityOptimum" onAction="#onComboSetHumidityOptimumAction" prefWidth="150.0" />
                             </children>
                         </HBox>
+                  <HBox layoutX="14.0" layoutY="151.0" prefHeight="16.0" prefWidth="228.0">
+                     <children>
+                        <Label fx:id="labelSetTemperatureOptimum" prefHeight="16.0" prefWidth="220.0" text="Set temperature Optimum(°C):" />
+                     </children>
+                  </HBox>
+                  <HBox layoutX="14.0" layoutY="168.0" prefWidth="200.0">
+                     <children>
+                        <ComboBox fx:id="comboSetTemperatureOptimum" onAction="#onComboSetTemperatureOptimumAction" prefWidth="150.0" />
+                     </children>
+                  </HBox>
                   <ImageView fx:id="imageViewFlag1" fitHeight="63.0" fitWidth="108.0" layoutX="278.0" layoutY="429.0" pickOnBounds="true" preserveRatio="true" />
                   <ImageView fx:id="imageViewFlag2" fitHeight="63.0" fitWidth="113.0" layoutX="398.0" layoutY="429.0" pickOnBounds="true" preserveRatio="true" />
                     </children>

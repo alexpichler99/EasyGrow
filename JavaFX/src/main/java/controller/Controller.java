@@ -21,12 +21,14 @@ import model.*;
 
 
 public class Controller implements Observer {
-    //constants
-    private static final String mainPropertiesFile = "mainProperties.prop";
-
     private PlantModel model;
 
+    //region FXMLControls
+    @FXML
+    private Label labelSetTemperatureOptimum;
 
+    @FXML
+    private ComboBox<Integer> comboSetTemperatureOptimum;
     @FXML
     private Label labelOCurrentHumidity;
 
@@ -173,34 +175,95 @@ public class Controller implements Observer {
 
     @FXML
     private ImageView imageViewSettings;
+    //endregion
 
-    private static long historyBeginningDrawTimeMoisture = 0;
-    private static long historyEndingDrawTimeMoisture = 30000;
-    private static Color temperatureColor = Color.web("#d35400");
-    private static Color humidityColor = Color.web("#1abc9c");
-    private static Color moistureColor = Color.web("#2980b9");
+    //region Constants
+    private static final String mainPropertiesFile = "mainProperties.prop";
+    private final long historyBeginningDrawTimeMoisture = 0;
+    private final long historyEndingDrawTimeMoisture = 30000;
+    private final Color temperatureColor = Color.web("#d35400");
+    private final Color humidityColor = Color.web("#1abc9c");
+    private final Color moistureColor = Color.web("#2980b9");
+    private final String defaultArduinoIp = "localhost";
+    private final float defaultMoistureOptimum = 50;
+    private final float defaultHumidityOptimum = 50;
+    private final float defaultTemperatureOptimum = 30;
+    //endregion
 
-    File resourcesPath;
-    File imagesPath;
+    private File resourcesPath;
+    private File imagesPath;
+
+    private String arduinoIp = defaultArduinoIp;
+    private float moistureOptimum = defaultMoistureOptimum;
+    private float humidityOptimum = defaultHumidityOptimum;
+    private float temperatureOptimum = defaultTemperatureOptimum;
+
     private void loadMainProperties() {
         try {
             FileInputStream propFile = new FileInputStream(mainPropertiesFile);
             Properties prop = new Properties();
             prop.load(propFile);
-            String ip = prop.getProperty("ip");
-            if (ip != null)
-                model.getPlant().setIp(ip);
+            arduinoIp = prop.getProperty("ip");
+
+            //if no ip is saved, use default ip
+            if (arduinoIp == null)
+                arduinoIp = defaultArduinoIp;
+
+            //Moisture optimum
+            String tmp = prop.getProperty("mOptimum");
+            try {
+                moistureOptimum = Float.parseFloat(tmp);
+            } catch (NumberFormatException ex) {
+                moistureOptimum = defaultMoistureOptimum;
+            }
+
+            //Humidity optimum
+            tmp = prop.getProperty("hOptimum");
+            try {
+                humidityOptimum = Float.parseFloat(tmp);
+            } catch (NumberFormatException ex) {
+                humidityOptimum = defaultHumidityOptimum;
+            }
+
+            //Temperature optimum
+            tmp = prop.getProperty("tOptimum");
+            try {
+                temperatureOptimum = Float.parseFloat(tmp);
+            } catch (NumberFormatException ex) {
+                temperatureOptimum = defaultTemperatureOptimum;
+            }
+
+            comboSetHumidityOptimum.setValue((int)humidityOptimum);
+            comboSetMoistureOptimum.setValue((int)moistureOptimum);
+            comboSetTemperatureOptimum.setValue((int)temperatureOptimum);
+            tfSetIP.setText(arduinoIp);
+
+            if (model != null && model.getPlant() != null) {
+                model.getPlant().setIp(arduinoIp);
+                model.getPlant().getMoistureHistory().setOptimum(moistureOptimum);
+                model.getPlant().getMoistureHistory().setOptimum(humidityOptimum);
+                model.getPlant().getTemperatureHistory().setOptimum(temperatureOptimum);
+            }
         }
         catch (Exception e){ }
     }
     private void storeMainProperties() {
         try {
+            if (model == null || model.getPlant() == null)
+                return;
             FileOutputStream propFile = new FileOutputStream(mainPropertiesFile);
             Properties prop = new Properties();
             prop.setProperty("ip", model.getPlant().getIp());
+            prop.setProperty("mOptimum", String.valueOf(model.getPlant().getMoistureHistory().getOptimum()));
+            prop.setProperty("hOptimum", String.valueOf(model.getPlant().getHumidityHistory().getOptimum()));
+            prop.setProperty("tOptimum", String.valueOf(model.getPlant().getTemperatureHistory().getOptimum()));
             prop.store(propFile, "");
+        } catch (FileNotFoundException e) {
+            System.out.println(mainPropertiesFile + " not found!");
+        } catch (IOException e) {
+            System.out.println("Error storing properties.\n" + e.getMessage());
         }
-        catch (Exception e) { }
+
     }
 
     @FXML
@@ -218,12 +281,16 @@ public class Controller implements Observer {
         assert comboSetLanguage != null : "fx:id=\"comboSetLanguage\" was not injected: check your FXML file 'sample.fxml'.";
         assert labelSetLanguage != null : "fx:id=\"labelSetLanguage\" was not injected: check your FXML file 'sample.fxml'.";
 
-        model = new PlantModel(this);
+        loadMainProperties();
+        model = new PlantModel(moistureOptimum, humidityOptimum, temperatureOptimum, arduinoIp, this);
 
         for(int i = 0; i <= 10; i++) {
             comboSetMoistureOptimum.getItems().add(i * 10);
             comboSetHumidityOptimum.getItems().add(i * 10);
         }
+        //inclusive or exclusive maxTemperature?
+        for (int i = (int)PlantModel.minTemperature; i <= PlantModel.maxTemperature; i++)
+            comboSetTemperatureOptimum.getItems().add(i);
         imageViewMoisture.setImage(new Image("file:" + new File(imagesPath,"moistureIcon.png").getAbsolutePath()));
         imageViewTemperature.setImage(new Image("file:" + new File(imagesPath,"temperatureIcon.png").getAbsolutePath()));
         imageViewHumidity.setImage(new Image("file:" + new File(imagesPath,"humidityIcon.png").getAbsolutePath()));
@@ -231,23 +298,36 @@ public class Controller implements Observer {
         imageViewFlag1.setImage(new Image("file:" + new File(imagesPath,"germanyIcon.png").getAbsolutePath()));
         imageViewFlag2.setImage(new Image("file:" + new File(imagesPath,"englandIcon.png").getAbsolutePath()));
         imageViewSettings.setImage(new Image("file:" + new File(imagesPath,"settingsIcon.png").getAbsolutePath()));
-
-        loadMainProperties();
-        tfSetIP.setText(model.getPlant().getIp());
     }
+
+    //region FXMLEvents
     @FXML
     void onBtnSetIPAction(ActionEvent event) {
-        model.getPlant().setIp(tfSetIP.getText());
+        arduinoIp = tfSetIP.getText();
+        model.getPlant().setIp(arduinoIp);
         storeMainProperties();
     }
     @FXML
     void onComboSetMoistureOptimumAction(ActionEvent event) {
-        model.getPlant().getMoistureHistory().setOptimum(comboSetMoistureOptimum.getValue());
+        moistureOptimum = comboSetMoistureOptimum.getValue();
+        model.getPlant().getMoistureHistory().setOptimum(moistureOptimum);
+        storeMainProperties();
     }
     @FXML
     void onComboSetHumidityOptimumAction(ActionEvent event) {
-        model.getPlant().getHumidityHistory().setOptimum(comboSetHumidityOptimum.getValue());
+        humidityOptimum = comboSetHumidityOptimum.getValue();
+        model.getPlant().getHumidityHistory().setOptimum(humidityOptimum);
+        storeMainProperties();
     }
+
+    @FXML
+    void onComboSetTemperatureOptimumAction(ActionEvent event) {
+        temperatureOptimum = comboSetTemperatureOptimum.getValue();
+        model.getPlant().getTemperatureHistory().setOptimum(temperatureOptimum);
+        storeMainProperties();
+    }
+    //endregion
+
 
     @Override
     public void update(Observable o, Object arg) {

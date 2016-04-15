@@ -14,9 +14,9 @@ public class PlantModel extends Observable {
 
     private Plant plant;
 
-    public  PlantModel(Observer obs) {
+    public  PlantModel(float moistureOptimum, float humidityOptimum, float temperatureOptimum, String ip, Observer obs) {
         addObserver(obs);
-        plant = new Plant(95, 95, 30, "192.168.43.39", "");
+        plant = new Plant(moistureOptimum, humidityOptimum, temperatureOptimum, ip, "");
         Timer timer = new Timer(true);
         timer.schedule(new TimerTask() {
             @Override

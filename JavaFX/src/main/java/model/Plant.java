@@ -50,9 +50,9 @@ public class Plant {
     public Plant(float moistureOptimum, float humidityOptimum, float temperatureOptimum, String ip, String name) {
         this.ip = ip;
         this.name = name;
-        moistureHistory=new MeasurementHistory(100,0,moistureOptimum);
-        humidityHistory=new MeasurementHistory(100,0,humidityOptimum);
-        temperatureHistory=new MeasurementHistory(PlantModel.maxTemperature,PlantModel.minTemperature,temperatureOptimum);
+        moistureHistory = new MeasurementHistory(100, 0, moistureOptimum);
+        humidityHistory = new MeasurementHistory(100, 0, humidityOptimum);
+        temperatureHistory=new MeasurementHistory(PlantModel.maxTemperature, PlantModel.minTemperature, temperatureOptimum);
     }
 
     public void refreshInformation() {
@@ -92,7 +92,7 @@ public class Plant {
             }
             moistureHistory.addMeasurement(new Measurement(moist));
             temperatureHistory.addMeasurement(new Measurement(temp));
-            humidityHistory.addMeasurement(new Measurement(-1));
+            humidityHistory.addMeasurement(new Measurement(hum));
         }
         catch (Exception e) { }
     }
