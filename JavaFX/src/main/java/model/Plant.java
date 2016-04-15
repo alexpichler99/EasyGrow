@@ -92,7 +92,7 @@ public class Plant {
             }
             moistureHistory.addMeasurement(new Measurement(moist));
             temperatureHistory.addMeasurement(new Measurement(temp));
-            humidityHistory.addMeasurement(new Measurement(hum));
+            humidityHistory.addMeasurement(new Measurement(-1));
         }
         catch (Exception e) { }
     }

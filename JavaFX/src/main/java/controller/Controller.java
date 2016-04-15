@@ -26,6 +26,31 @@ public class Controller implements Observer {
 
     private PlantModel model;
 
+
+    @FXML
+    private Label labelOCurrentHumidity;
+
+    @FXML
+    private Label labelOCurrentHumidityPercent;
+
+    @FXML
+    private Label labelOCurrentTemperature;
+
+    @FXML
+    private Label labelOCurrentTemperatureCelsius;
+
+    @FXML
+    private Tab tabOverview;
+
+    @FXML
+    private Label labelOverviewText;
+
+    @FXML
+    private Label labelOCurrentMoisture;
+
+    @FXML
+    private Label labelOCurrentMoisturePercent;
+
     @FXML
     private Tab tabMoisture;
 
@@ -117,7 +142,7 @@ public class Controller implements Observer {
     private Label labelCurrentMoisture;
 
     @FXML
-    private Label labelCurrentTemperaturePercent;
+    private Label labelCurrentTemperatureCelsius;
 
     @FXML
     private Label labelCurrentTemperature;
@@ -234,14 +259,19 @@ public class Controller implements Observer {
                 labelCurrentMoisturePercent.setText("Not available");
             if (model.getPlant().getTemperatureHistory().getFirstMeasurement() != null
                     && !Float.isNaN(model.getPlant().getTemperatureHistory().getFirstMeasurement().getValue()))
-                labelCurrentTemperaturePercent.setText(model.getPlant().getTemperatureHistory().getFirstMeasurement().getValue() + "°C");
+                labelCurrentTemperatureCelsius.setText(model.getPlant().getTemperatureHistory().getFirstMeasurement().getValue() + "°C");
             else
-                labelCurrentTemperaturePercent.setText("Not available");
+                labelCurrentTemperatureCelsius.setText("Not available");
             if (model.getPlant().getHumidityHistory().getFirstMeasurement() != null
                     && !Float.isNaN(model.getPlant().getHumidityHistory().getFirstMeasurement().getValue()))
                 labelCurrentHumidityPercent.setText(model.getPlant().getHumidityHistory().getFirstMeasurement().getValue() + "%");
             else
-                labelCurrentMoisturePercent.setText("Not available");
+                labelCurrentHumidityPercent.setText("Not available");
+
+            //Set text of Overview values
+            labelOCurrentMoisturePercent.setText(labelCurrentMoisturePercent.getText());
+            labelOCurrentTemperatureCelsius.setText(labelCurrentTemperatureCelsius.getText());
+            labelOCurrentHumidityPercent.setText(labelCurrentHumidityPercent.getText());
             redraw();
         });
     }
@@ -320,6 +350,8 @@ public class Controller implements Observer {
         for(int i = 0; i < 6; i++)
             graphicsContext.strokeLine(i* (width / 7) + width / 7, 0, i * (width / 7) + width / 7, height);
     }
+
+    //@krauck use enum for mode
     private void redrawCurrentMeasurement(MeasurementHistory history, Canvas canvas, Color color, int lineWidth, int mode) {
         double height = canvas.getHeight();
         double width = canvas.getWidth();

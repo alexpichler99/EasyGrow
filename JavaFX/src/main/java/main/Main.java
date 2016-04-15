@@ -21,7 +21,7 @@ public class Main extends Application {
                 "main" + separator + "resources" + separator + "images" + separator + "programmIcon.png"));
 
         primaryStage.setScene(new Scene(root, 675, 500));
-        primaryStage.setResizable(false);
+        primaryStage.setResizable(true);
         primaryStage.show();
     }
 
