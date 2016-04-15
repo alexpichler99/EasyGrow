@@ -354,7 +354,7 @@ public class Controller implements Observer {
                 break;
             case 1: //temperature
                 double circlewidth = width-4*lineWidth;
-                double stickwidth = (width-4*lineWidth)*0.66;
+                double stickwidth = circlewidth*0.66;
                 graphicsContext.fillArc(lineWidth * 2, height - circlewidth - lineWidth * 2, circlewidth, circlewidth,
                         360, 360, ArcType.OPEN);
                 graphicsContext.fillArc(lineWidth*2+(circlewidth-stickwidth)/2,lineWidth*2,stickwidth,stickwidth,360,360,ArcType.OPEN);
@@ -363,14 +363,13 @@ public class Controller implements Observer {
                 double per =1-(value-minimum)/(maximum-minimum);
                 graphicsContext.clearRect(0,0,width,lineWidth*2+(height-lineWidth*4)*per);
 
-                double Angle = Math.atan((stickwidth/2+lineWidth*3)/(circlewidth/2))/Math.PI*180;
-                System.out.println((stickwidth/2+lineWidth*2.5)/(circlewidth/2));
-                double multi = Math.sin(Angle/180*Math.PI);
-                graphicsContext.strokeArc((circlewidth-stickwidth)/2+lineWidth/2,lineWidth/2,stickwidth+lineWidth*3,stickwidth+lineWidth*3,0,180,ArcType.OPEN);
-                graphicsContext.strokeLine((circlewidth-stickwidth)/2+lineWidth/2,stickwidth*0.5+lineWidth*2+lineWidth/2,(circlewidth-stickwidth)/2+lineWidth/2,height-lineWidth*4-circlewidth*multi+lineWidth/2);
-                graphicsContext.strokeLine((circlewidth-stickwidth)/2+lineWidth/2+stickwidth+lineWidth*3,stickwidth*0.5+lineWidth*2+lineWidth/2,(circlewidth-stickwidth)/2+lineWidth/2+lineWidth*3+stickwidth,height-lineWidth*4-circlewidth*multi+lineWidth/2);
-                graphicsContext.strokeArc(lineWidth/2,height-4*lineWidth+lineWidth/2-circlewidth,circlewidth+lineWidth*4-lineWidth,circlewidth+lineWidth*4-lineWidth,90+Angle,360-Angle*2,ArcType.OPEN);
+                double angle = Math.atan((stickwidth/2+lineWidth*2)/(circlewidth/2+lineWidth*2))/Math.PI*180;
+                angle=90-angle;
+                double newwidth = circlewidth/2 - Math.tan(angle/180*Math.PI)*(stickwidth/2);
+                System.out.println((stickwidth/2+lineWidth*2)/(circlewidth/2+lineWidth*2));
+                graphicsContext.strokeLine((width-stickwidth-lineWidth*4)/2+lineWidth/2,lineWidth/2+stickwidth/2+lineWidth*2,(width-stickwidth-lineWidth*4)/2+lineWidth/2,height-lineWidth/2-lineWidth*2-circlewidth+newwidth);
 
+                graphicsContext.strokeArc(lineWidth/2,height-circlewidth-lineWidth/2-lineWidth*3,circlewidth+lineWidth*3,circlewidth+lineWidth*3,180-90+angle,360-angle*2,ArcType.OPEN);
                 break;
         }
 
