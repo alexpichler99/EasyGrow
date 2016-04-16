@@ -47,13 +47,15 @@ public class Plant {
     }
 
 
+    //add tolerance to constructor
     public Plant(float moistureOptimum, float humidityOptimum, float temperatureOptimum, String ip, String name) {
         this.ip = ip;
         this.name = name;
-        moistureHistory = new MeasurementHistory(100, 0, moistureOptimum);
-        humidityHistory = new MeasurementHistory(100, 0, humidityOptimum);
-        temperatureHistory=new MeasurementHistory(PlantModel.maxTemperature, PlantModel.minTemperature, temperatureOptimum);
+        moistureHistory = new MeasurementHistory(100, 0, moistureOptimum, 10);
+        humidityHistory = new MeasurementHistory(100, 0, humidityOptimum, 10);
+        temperatureHistory=new MeasurementHistory(PlantModel.maxTemperature, PlantModel.minTemperature, temperatureOptimum, 5);
     }
+
 
     public void refreshInformation() {
         try {

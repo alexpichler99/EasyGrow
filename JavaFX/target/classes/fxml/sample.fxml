@@ -1,12 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.canvas.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.control.Button?>
@@ -20,10 +13,103 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="675.0" side="LEFT" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="1000.0" tabMaxWidth="1000.0" tabMinHeight="150.0" tabMinWidth="75.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Controller">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="675.0" side="LEFT" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="1000.0" tabMaxWidth="1000.0" tabMinHeight="150.0" tabMinWidth="75.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Controller">
     <tabs>
+      <Tab fx:id="tabOverview">
+         <graphic>
+            <HBox alignment="CENTER" prefHeight="0.0" spacing="10.0">
+               <children>
+                  <Label fx:id="labelOverviewText" text="Overview" />
+               </children>
+            </HBox>
+         </graphic>
+         <content>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <HBox prefHeight="78.0" prefWidth="516.0">
+                     <children>
+                        <HBox alignment="CENTER" prefHeight="78.0" prefWidth="67.0">
+                           <children>
+                              <Circle fx:id="circleMoistureWarning" fill="DODGERBLUE" radius="21.0" stroke="BLACK" strokeType="INSIDE" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="78.0" prefWidth="218.0" spacing="200.0">
+                           <children>
+                              <Label fx:id="labelOCurrentMoisture" text="Moisture:" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="78.0" prefWidth="241.0">
+                           <children>
+                              <Label fx:id="labelOCurrentMoisturePercent" text="0%" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </HBox>
+                  <HBox layoutX="10.0" layoutY="10.0" prefHeight="78.0" prefWidth="516.0">
+                     <children>
+                        <HBox alignment="CENTER" prefHeight="78.0" prefWidth="67.0">
+                           <children>
+                              <Circle fx:id="circleTemperatureWarning" fill="DODGERBLUE" radius="21.0" stroke="BLACK" strokeType="INSIDE" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="78.0" prefWidth="218.0" spacing="200.0">
+                           <children>
+                              <Label fx:id="labelOCurrentTemperature" text="Temperature:" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="78.0" prefWidth="241.0">
+                           <children>
+                              <Label fx:id="labelOCurrentTemperatureCelsius" text="0°C" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </HBox>
+                  <HBox layoutX="10.0" layoutY="88.0" prefHeight="78.0" prefWidth="516.0">
+                     <children>
+                        <HBox alignment="CENTER" prefHeight="78.0" prefWidth="67.0">
+                           <children>
+                              <Circle fx:id="circleHumidityWarning" fill="DODGERBLUE" radius="21.0" stroke="BLACK" strokeType="INSIDE" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="78.0" prefWidth="218.0" spacing="200.0">
+                           <children>
+                              <Label fx:id="labelOCurrentHumidity" text="Humidity:" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="78.0" prefWidth="241.0">
+                           <children>
+                              <Label fx:id="labelOCurrentHumidityPercent" text="0%" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </HBox>
+                  <HBox layoutX="10.0" layoutY="166.0" prefHeight="78.0" prefWidth="516.0">
+                     <children>
+                        <HBox alignment="CENTER" prefHeight="78.0" prefWidth="67.0">
+                           <children>
+                              <Circle fill="DODGERBLUE" radius="21.0" stroke="BLACK" strokeType="INSIDE" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="78.0" prefWidth="218.0" spacing="200.0">
+                           <children>
+                              <Label fx:id="labelOCurrentMoisture111" text="Moisture:" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="78.0" prefWidth="241.0">
+                           <children>
+                              <Label fx:id="labelOCurrentMoisturePercent111" text="0%" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </content>
+      </Tab>
         <Tab fx:id="tabMoisture">
             <graphic>
                 <HBox alignment="CENTER" prefHeight="0.0" spacing="10.0">
@@ -96,7 +182,7 @@
                                                               <Font size="15.0" />
                                                           </font>
                                                       </Label>
-                                                      <Label fx:id="labelCurrentTemperaturePercent" text="Not available">
+                                                      <Label fx:id="labelCurrentTemperatureCelsius" text="Not available">
                                                           <font>
                                                               <Font size="15.0" />
                                                           </font>
@@ -242,7 +328,7 @@
                         </HBox>
                         <HBox layoutX="14.0" layoutY="53.0" prefWidth="200.0">
                             <children>
-                                <Label fx:id="labelSetMoistureOptimum" text="Set Moisture Optimum:" />
+                                <Label fx:id="labelSetMoistureOptimum" text="Set moisture Optimum(%):" />
                             </children>
                         </HBox>
                         <HBox layoutX="14.0" layoutY="70.0" prefWidth="200.0">
@@ -252,7 +338,7 @@
                         </HBox>
                         <HBox layoutX="14.0" layoutY="102.0" prefWidth="200.0">
                             <children>
-                                <Label fx:id="labelSetHumidityOptimum" text="Set Humidity Optimum:" />
+                                <Label fx:id="labelSetHumidityOptimum" text="Set humidity Optimum(%):" />
                             </children>
                         </HBox>
                         <HBox layoutX="14.0" layoutY="119.0" prefWidth="200.0">
@@ -260,6 +346,16 @@
                                 <ComboBox fx:id="comboSetHumidityOptimum" onAction="#onComboSetHumidityOptimumAction" prefWidth="150.0" />
                             </children>
                         </HBox>
+                  <HBox layoutX="14.0" layoutY="151.0" prefHeight="16.0" prefWidth="228.0">
+                     <children>
+                        <Label fx:id="labelSetTemperatureOptimum" prefHeight="16.0" prefWidth="220.0" text="Set temperature Optimum(°C):" />
+                     </children>
+                  </HBox>
+                  <HBox layoutX="14.0" layoutY="168.0" prefWidth="200.0">
+                     <children>
+                        <ComboBox fx:id="comboSetTemperatureOptimum" onAction="#onComboSetTemperatureOptimumAction" prefWidth="150.0" />
+                     </children>
+                  </HBox>
                   <ImageView fx:id="imageViewFlag1" fitHeight="63.0" fitWidth="108.0" layoutX="278.0" layoutY="429.0" pickOnBounds="true" preserveRatio="true" />
                   <ImageView fx:id="imageViewFlag2" fitHeight="63.0" fitWidth="113.0" layoutX="398.0" layoutY="429.0" pickOnBounds="true" preserveRatio="true" />
                     </children>

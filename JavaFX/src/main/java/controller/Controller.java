@@ -16,6 +16,7 @@ import javafx.scene.image.*;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.ArcType;
+import javafx.scene.shape.Circle;
 import model.*;
 
 
@@ -24,6 +25,15 @@ public class Controller implements Observer {
     private PlantModel model;
 
     //region FXMLControls
+    @FXML
+    private Circle circleTemperatureWarning;
+
+    @FXML
+    private Circle circleHumidityWarning;
+
+    @FXML
+    private Circle circleMoistureWarning;
+
     @FXML
     private Label labelSetTemperatureOptimum;
 
@@ -184,6 +194,9 @@ public class Controller implements Observer {
     private final Color temperatureColor = Color.web("#d35400");
     private final Color humidityColor = Color.web("#1abc9c");
     private final Color moistureColor = Color.web("#2980b9");
+    private final Color normalWarning = Color.ORANGE; //rename
+    private final Color criticalWarning = Color.RED;
+    private final Color optimumWarning = Color.LIME;
     private final String defaultArduinoIp = "localhost";
     private final float defaultMoistureOptimum = 50;
     private final float defaultHumidityOptimum = 50;
@@ -328,6 +341,31 @@ public class Controller implements Observer {
     }
     //endregion
 
+    private void warnings() {
+        WarningType warning = model.getPlant().getMoistureHistory().getWarning();
+        if (warning == WarningType.Optimum)
+            circleMoistureWarning.setFill(optimumWarning);
+        else if (warning == WarningType.Normal)
+            circleMoistureWarning.setFill(normalWarning);
+        else if (warning == WarningType.Critical)
+            circleMoistureWarning.setFill(criticalWarning);
+
+        warning = model.getPlant().getHumidityHistory().getWarning();
+        if (warning == WarningType.Optimum)
+            circleHumidityWarning.setFill(optimumWarning);
+        else if (warning == WarningType.Normal)
+            circleHumidityWarning.setFill(normalWarning);
+        else if (warning == WarningType.Critical)
+            circleHumidityWarning.setFill(criticalWarning);
+
+        warning = model.getPlant().getTemperatureHistory().getWarning();
+        if (warning == WarningType.Optimum)
+            circleTemperatureWarning.setFill(optimumWarning);
+        else if (warning == WarningType.Normal)
+            circleTemperatureWarning.setFill(normalWarning);
+        else if (warning == WarningType.Critical)
+            circleTemperatureWarning.setFill(criticalWarning);
+    }
 
     @Override
     public void update(Observable o, Object arg) {
@@ -352,6 +390,7 @@ public class Controller implements Observer {
             labelOCurrentMoisturePercent.setText(labelCurrentMoisturePercent.getText());
             labelOCurrentTemperatureCelsius.setText(labelCurrentTemperatureCelsius.getText());
             labelOCurrentHumidityPercent.setText(labelCurrentHumidityPercent.getText());
+            warnings();
             redraw();
         });
     }

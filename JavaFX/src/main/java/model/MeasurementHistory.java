@@ -11,11 +11,13 @@ public class MeasurementHistory {
     private float maximum;
     private float minumum;
     private float optimum;
+    private float tolerance;
     List<Measurement> measurementList;
-    public MeasurementHistory(float maximum, float minimum, float optimum) {
+    public MeasurementHistory(float maximum, float minimum, float optimum, float tolerance) {
         this.maximum = maximum;
         this.minumum = minimum;
         this.optimum = optimum;
+        this.tolerance = tolerance;
         this.measurementList = new LinkedList<>();
     }
     public MeasurementHistory(LinkedList<Measurement> linkedList, float maximum, float minumum, float optimum) {
@@ -65,5 +67,18 @@ public class MeasurementHistory {
 
     public void setOptimum(float optimum) {
         this.optimum = optimum;
+    }
+
+    public WarningType getWarning() {
+        Measurement mes =getFirstMeasurement();
+        if (mes != null) {
+            if (mes.getValue() <= optimum + tolerance && mes.getValue() >= optimum - tolerance)
+                return WarningType.Optimum;
+            else if (mes.getValue() <= optimum + tolerance * 2 && mes.getValue() >= optimum - tolerance * 2)
+                return WarningType.Normal;
+            else
+                return WarningType.Critical;
+        }
+        return WarningType.Unknown;
     }
 }
