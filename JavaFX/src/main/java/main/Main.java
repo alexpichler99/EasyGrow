@@ -1,6 +1,8 @@
 package main;
 
 import javafx.application.Application;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -22,8 +24,20 @@ public class Main extends Application {
         String separator = System.getProperty("file.separator");
         primaryStage.getIcons().add(new Image("file:" +System.getProperty("user.dir") + separator + "src" + separator +
                 "main" + separator + "resources" + separator + "images" + separator + "programmIcon.png"));
+        Scene scene = new Scene(root, 675, 500);
 
-        primaryStage.setScene(new Scene(root, 675, 500));
+       /* scene.widthProperty().addListener(new ChangeListener<Number>() {
+            @Override public void changed(ObservableValue<? extends Number> observableValue, Number oldSceneWidth, Number newSceneWidth) {
+                System.out.println("Width: " + newSceneWidth);
+            }
+        });
+        scene.heightProperty().addListener(new ChangeListener<Number>() {
+            @Override public void changed(ObservableValue<? extends Number> observableValue, Number oldSceneHeight, Number newSceneHeight) {
+                System.out.println("Height: " + newSceneHeight);
+            }
+        });*/
+
+        primaryStage.setScene(scene);
         primaryStage.setResizable(true);
         primaryStage.show();
     }

@@ -13,7 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.*;
-import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.ArcType;
 import javafx.scene.shape.Circle;
@@ -79,7 +79,7 @@ public class Controller implements Observer {
     private Canvas canvasCurrentMoisture;
 
     @FXML
-    private Canvas canvasMoistureHistory;
+    private ResizeableCanvas canvasMoistureHistory;
 
     @FXML
     private Canvas canvasSunlightHistory;
@@ -186,6 +186,11 @@ public class Controller implements Observer {
     @FXML
     private ImageView imageViewSettings;
     //endregion
+    @FXML
+    private BorderPane bpMoisture;
+
+    @FXML
+    private HBox hboxMoisture;
 
     //region Constants
     private static final String mainPropertiesFile = "mainProperties.prop";
@@ -311,6 +316,14 @@ public class Controller implements Observer {
         imageViewFlag1.setImage(new Image("file:" + new File(imagesPath,"germanyIcon.png").getAbsolutePath()));
         imageViewFlag2.setImage(new Image("file:" + new File(imagesPath,"englandIcon.png").getAbsolutePath()));
         imageViewSettings.setImage(new Image("file:" + new File(imagesPath,"settingsIcon.png").getAbsolutePath()));
+
+        bpMoisture.widthProperty().addListener((observable, oldValue, newValue) -> {
+            canvasMoistureHistory.resize(newValue.doubleValue(), canvasMoistureHistory.getHeight());
+        });
+
+        bpMoisture.heightProperty().addListener((observable, oldValue, newValue) -> {
+            canvasMoistureHistory.resize(canvasMoistureHistory.getWidth(), newValue.doubleValue() - hboxMoisture.getHeight());
+        });
     }
 
     //region FXMLEvents
@@ -517,7 +530,7 @@ public class Controller implements Observer {
                 double angle = Math.atan((stickwidth/2+lineWidth*2)/(circlewidth/2+lineWidth*2))/Math.PI*180;
                 angle=90-angle;
                 double newwidth = circlewidth/2 - Math.tan(angle/180*Math.PI)*(stickwidth/2);
-                System.out.println((stickwidth/2+lineWidth*2)/(circlewidth/2+lineWidth*2));
+                //System.out.println((stickwidth/2+lineWidth*2)/(circlewidth/2+lineWidth*2));
                 graphicsContext.strokeLine((width-stickwidth-lineWidth*4)/2+lineWidth/2,lineWidth/2+stickwidth/2+lineWidth*2,(width-stickwidth-lineWidth*4)/2+lineWidth/2,height-lineWidth/2-lineWidth*2-circlewidth+newwidth);
 
                 graphicsContext.strokeArc(lineWidth/2,height-circlewidth-lineWidth/2-lineWidth*3,circlewidth+lineWidth*3,circlewidth+lineWidth*3,180-90+angle,360-angle*2,ArcType.OPEN);
