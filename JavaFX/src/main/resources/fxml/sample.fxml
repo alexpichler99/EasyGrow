@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.canvas.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import model.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.control.Button?>
@@ -19,7 +28,7 @@
 <?import javafx.scene.text.Font?>
 <?import model.ResizeableCanvas?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="675.0" side="LEFT" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="1000.0" tabMaxWidth="1000.0" tabMinHeight="150.0" tabMinWidth="75.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Controller">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="675.0" side="LEFT" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="1000.0" tabMaxWidth="1000.0" tabMinHeight="150.0" tabMinWidth="75.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Controller">
     <tabs>
       <Tab fx:id="tabOverview">
          <graphic>
@@ -388,6 +397,9 @@
                   </HBox>
                   <ImageView fx:id="imageViewFlag1" fitHeight="63.0" fitWidth="108.0" layoutX="278.0" layoutY="429.0" pickOnBounds="true" preserveRatio="true" />
                   <ImageView fx:id="imageViewFlag2" fitHeight="63.0" fitWidth="113.0" layoutX="398.0" layoutY="429.0" pickOnBounds="true" preserveRatio="true" />
+                  <Button fx:id="btnGerman" layoutX="21.0" layoutY="235.0" mnemonicParsing="false" onAction="#onBtnGermanAction" prefHeight="31.0" prefWidth="128.0" text="German" />
+                  <Button fx:id="btnEnglish" layoutX="20.0" layoutY="274.0" mnemonicParsing="false" onAction="#onBtnEnglishAction" prefHeight="31.0" prefWidth="130.0" text="English" />
+                  <Label fx:id="labelLanguage" layoutX="21.0" layoutY="207.0" text="Language:" />
                     </children>
                 </AnchorPane>
             </content>

@@ -185,6 +185,15 @@ public class Controller implements Observer {
 
     @FXML
     private ImageView imageViewSettings;
+
+    @FXML
+    private Label labelLanguage;
+
+    @FXML
+    private Button btnGerman;
+
+    @FXML
+    private Button btnEnglish;
     //endregion
     @FXML
     private HBox hboxMoisture;
@@ -206,6 +215,7 @@ public class Controller implements Observer {
 
     //region Constants
     private static final String mainPropertiesFile = "mainProperties.prop";
+    private static final String languagePropertyFile = "LanguageProperty";
     private final long historyBeginningDrawTimeMoisture = 0;
     private final long historyEndingDrawTimeMoisture = 30000;
     private final Color temperatureColor = Color.web("#d35400");
@@ -406,6 +416,18 @@ public class Controller implements Observer {
         model.getPlant().getTemperatureHistory().setOptimum(temperatureOptimum);
         storeMainProperties();
     }
+
+    @FXML
+    void onBtnGermanAction(ActionEvent event)
+    {
+        setLanguage("de", "DE");
+    }
+
+    @FXML
+    void onBtnEnglishAction(ActionEvent event)
+    {
+        setLanguage("en", "US");
+    }
     //endregion
 
     private void warnings() {
@@ -536,6 +558,15 @@ public class Controller implements Observer {
         for(int i = 0; i < 6; i++)
             graphicsContext.strokeLine(i* (width / 7) + width / 7, 0, i * (width / 7) + width / 7, height);
     }
+
+    private void setLanguage(String language, String country)
+    {
+            Locale locale = new Locale(language, country);
+            ResourceBundle rB = ResourceBundle.getBundle(languagePropertyFile, locale);
+            labelLanguage.setText(rB.getString("language"));
+
+    }
+
 
     //@krauck use enum for mode
     private void redrawCurrentMeasurement(MeasurementHistory history, Canvas canvas, Color color, int lineWidth, int mode) {
