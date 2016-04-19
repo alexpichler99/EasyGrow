@@ -148,6 +148,9 @@ public class Controller implements Observer {
     private Label labelSetArduinoIP;
 
     @FXML
+    private Label labelSetHumidityOptimum;
+
+    @FXML
     private Label labelCurrentMoisturePercent;
 
     @FXML
@@ -563,8 +566,31 @@ public class Controller implements Observer {
     {
             Locale locale = new Locale(language, country);
             ResourceBundle rB = ResourceBundle.getBundle(languagePropertyFile, locale);
+        try {
             labelLanguage.setText(rB.getString("language"));
+            tabHumidityText.setText(rB.getString("humidity")); //rename to label
+            tabMoistureText.setText(rB.getString("moisture"));
+            tabSettingsText.setText(rB.getString("settings"));
+            labelOverviewText.setText(rB.getString("overview"));
+            tabSunlightText.setText(rB.getString("sunlight"));
+            tabTemperatureText.setText(rB.getString("temperature"));
+            labelOCurrentMoisture.setText(rB.getString("moisture"));
+            labelOCurrentHumidity.setText(rB.getString("humidity"));
+            labelOCurrentTemperature.setText(rB.getString("temperature"));
+            labelCurrentHumidity.setText(rB.getString("currenthumidity"));
+            labelCurrentMoisture.setText(rB.getString("currentmoisture"));
+            labelCurrentTemperature.setText(rB.getString("currenttemperature"));
+            labelCurrentSunlight.setText(rB.getString("currentsunlight"));
+            labelSetArduinoIP.setText(rB.getString("setarduinoip"));
+            labelSetMoistureOptimum.setText(rB.getString("setmoistureopt"));
+            labelSetTemperatureOptimum.setText(rB.getString("settemperatureopt"));
+            labelSetHumidityOptimum.setText(rB.getString("sethumidityopt"));
 
+
+
+        } catch (MissingResourceException ex) {
+            System.out.println("error");
+        }
     }
 
 
