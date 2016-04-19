@@ -1,11 +1,11 @@
 package model;
 
 /**
- * Created by alex on 16.04.16.
+ * Created by Philipp on 19.04.2016.
  */
 public enum WarningType {
-    Unknown,
-    Optimum,
+    Normal,
     Critical,
-    Normal
+    Optimum,
+    Unknown
 }

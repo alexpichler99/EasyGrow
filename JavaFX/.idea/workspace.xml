@@ -7,22 +7,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a07c7f4e-d2f3-495b-87c0-bd8c94b21357" name="Default" comment="Added Overview">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/model/WarningType.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/controller/Controller.class" afterPath="$PROJECT_DIR$/target/classes/controller/Controller.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/main/Main.class" afterPath="$PROJECT_DIR$/target/classes/main/Main.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/model/MeasurementHistory.class" afterPath="$PROJECT_DIR$/target/classes/model/MeasurementHistory.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/model/Plant.class" afterPath="$PROJECT_DIR$/target/classes/model/Plant.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/model/PlantModel$1.class" afterPath="$PROJECT_DIR$/target/classes/model/PlantModel$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/model/PlantModel.class" afterPath="$PROJECT_DIR$/target/classes/model/PlantModel.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainProperties.prop" afterPath="$PROJECT_DIR$/mainProperties.prop" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/controller/Controller.java" afterPath="$PROJECT_DIR$/src/main/java/controller/Controller.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/main/Main.java" afterPath="$PROJECT_DIR$/src/main/java/main/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/model/MeasurementHistory.java" afterPath="$PROJECT_DIR$/src/main/java/model/MeasurementHistory.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/model/Plant.java" afterPath="$PROJECT_DIR$/src/main/java/model/Plant.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/fxml/sample.fxml" afterPath="$PROJECT_DIR$/src/main/resources/fxml/sample.fxml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/model/WarningType.java" afterPath="$PROJECT_DIR$/src/main/java/model/WarningType.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/fxml/sample.fxml" afterPath="$PROJECT_DIR$/target/classes/fxml/sample.fxml" />
     </list>
     <ignored path="easygrow.iws" />
@@ -49,8 +38,8 @@
       <file leaf-file-name="Controller.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/controller/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="360" column="58" selection-start-line="360" selection-start-column="58" selection-end-line="360" selection-end-column="58" />
+            <state relative-caret-position="952">
+              <caret line="299" column="22" selection-start-line="299" selection-start-column="22" selection-end-line="299" selection-end-column="22" />
               <folding>
                 <element signature="n#!!doc;n#circleTemperatureWarning#0;n#Controller#0" expanded="false" />
                 <element signature="method#loadMainProperties#0;class#Controller#0" expanded="false" />
@@ -65,8 +54,8 @@
       <file leaf-file-name="Plant.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/model/Plant.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.46216217">
-              <caret line="49" column="34" selection-start-line="49" selection-start-column="34" selection-end-line="49" selection-end-column="34" />
+            <state relative-caret-position="442">
+              <caret line="47" column="0" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -75,7 +64,7 @@
       <file leaf-file-name="Measurement.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/model/Measurement.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
+            <state relative-caret-position="119">
               <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
               <folding />
             </state>
@@ -85,12 +74,9 @@
       <file leaf-file-name="MeasurementHistory.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/model/MeasurementHistory.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
+            <state relative-caret-position="17">
               <caret line="15" column="90" selection-start-line="15" selection-start-column="90" selection-end-line="15" selection-end-column="90" />
-              <folding>
-                <element signature="e#1939#1940#0" expanded="true" />
-                <element signature="e#1969#1970#0" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -98,8 +84,18 @@
       <file leaf-file-name="WarningType.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/model/WarningType.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="6" column="12" selection-start-line="6" selection-start-column="12" selection-end-line="6" selection-end-column="12" />
+            <state relative-caret-position="187">
+              <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ResizeableCanvas.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/model/ResizeableCanvas.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -108,21 +104,8 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/main/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="18" column="59" selection-start-line="18" selection-start-column="59" selection-end-line="18" selection-end-column="59" />
-              <folding>
-                <element signature="e#1067#1068#0" expanded="true" />
-                <element signature="e#1095#1096#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Thread.java" pinned="false" current-in-tab="false">
-        <entry file="jar:///etc/java/jdk1.8.0_74/src.zip!/java/lang/Thread.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="744" column="0" selection-start-line="744" selection-start-column="0" selection-end-line="744" selection-end-column="0" />
+            <state relative-caret-position="85">
+              <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -131,7 +114,7 @@
       <file leaf-file-name="PlantModel.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/model/PlantModel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
+            <state relative-caret-position="323">
               <caret line="19" column="38" selection-start-line="19" selection-start-column="38" selection-end-line="19" selection-end-column="38" />
               <folding />
             </state>
@@ -144,6 +127,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -167,10 +151,10 @@
         <option value="$PROJECT_DIR$/src/main/java/model/PlantModel.java" />
         <option value="$PROJECT_DIR$/src/main/java/main/Main.java" />
         <option value="$PROJECT_DIR$/target/classes/fxml/sample.fxml" />
-        <option value="$PROJECT_DIR$/src/main/java/model/WarningType.java" />
         <option value="$PROJECT_DIR$/src/main/java/model/MeasurementHistory.java" />
         <option value="$PROJECT_DIR$/src/main/java/controller/Controller.java" />
         <option value="$PROJECT_DIR$/src/main/java/model/Plant.java" />
+        <option value="$PROJECT_DIR$/src/main/java/model/WarningType.java" />
       </list>
     </option>
   </component>
@@ -185,11 +169,16 @@
         <option name="mavenHome" value="Bundled (Maven 3)" />
       </MavenGeneralSettings>
     </option>
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
+    </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="65" />
-    <option name="y" value="24" />
-    <option name="width" value="1855" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1936" />
     <option name="height" value="1056" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
@@ -218,6 +207,7 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -255,32 +245,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="easygrow" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="JavaFX" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fxml" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -365,13 +329,12 @@
         </subPane>
       </pane>
       <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="aspect.path.notification.shown" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="/opt/SceneBuilder/SceneBuilder" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="project.structure.last.edited" value="Artifacts" />
@@ -392,31 +355,21 @@
     </configuration>
     <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android Application">
       <module name="" />
-      <option name="ACTIVITY_CLASS" value="" />
-      <option name="MODE" value="default_activity" />
       <option name="DEPLOY" value="true" />
       <option name="ARTIFACT_NAME" value="" />
+      <option name="PM_INSTALL_OPTIONS" value="" />
+      <option name="ACTIVITY_EXTRA_FLAGS" value="" />
+      <option name="MODE" value="default_activity" />
       <option name="TARGET_SELECTION_MODE" value="EMULATOR" />
-      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
       <option name="PREFERRED_AVD" value="" />
-      <option name="USE_COMMAND_LINE" value="true" />
-      <option name="COMMAND_LINE" value="" />
-      <option name="WIPE_USER_DATA" value="false" />
-      <option name="DISABLE_BOOT_ANIMATION" value="false" />
-      <option name="NETWORK_SPEED" value="full" />
-      <option name="NETWORK_LATENCY" value="none" />
       <option name="CLEAR_LOGCAT" value="false" />
       <option name="SHOW_LOGCAT_AUTOMATICALLY" value="true" />
-      <option name="FILTER_LOGCAT_AUTOMATICALLY" value="true" />
-      <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="0" />
-      <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
-      <option name="SELECTED_CLOUD_DEVICE_CONFIGURATION_ID" value="0" />
-      <option name="SELECTED_CLOUD_DEVICE_PROJECT_ID" value="" />
-      <option name="IS_VALID_CLOUD_MATRIX_SELECTION" value="false" />
-      <option name="INVALID_CLOUD_MATRIX_SELECTION_ERROR" value="" />
-      <option name="IS_VALID_CLOUD_DEVICE_SELECTION" value="false" />
-      <option name="INVALID_CLOUD_DEVICE_SELECTION_ERROR" value="" />
-      <option name="CLOUD_DEVICE_SERIAL_NUMBER" value="" />
+      <option name="SKIP_NOOP_APK_INSTALLATIONS" value="true" />
+      <option name="FORCE_STOP_RUNNING_APP" value="true" />
+      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
+      <option name="PREFERRED_AVD" value="" />
+      <option name="DEEP_LINK" value="" />
+      <option name="ACTIVITY_CLASS" value="" />
       <method />
     </configuration>
     <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Tests">
@@ -426,27 +379,15 @@
       <option name="METHOD_NAME" value="" />
       <option name="CLASS_NAME" value="" />
       <option name="PACKAGE_NAME" value="" />
+      <option name="EXTRA_OPTIONS" value="" />
       <option name="TARGET_SELECTION_MODE" value="EMULATOR" />
-      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
       <option name="PREFERRED_AVD" value="" />
-      <option name="USE_COMMAND_LINE" value="true" />
-      <option name="COMMAND_LINE" value="" />
-      <option name="WIPE_USER_DATA" value="false" />
-      <option name="DISABLE_BOOT_ANIMATION" value="false" />
-      <option name="NETWORK_SPEED" value="full" />
-      <option name="NETWORK_LATENCY" value="none" />
       <option name="CLEAR_LOGCAT" value="false" />
       <option name="SHOW_LOGCAT_AUTOMATICALLY" value="true" />
-      <option name="FILTER_LOGCAT_AUTOMATICALLY" value="true" />
-      <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="0" />
-      <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
-      <option name="SELECTED_CLOUD_DEVICE_CONFIGURATION_ID" value="0" />
-      <option name="SELECTED_CLOUD_DEVICE_PROJECT_ID" value="" />
-      <option name="IS_VALID_CLOUD_MATRIX_SELECTION" value="false" />
-      <option name="INVALID_CLOUD_MATRIX_SELECTION_ERROR" value="" />
-      <option name="IS_VALID_CLOUD_DEVICE_SELECTION" value="false" />
-      <option name="INVALID_CLOUD_DEVICE_SELECTION_ERROR" value="" />
-      <option name="CLOUD_DEVICE_SERIAL_NUMBER" value="" />
+      <option name="SKIP_NOOP_APK_INSTALLATIONS" value="true" />
+      <option name="FORCE_STOP_RUNNING_APP" value="true" />
+      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
+      <option name="PREFERRED_AVD" value="" />
       <method />
     </configuration>
     <configuration default="true" type="Applet" factoryName="Applet">
@@ -616,13 +557,12 @@
       <method />
     </configuration>
     <configuration default="true" type="GrailsRunConfigurationType" factoryName="Grails">
-      <module name="" />
       <setting name="vmparams" value="" />
       <setting name="cmdLine" value="run-app" />
-      <setting name="depsClasspath" value="false" />
       <setting name="passParentEnv" value="true" />
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <setting name="launchBrowser" value="false" />
+      <setting name="depsClasspath" value="false" />
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <method />
     </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
@@ -787,6 +727,7 @@
       <method />
     </configuration>
     <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-interpreter>project</node-interpreter>
       <node-options />
       <gulpfile />
       <tasks />
@@ -797,6 +738,7 @@
     <configuration default="true" type="js.build_tools.npm" factoryName="npm">
       <command value="run-script" />
       <scripts />
+      <node-interpreter value="project" />
       <envs />
       <method />
     </configuration>
@@ -825,7 +767,9 @@
       <item index="0" class="java.lang.String" itemvalue="Application.Unnamed" />
     </list>
   </component>
-  <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -834,6 +778,7 @@
       <changelist id="a07c7f4e-d2f3-495b-87c0-bd8c94b21357" name="Default" comment="" />
       <created>1460527673313</created>
       <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
       <updated>1460527673313</updated>
       <workItem from="1460527675550" duration="4329000" />
       <workItem from="1460532960410" duration="308000" />
@@ -842,52 +787,61 @@
       <workItem from="1460621674186" duration="5826000" />
       <workItem from="1460723189183" duration="7171000" />
       <workItem from="1460824872706" duration="3491000" />
+      <workItem from="1461070013146" duration="1060000" />
     </task>
     <task id="LOCAL-00001" summary="Pichler suxcox">
       <created>1460531104620</created>
       <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
       <updated>1460531104620</updated>
     </task>
     <task id="LOCAL-00002" summary="pushtest">
       <created>1460531294245</created>
       <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
       <option name="project" value="LOCAL" />
       <updated>1460531294245</updated>
     </task>
     <task id="LOCAL-00003" summary="Update">
       <created>1460533170002</created>
       <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
       <option name="project" value="LOCAL" />
       <updated>1460533170002</updated>
     </task>
     <task id="LOCAL-00004" summary="Update">
       <created>1460533190666</created>
       <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
       <option name="project" value="LOCAL" />
       <updated>1460533190666</updated>
     </task>
     <task id="LOCAL-00005" summary="Update">
       <created>1460533230251</created>
       <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
       <option name="project" value="LOCAL" />
       <updated>1460533230251</updated>
     </task>
     <task id="LOCAL-00006" summary="Update">
       <created>1460622404933</created>
       <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
       <option name="project" value="LOCAL" />
       <updated>1460622404933</updated>
     </task>
     <task id="LOCAL-00007" summary="Added Overview">
       <created>1460726198954</created>
       <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
       <option name="project" value="LOCAL" />
       <updated>1460726198954</updated>
     </task>
     <task id="LOCAL-00008" summary="Optimum values">
       <created>1460730008035</created>
       <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
       <option name="project" value="LOCAL" />
       <updated>1460730008035</updated>
     </task>
@@ -895,24 +849,27 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="23763000" />
+    <option name="totallyTimeSpent" value="24823000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="65" y="24" width="1855" height="1056" extended-state="6" />
-    <editor active="false" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32912722" sideWeight="0.48086253" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18822293" sideWeight="0.5261456" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18816067" sideWeight="0.53020835" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28811777" sideWeight="0.49326146" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18822293" sideWeight="0.47385445" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18816067" sideWeight="0.46979168" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22156334" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22135417" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980973" sideWeight="0.49791667" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -921,12 +878,17 @@
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
+  </component>
+  <component name="Vcs.Log.UiProperties">
+    <option name="RECENTLY_FILTERED_USER_GROUPS">
+      <collection />
+    </option>
+    <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+      <collection />
+    </option>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
@@ -952,7 +914,69 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/main/java/controller/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="952">
+          <caret line="299" column="22" selection-start-line="299" selection-start-column="22" selection-end-line="299" selection-end-column="22" />
+          <folding>
+            <element signature="n#!!doc;n#circleTemperatureWarning#0;n#Controller#0" expanded="false" />
+            <element signature="method#loadMainProperties#0;class#Controller#0" expanded="false" />
+            <element signature="method#storeMainProperties#0;class#Controller#0" expanded="false" />
+            <element signature="method#initialize#0;class#Controller#0" expanded="false" />
+            <element signature="n#!!doc;n#onBtnSetIPAction#0;n#Controller#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/model/Plant.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/model/Measurement.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/model/MeasurementHistory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="15" column="90" selection-start-line="15" selection-start-column="90" selection-end-line="15" selection-end-column="90" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/model/WarningType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="12" selection-start-line="6" selection-start-column="12" selection-end-line="6" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/main/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/model/PlantModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="38" selection-start-line="19" selection-start-column="38" selection-end-line="19" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/controller/Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
           <caret line="283" column="29" selection-start-line="283" selection-start-column="29" selection-end-line="283" selection-end-column="29" />
           <folding>
             <element signature="n#!!doc;n#circleTemperatureWarning#0;n#Controller#0" expanded="false" />
@@ -966,7 +990,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/model/Plant.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="0">
           <caret line="94" column="65" selection-start-line="94" selection-start-column="65" selection-end-line="94" selection-end-column="65" />
           <folding />
         </state>
@@ -974,7 +998,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/model/Measurement.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="0">
           <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
           <folding />
         </state>
@@ -982,48 +1006,41 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/model/MeasurementHistory.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="0">
           <caret line="55" column="5" selection-start-line="55" selection-start-column="5" selection-end-line="55" selection-end-column="5" />
-          <folding>
-            <element signature="e#1939#1940#0" expanded="true" />
-            <element signature="e#1969#1970#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/main/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="0">
           <caret line="15" column="45" selection-start-line="15" selection-start-column="45" selection-end-line="15" selection-end-column="45" />
-          <folding>
-            <element signature="e#1067#1068#0" expanded="true" />
-            <element signature="e#1095#1096#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/model/PlantModel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="0">
           <caret line="18" column="88" selection-start-line="18" selection-start-column="88" selection-end-line="18" selection-end-column="88" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/target/classes/fxml/sample.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="121" column="21" selection-start-line="121" selection-start-column="21" selection-end-line="121" selection-end-column="21" />
+        </state>
+      </provider>
       <provider editor-type-id="JavaFX-Scene-Builder">
         <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="121" column="21" selection-start-line="121" selection-start-column="21" selection-end-line="121" selection-end-column="21" />
-          <folding />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/controller/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="n#!!doc;n#circleTemperatureWarning#0;n#Controller#0" expanded="false" />
@@ -1037,7 +1054,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/model/Plant.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="0">
           <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
           <folding />
         </state>
@@ -1045,37 +1062,36 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/model/PlantModel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="0">
           <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/target/classes/fxml/sample.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="26" column="31" selection-start-line="26" selection-start-column="31" selection-end-line="26" selection-end-column="31" />
+        </state>
+      </provider>
       <provider editor-type-id="JavaFX-Scene-Builder">
         <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="26" column="31" selection-start-line="26" selection-start-column="31" selection-end-line="26" selection-end-column="31" />
-          <folding />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/fxml/sample.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="0">
           <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
           <folding />
         </state>
       </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/controller/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="n#!!doc;n#circleTemperatureWarning#0;n#Controller#0" expanded="false" />
@@ -1088,30 +1104,29 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/target/classes/fxml/sample.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="26" column="31" selection-start-line="26" selection-start-column="31" selection-end-line="26" selection-end-column="31" />
+        </state>
+      </provider>
       <provider editor-type-id="JavaFX-Scene-Builder">
         <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="26" column="31" selection-start-line="26" selection-start-column="31" selection-end-line="26" selection-end-column="31" />
-          <folding />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/fxml/sample.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="0">
           <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
           <folding />
         </state>
       </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/controller/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="n#!!doc;n#circleTemperatureWarning#0;n#Controller#0" expanded="false" />
@@ -1124,30 +1139,29 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/target/classes/fxml/sample.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="26" column="31" selection-start-line="26" selection-start-column="31" selection-end-line="26" selection-end-column="31" />
+        </state>
+      </provider>
       <provider editor-type-id="JavaFX-Scene-Builder">
         <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="26" column="31" selection-start-line="26" selection-start-column="31" selection-end-line="26" selection-end-column="31" />
-          <folding />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/fxml/sample.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="0">
           <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
           <folding />
         </state>
       </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/controller/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="n#!!doc;n#circleTemperatureWarning#0;n#Controller#0" expanded="false" />
@@ -1160,30 +1174,29 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/target/classes/fxml/sample.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="26" column="31" selection-start-line="26" selection-start-column="31" selection-end-line="26" selection-end-column="31" />
+        </state>
+      </provider>
       <provider editor-type-id="JavaFX-Scene-Builder">
         <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="26" column="31" selection-start-line="26" selection-start-column="31" selection-end-line="26" selection-end-column="31" />
-          <folding />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/fxml/sample.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="0">
           <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
           <folding />
         </state>
       </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/controller/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="n#!!doc;n#circleTemperatureWarning#0;n#Controller#0" expanded="false" />
@@ -1197,64 +1210,45 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="0">
           <caret line="20" column="30" selection-start-line="20" selection-start-column="30" selection-end-line="20" selection-end-column="30" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/fxml/sample.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.0">
+        <state relative-caret-position="0">
           <caret line="58" column="0" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
           <folding />
         </state>
       </provider>
-    </entry>
-    <entry file="jar:///etc/java/jdk1.8.0_74/src.zip!/java/lang/Thread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="744" column="0" selection-start-line="744" selection-start-column="0" selection-end-line="744" selection-end-column="0" />
-          <folding />
-        </state>
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
       </provider>
     </entry>
+    <entry file="jar:///etc/java/jdk1.8.0_74/src.zip!/java/lang/Thread.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/main/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="18" column="59" selection-start-line="18" selection-start-column="59" selection-end-line="18" selection-end-column="59" />
-          <folding>
-            <element signature="e#1067#1068#0" expanded="true" />
-            <element signature="e#1095#1096#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="85">
+          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/target/classes/fxml/sample.fxml">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="121" column="21" selection-start-line="121" selection-start-column="21" selection-end-line="121" selection-end-column="21" />
+        </state>
+      </provider>
       <provider selected="true" editor-type-id="JavaFX-Scene-Builder">
         <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.6666667">
-          <caret line="121" column="21" selection-start-line="121" selection-start-column="21" selection-end-line="121" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/model/WarningType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="6" column="12" selection-start-line="6" selection-start-column="12" selection-end-line="6" selection-end-column="12" />
-          <folding />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/model/PlantModel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="323">
           <caret line="19" column="38" selection-start-line="19" selection-start-column="38" selection-end-line="19" selection-end-column="38" />
           <folding />
         </state>
@@ -1262,7 +1256,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/model/Measurement.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="119">
           <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
           <folding />
         </state>
@@ -1270,8 +1264,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/controller/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="360" column="58" selection-start-line="360" selection-start-column="58" selection-end-line="360" selection-end-column="58" />
+        <state relative-caret-position="952">
+          <caret line="299" column="22" selection-start-line="299" selection-start-column="22" selection-end-line="299" selection-end-column="22" />
           <folding>
             <element signature="n#!!doc;n#circleTemperatureWarning#0;n#Controller#0" expanded="false" />
             <element signature="method#loadMainProperties#0;class#Controller#0" expanded="false" />
@@ -1284,19 +1278,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/model/MeasurementHistory.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="17">
           <caret line="15" column="90" selection-start-line="15" selection-start-column="90" selection-end-line="15" selection-end-column="90" />
-          <folding>
-            <element signature="e#1939#1940#0" expanded="true" />
-            <element signature="e#1969#1970#0" expanded="true" />
-          </folding>
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/model/ResizeableCanvas.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/model/WarningType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/model/Plant.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.46216217">
-          <caret line="49" column="34" selection-start-line="49" selection-start-column="34" selection-end-line="49" selection-end-column="34" />
+        <state relative-caret-position="442">
+          <caret line="47" column="0" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
           <folding />
         </state>
       </provider>
