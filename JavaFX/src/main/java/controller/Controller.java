@@ -181,12 +181,6 @@ public class Controller implements Observer {
     private ImageView imageViewSunlight;
 
     @FXML
-    private ImageView imageViewFlag1;
-
-    @FXML
-    private ImageView imageViewFlag2;
-
-    @FXML
     private ImageView imageViewSettings;
 
     @FXML
@@ -338,8 +332,6 @@ public class Controller implements Observer {
         imageViewTemperature.setImage(new Image("file:" + new File(imagesPath,"temperatureIcon.png").getAbsolutePath()));
         imageViewHumidity.setImage(new Image("file:" + new File(imagesPath,"humidityIcon.png").getAbsolutePath()));
         imageViewSunlight.setImage(new Image("file:" + new File(imagesPath,"sunlightIcon.png").getAbsolutePath()));
-        imageViewFlag1.setImage(new Image("file:" + new File(imagesPath,"germanyIcon.png").getAbsolutePath()));
-        imageViewFlag2.setImage(new Image("file:" + new File(imagesPath,"englandIcon.png").getAbsolutePath()));
         imageViewSettings.setImage(new Image("file:" + new File(imagesPath,"settingsIcon.png").getAbsolutePath()));
 
 
@@ -585,6 +577,7 @@ public class Controller implements Observer {
             labelSetMoistureOptimum.setText(rB.getString("setmoistureopt"));
             labelSetTemperatureOptimum.setText(rB.getString("settemperatureopt"));
             labelSetHumidityOptimum.setText(rB.getString("sethumidityopt"));
+            btnSetIP.setText(rB.getString("setip"));
 
 
 

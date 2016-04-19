@@ -365,9 +365,9 @@
                                 <Button fx:id="btnSetIP" mnemonicParsing="false" onAction="#onBtnSetIPAction" text="Set" />
                             </children>
                         </HBox>
-                        <HBox layoutX="14.0" layoutY="53.0" prefWidth="200.0">
+                        <HBox layoutX="14.0" layoutY="53.0" prefHeight="21.0" prefWidth="264.0">
                             <children>
-                                <Label fx:id="labelSetMoistureOptimum" text="Set moisture Optimum(%):" />
+                                <Label fx:id="labelSetMoistureOptimum" prefHeight="21.0" prefWidth="270.0" text="Set Moisture Optimum(%):" />
                             </children>
                         </HBox>
                         <HBox layoutX="14.0" layoutY="70.0" prefWidth="200.0">
@@ -375,9 +375,9 @@
                                 <ComboBox fx:id="comboSetMoistureOptimum" onAction="#onComboSetMoistureOptimumAction" prefWidth="150.0" />
                             </children>
                         </HBox>
-                        <HBox layoutX="14.0" layoutY="102.0" prefWidth="200.0">
+                        <HBox layoutX="14.0" layoutY="102.0" prefHeight="21.0" prefWidth="299.0">
                             <children>
-                                <Label fx:id="labelSetHumidityOptimum" text="Set humidity Optimum(%):" />
+                                <Label fx:id="labelSetHumidityOptimum" prefHeight="21.0" prefWidth="324.0" text="Set Humidity Optimum(%):" />
                             </children>
                         </HBox>
                         <HBox layoutX="14.0" layoutY="119.0" prefWidth="200.0">
@@ -385,9 +385,9 @@
                                 <ComboBox fx:id="comboSetHumidityOptimum" onAction="#onComboSetHumidityOptimumAction" prefWidth="150.0" />
                             </children>
                         </HBox>
-                  <HBox layoutX="14.0" layoutY="151.0" prefHeight="16.0" prefWidth="228.0">
+                  <HBox layoutX="14.0" layoutY="151.0" prefHeight="21.0" prefWidth="302.0">
                      <children>
-                        <Label fx:id="labelSetTemperatureOptimum" prefHeight="16.0" prefWidth="220.0" text="Set temperature Optimum(°C):" />
+                        <Label fx:id="labelSetTemperatureOptimum" prefHeight="21.0" prefWidth="321.0" text="Set Temperature Optimum(°C):" />
                      </children>
                   </HBox>
                   <HBox layoutX="14.0" layoutY="168.0" prefWidth="200.0">
@@ -395,8 +395,6 @@
                         <ComboBox fx:id="comboSetTemperatureOptimum" onAction="#onComboSetTemperatureOptimumAction" prefWidth="150.0" />
                      </children>
                   </HBox>
-                  <ImageView fx:id="imageViewFlag1" fitHeight="63.0" fitWidth="108.0" layoutX="278.0" layoutY="429.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="imageViewFlag2" fitHeight="63.0" fitWidth="113.0" layoutX="398.0" layoutY="429.0" pickOnBounds="true" preserveRatio="true" />
                   <Button fx:id="btnGerman" layoutX="21.0" layoutY="235.0" mnemonicParsing="false" onAction="#onBtnGermanAction" prefHeight="31.0" prefWidth="128.0" text="German" />
                   <Button fx:id="btnEnglish" layoutX="20.0" layoutY="274.0" mnemonicParsing="false" onAction="#onBtnEnglishAction" prefHeight="31.0" prefWidth="130.0" text="English" />
                   <Label fx:id="labelLanguage" layoutX="21.0" layoutY="207.0" text="Language:" />
