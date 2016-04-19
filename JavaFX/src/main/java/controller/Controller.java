@@ -76,7 +76,7 @@ public class Controller implements Observer {
     private ImageView imageViewMoisture;
 
     @FXML
-    private Canvas canvasCurrentMoisture;
+    private ResizeableCanvas canvasCurrentMoisture;
 
     @FXML
     private ResizeableCanvas canvasMoistureHistory;
@@ -187,10 +187,22 @@ public class Controller implements Observer {
     private ImageView imageViewSettings;
     //endregion
     @FXML
-    private BorderPane bpMoisture;
+    private HBox hboxMoisture;
 
     @FXML
-    private HBox hboxMoisture;
+    private HBox hboxMoistureHistory;
+
+    @FXML
+    private HBox hboxTemperature;
+
+    @FXML
+    private HBox hboxTemperatureHistory;
+
+    @FXML
+    private HBox hboxHumidity;
+
+    @FXML
+    private HBox hboxHumidityHistory;
 
     //region Constants
     private static final String mainPropertiesFile = "mainProperties.prop";
@@ -306,7 +318,7 @@ public class Controller implements Observer {
             comboSetMoistureOptimum.getItems().add(i * 10);
             comboSetHumidityOptimum.getItems().add(i * 10);
         }
-        //inclusive or exclusive maxTemperature?
+
         for (int i = (int)PlantModel.minTemperature; i <= PlantModel.maxTemperature; i++)
             comboSetTemperatureOptimum.getItems().add(i);
         imageViewMoisture.setImage(new Image("file:" + new File(imagesPath,"moistureIcon.png").getAbsolutePath()));
@@ -317,13 +329,55 @@ public class Controller implements Observer {
         imageViewFlag2.setImage(new Image("file:" + new File(imagesPath,"englandIcon.png").getAbsolutePath()));
         imageViewSettings.setImage(new Image("file:" + new File(imagesPath,"settingsIcon.png").getAbsolutePath()));
 
-        bpMoisture.widthProperty().addListener((observable, oldValue, newValue) -> {
+
+        //moisture
+        hboxMoistureHistory.widthProperty().addListener((observable, oldValue, newValue) -> {
             canvasMoistureHistory.resize(newValue.doubleValue(), canvasMoistureHistory.getHeight());
+            redraw();
         });
 
-        bpMoisture.heightProperty().addListener((observable, oldValue, newValue) -> {
-            canvasMoistureHistory.resize(canvasMoistureHistory.getWidth(), newValue.doubleValue() - hboxMoisture.getHeight());
+        hboxMoistureHistory.heightProperty().addListener((observable, oldValue, newValue) -> {
+            canvasMoistureHistory.resize(canvasMoistureHistory.getWidth(), newValue.doubleValue());
+            redraw();
         });
+
+        hboxMoisture.heightProperty().addListener((observable, oldValue, newValue) -> {
+            canvasCurrentMoisture.resize(newValue.doubleValue() / 2, newValue.doubleValue());
+            System.out.println(newValue);
+            redraw();
+        });
+
+        //temperature
+        hboxTemperatureHistory.widthProperty().addListener(((observable, oldValue, newValue) -> {
+            canvasTemperatureHistory.resize(newValue.doubleValue(), canvasTemperatureHistory.getHeight());
+            redraw();
+        }));
+
+        hboxTemperatureHistory.heightProperty().addListener(((observable, oldValue, newValue) -> {
+            canvasTemperatureHistory.resize(canvasTemperatureHistory.getWidth(), newValue.doubleValue());
+            redraw();
+        }));
+
+        hboxTemperature.heightProperty().addListener(((observable, oldValue, newValue) -> {
+            canvasCurrentTemperature.resize(newValue.doubleValue() / 2, newValue.doubleValue());
+            redraw();
+        }));
+
+        //humidity
+        hboxHumidityHistory.widthProperty().addListener(((observable, oldValue, newValue) -> {
+            canvasHumidityHistory.resize(newValue.doubleValue(), canvasHumidityHistory.getHeight());
+            redraw();
+        }));
+
+        hboxHumidityHistory.heightProperty().addListener(((observable, oldValue, newValue) -> {
+            canvasHumidityHistory.resize(canvasHumidityHistory.getWidth(), newValue.doubleValue());
+            redraw();
+        }));
+
+        hboxHumidity.heightProperty().addListener(((observable, oldValue, newValue) -> {
+            canvasCurrentHumidity.resize(newValue.doubleValue() / 2, newValue.doubleValue());
+            redraw();
+        }));
     }
 
     //region FXMLEvents
@@ -409,16 +463,16 @@ public class Controller implements Observer {
     }
     private void redraw() {
         //moisture
-        redrawCurrentMeasurement(model.getPlant().getMoistureHistory(),canvasCurrentMoisture,moistureColor,5,0);
-        redrawHistroy(model.getPlant().getMoistureHistory(),canvasMoistureHistory,moistureColor);
+        redrawCurrentMeasurement(model.getPlant().getMoistureHistory(),canvasCurrentMoisture,moistureColor, 5, 0);
+        redrawHistroy(model.getPlant().getMoistureHistory(), canvasMoistureHistory, moistureColor);
 
         //humidity
-        redrawCurrentMeasurement(model.getPlant().getHumidityHistory(),canvasCurrentHumidity,humidityColor,5,0);
-        redrawHistroy(model.getPlant().getHumidityHistory(),canvasHumidityHistory,humidityColor);
+        redrawCurrentMeasurement(model.getPlant().getHumidityHistory(), canvasCurrentHumidity, humidityColor, 5, 0);
+        redrawHistroy(model.getPlant().getHumidityHistory(), canvasHumidityHistory, humidityColor);
 
         //temperature
-        redrawCurrentMeasurement(model.getPlant().getTemperatureHistory(),canvasCurrentTemperature,temperatureColor,1,1);
-        redrawHistroy(model.getPlant().getTemperatureHistory(),canvasTemperatureHistory,temperatureColor);
+        redrawCurrentMeasurement(model.getPlant().getTemperatureHistory(), canvasCurrentTemperature, temperatureColor, 5, 0);
+        redrawHistroy(model.getPlant().getTemperatureHistory(), canvasTemperatureHistory, temperatureColor);
     }
     private void redrawHistroy(MeasurementHistory history, Canvas canvas, Color color) {
         List<Measurement> list = history.getMeasurements();

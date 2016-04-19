@@ -22,8 +22,7 @@ public class ResizeableCanvas extends Canvas {
     }
 
     @Override
-    public void resize(double width, double height)
-    {
+    public void resize(double width, double height) {
         super.setWidth(width);
         super.setHeight(height);
 
