@@ -1,14 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.canvas.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
-<?import model.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.control.Button?>
@@ -28,16 +19,9 @@
 <?import javafx.scene.text.Font?>
 <?import model.ResizeableCanvas?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="675.0" side="LEFT" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="1000.0" tabMaxWidth="1000.0" tabMinHeight="150.0" tabMinWidth="75.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Controller">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="691.0" prefWidth="851.0" side="LEFT" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="250.0" tabMaxWidth="75.0" tabMinHeight="250.0" tabMinWidth="75.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Controller">
     <tabs>
       <Tab fx:id="tabOverview">
-         <graphic>
-            <HBox alignment="CENTER" prefHeight="0.0" spacing="10.0">
-               <children>
-                  <Label fx:id="labelOverviewText" text="Overview" />
-               </children>
-            </HBox>
-         </graphic>
          <content>
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
@@ -120,11 +104,23 @@
                </children>
             </VBox>
          </content>
+         <graphic>
+            <AnchorPane prefHeight="61.0" prefWidth="240.0">
+               <children>
+               <Label fx:id="labelOverviewText" layoutX="90.0" layoutY="3.0" prefHeight="88.0" prefWidth="150.0" text="Overview" />
+                  <HBox layoutX="4.0" layoutY="3.0" prefHeight="85.0" prefWidth="77.0">
+                     <children>
+                        <ImageView fitHeight="85.0" fitWidth="79.0" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </HBox>
+               </children>
+            </AnchorPane>
+         </graphic>
       </Tab>
 
         <Tab fx:id="tabMoisture">
             <graphic>
-                <HBox alignment="CENTER" prefHeight="0.0" spacing="10.0">
+                <HBox alignment="CENTER" prefHeight="0.0" prefWidth="75.0" spacing="10.0">
                     <children>
                         <ImageView fx:id="imageViewMoisture" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
                         <Label fx:id="tabMoistureText" text="Moisture">Moisture</Label>
@@ -180,7 +176,7 @@
         </Tab>
         <Tab fx:id="tabTemperature">
             <graphic>
-                <HBox alignment="CENTER" prefHeight="0.0" spacing="10.0">
+                <HBox alignment="CENTER" prefHeight="150" prefWidth="110" spacing="10.0">
                     <children>
                         <ImageView fx:id="imageViewTemperature" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
                         <Label fx:id="tabTemperatureText">Temperature</Label>
@@ -237,12 +233,16 @@
 
         <Tab fx:id="tabHumidity">
             <graphic>
-                <HBox alignment="CENTER" prefHeight="0.0" spacing="10.0">
+                <AnchorPane prefHeight="61.0" prefWidth="240.0">
                     <children>
-                        <ImageView fx:id="imageViewHumidity" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
-                        <Label fx:id="tabHumidityText">Humidity</Label>
+                        <Label fx:id="tabHumidityText" layoutX="90.0" layoutY="3.0" prefHeight="88.0" prefWidth="150.0" text="Overview" />
+                        <HBox layoutX="4.0" layoutY="3.0" prefHeight="85.0" prefWidth="77.0">
+                            <children>
+                                <ImageView fx:id="imageViewHumidity" fitHeight="85.0" fitWidth="79.0" pickOnBounds="true" preserveRatio="true" />
+                            </children>
+                        </HBox>
                     </children>
-                </HBox>
+                </AnchorPane>
             </graphic>
             <content>
                 <SplitPane dividerPositions="0.4696969696969697" orientation="VERTICAL" prefHeight="438.0" prefWidth="515.0">
@@ -330,7 +330,7 @@
             </BorderPane>
          </content>
          <graphic>
-            <HBox alignment="CENTER" prefHeight="0.0" spacing="10.0">
+            <HBox alignment="CENTER" prefHeight="100" spacing="10.0">
                <children>
                   <ImageView fx:id="imageViewSunlight" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
                   <Label fx:id="tabSunlightText" text="Sunlight" />

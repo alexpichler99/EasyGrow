@@ -330,7 +330,7 @@ public class Controller implements Observer {
             comboSetTemperatureOptimum.getItems().add(i);
         imageViewMoisture.setImage(new Image("file:" + new File(imagesPath,"moistureIcon.png").getAbsolutePath()));
         imageViewTemperature.setImage(new Image("file:" + new File(imagesPath,"temperatureIcon.png").getAbsolutePath()));
-        imageViewHumidity.setImage(new Image("file:" + new File(imagesPath,"humidityIcon.png").getAbsolutePath()));
+        imageViewHumidity.setImage(new Image("file:" + new File(imagesPath,"humidity 3.png").getAbsolutePath()));
         imageViewSunlight.setImage(new Image("file:" + new File(imagesPath,"sunlightIcon.png").getAbsolutePath()));
         imageViewSettings.setImage(new Image("file:" + new File(imagesPath,"settingsIcon.png").getAbsolutePath()));
 
