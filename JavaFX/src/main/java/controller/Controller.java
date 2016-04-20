@@ -1,4 +1,4 @@
-package controller;
+﻿package controller;
 
 import java.io.*;
 import java.util.*;
@@ -25,6 +25,15 @@ public class Controller implements Observer {
     private PlantModel model;
 
     //region FXMLControls
+    @FXML
+    private Circle circleOTemperatureWarning;
+
+    @FXML
+    private Circle circleOHumidityWarning;
+
+    @FXML
+    private Circle circleOMoistureWarning;
+
     @FXML
     private Circle circleTemperatureWarning;
 
@@ -356,6 +365,7 @@ public class Controller implements Observer {
 
         for (int i = (int)PlantModel.minTemperature; i <= PlantModel.maxTemperature; i++)
             comboSetTemperatureOptimum.getItems().add(i);
+
         imageViewMoisture.setImage(new Image("file:" + new File(imagesPath,"flat life icon.png").getAbsolutePath()));
         imageViewTemperature.setImage(new Image("file:" + new File(imagesPath,"flat temperature icon final.png").getAbsolutePath()));
         imageViewHumidity.setImage(new Image("file:" + new File(imagesPath,"flat humidity fin.png").getAbsolutePath()));
@@ -370,7 +380,6 @@ public class Controller implements Observer {
         imgKrauck.setImage(new Image("file:" + new File(imagesPath, "krauck.jpg").getAbsolutePath()));
         imgPanz.setImage(new Image("file:" + new File(imagesPath, "panz.jpg").getAbsolutePath()));
         imgRiedl.setImage(new Image("file:" + new File(imagesPath, "riedl.jpg").getAbsolutePath()));
-
 
         //moisture
         hboxMoistureHistory.widthProperty().addListener((observable, oldValue, newValue) -> {
@@ -486,6 +495,10 @@ public class Controller implements Observer {
             circleTemperatureWarning.setFill(normalWarning);
         else if (warning == WarningType.Critical)
             circleTemperatureWarning.setFill(criticalWarning);
+
+        circleOHumidityWarning.setFill(circleHumidityWarning.getFill());
+        circleOMoistureWarning.setFill(circleMoistureWarning.getFill());
+        circleOTemperatureWarning.setFill(circleTemperatureWarning.getFill());
     }
 
     @Override
