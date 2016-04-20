@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
@@ -11,8 +10,6 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
@@ -29,9 +26,8 @@
                      <children>
                         <HBox alignment="CENTER" prefHeight="78.0" prefWidth="67.0">
                            <children>
-                              <Circle fx:id="circleMoistureWarning" fill="DODGERBLUE" radius="21.0" stroke="BLACK" strokeType="INSIDE" />
-                           </children>
-                        </HBox>
+                              <Circle fx:id="circleOMoistureWarning" fill="DODGERBLUE" radius="21.0" stroke="BLACK" strokeType="INSIDE" />
+                           </children></HBox>
                         <HBox alignment="CENTER_LEFT" prefHeight="78.0" prefWidth="218.0" spacing="200.0">
                            <children>
                               <Label fx:id="labelOCurrentMoisture" text="Moisture:" />
@@ -48,9 +44,8 @@
                      <children>
                         <HBox alignment="CENTER" prefHeight="78.0" prefWidth="67.0">
                            <children>
-                              <Circle fx:id="circleTemperatureWarning" fill="DODGERBLUE" radius="21.0" stroke="BLACK" strokeType="INSIDE" />
-                           </children>
-                        </HBox>
+                              <Circle fx:id="circleOTemperatureWarning" fill="DODGERBLUE" radius="21.0" stroke="BLACK" strokeType="INSIDE" />
+                           </children></HBox>
                         <HBox alignment="CENTER_LEFT" prefHeight="78.0" prefWidth="218.0" spacing="200.0">
                            <children>
                               <Label fx:id="labelOCurrentTemperature" text="Temperature:" />
@@ -67,9 +62,8 @@
                      <children>
                         <HBox alignment="CENTER" prefHeight="78.0" prefWidth="67.0">
                            <children>
-                              <Circle fx:id="circleHumidityWarning" fill="DODGERBLUE" radius="21.0" stroke="BLACK" strokeType="INSIDE" />
-                           </children>
-                        </HBox>
+                              <Circle fx:id="circleOHumidityWarning" fill="DODGERBLUE" radius="21.0" stroke="BLACK" strokeType="INSIDE" />
+                           </children></HBox>
                         <HBox alignment="CENTER_LEFT" prefHeight="78.0" prefWidth="218.0" spacing="200.0">
                            <children>
                               <Label fx:id="labelOCurrentHumidity" text="Humidity:" />
@@ -82,25 +76,6 @@
                         </HBox>
                      </children>
                   </HBox>
-                  <HBox layoutX="10.0" layoutY="166.0" prefHeight="78.0" prefWidth="516.0">
-                     <children>
-                        <HBox alignment="CENTER" prefHeight="78.0" prefWidth="67.0">
-                           <children>
-                              <Circle fill="DODGERBLUE" radius="21.0" stroke="BLACK" strokeType="INSIDE" />
-                           </children>
-                        </HBox>
-                        <HBox alignment="CENTER_LEFT" prefHeight="78.0" prefWidth="218.0" spacing="200.0">
-                           <children>
-                              <Label fx:id="labelOCurrentMoisture111" text="Moisture:" />
-                           </children>
-                        </HBox>
-                        <HBox alignment="CENTER_LEFT" prefHeight="78.0" prefWidth="241.0">
-                           <children>
-                              <Label fx:id="labelOCurrentMoisturePercent111" text="0%" />
-                           </children>
-                        </HBox>
-                     </children>
-                  </HBox>
                </children>
             </VBox>
          </content>
@@ -108,9 +83,8 @@
             <AnchorPane prefHeight="61.0" prefWidth="240.0">
                <children>
                <Label fx:id="labelOverviewText" layoutX="90.0" layoutY="3.0" prefHeight="88.0" prefWidth="150.0" text="Overview" />
-                  <HBox layoutX="4.0" layoutY="3.0" prefHeight="85.0" prefWidth="77.0">
+                  <HBox alignment="CENTER" layoutX="4.0" layoutY="3.0" prefHeight="85.0" prefWidth="77.0">
                      <children>
-                        <ImageView fitHeight="85.0" fitWidth="79.0" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </HBox>
                </children>
@@ -120,12 +94,16 @@
 
         <Tab fx:id="tabMoisture">
             <graphic>
-                <HBox alignment="CENTER" prefHeight="0.0" prefWidth="75.0" spacing="10.0">
+                <AnchorPane prefHeight="61.0" prefWidth="240.0">
                     <children>
-                        <ImageView fx:id="imageViewMoisture" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
-                        <Label fx:id="tabMoistureText" text="Moisture">Moisture</Label>
+                        <Label fx:id="tabMoistureText" layoutX="90.0" layoutY="3.0" prefHeight="88.0" prefWidth="150.0" text="Moisture" />
+                        <HBox alignment="CENTER" layoutX="4.0" layoutY="3.0" prefHeight="85.0" prefWidth="77.0">
+                            <children>
+                                <Circle fx:id="circleMoistureWarning" fill="DODGERBLUE" radius="21.0" stroke="BLACK" strokeType="INSIDE" />
+                            </children>
+                        </HBox>
                     </children>
-                </HBox>
+                </AnchorPane>
             </graphic>
             <content>
                 <SplitPane dividerPositions="0.4696969696969697" orientation="VERTICAL" prefHeight="438.0" prefWidth="515.0">
@@ -176,12 +154,16 @@
         </Tab>
         <Tab fx:id="tabTemperature">
             <graphic>
-                <HBox alignment="CENTER" prefHeight="150" prefWidth="110" spacing="10.0">
+                <AnchorPane prefHeight="61.0" prefWidth="240.0">
                     <children>
-                        <ImageView fx:id="imageViewTemperature" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
-                        <Label fx:id="tabTemperatureText">Temperature</Label>
+                        <Label fx:id="tabTemperatureText" layoutX="90.0" layoutY="3.0" prefHeight="88.0" prefWidth="150.0" text="Temperature" />
+                        <HBox alignment="CENTER" layoutX="4.0" layoutY="3.0" prefHeight="85.0" prefWidth="77.0">
+                            <children>
+                                <Circle fx:id="circleTemperatureWarning" fill="DODGERBLUE" radius="21.0" stroke="BLACK" strokeType="INSIDE" />
+                            </children>
+                        </HBox>
                     </children>
-                </HBox>
+                </AnchorPane>
             </graphic>
          <content>
             <SplitPane dividerPositions="0.4696969696969697" orientation="VERTICAL" prefHeight="438.0" prefWidth="515.0">
@@ -235,10 +217,10 @@
             <graphic>
                 <AnchorPane prefHeight="61.0" prefWidth="240.0">
                     <children>
-                        <Label fx:id="tabHumidityText" layoutX="90.0" layoutY="3.0" prefHeight="88.0" prefWidth="150.0" text="Overview" />
-                        <HBox layoutX="4.0" layoutY="3.0" prefHeight="85.0" prefWidth="77.0">
+                        <Label fx:id="tabHumidityText" layoutX="90.0" layoutY="3.0" prefHeight="88.0" prefWidth="150.0" text="Humidity" />
+                        <HBox alignment="CENTER" layoutX="4.0" layoutY="3.0" prefHeight="85.0" prefWidth="77.0">
                             <children>
-                                <ImageView fx:id="imageViewHumidity" fitHeight="85.0" fitWidth="79.0" pickOnBounds="true" preserveRatio="true" />
+                                <Circle fx:id="circleHumidityWarning" fill="DODGERBLUE" radius="21.0" stroke="BLACK" strokeType="INSIDE" />
                             </children>
                         </HBox>
                     </children>
@@ -291,6 +273,7 @@
                 </SplitPane>
             </content>
         </Tab>
+        <!--
       <Tab fx:id="tabSunlight">
          <content>
             <BorderPane>
@@ -338,15 +321,19 @@
             </HBox>
          </graphic>
       </Tab>
-
+    -->
         <Tab fx:id="tabSettings">
             <graphic>
-                <HBox alignment="CENTER" prefHeight="0.0" spacing="10.0">
+                <AnchorPane prefHeight="61.0" prefWidth="240.0">
                     <children>
-                        <ImageView fx:id="imageViewSettings" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
-                        <Label fx:id="tabSettingsText">Settings</Label>
+                        <Label fx:id="tabSettingsText" layoutX="90.0" layoutY="3.0" prefHeight="88.0" prefWidth="150.0" text="Settings" />
+                        <HBox alignment="CENTER" layoutX="4.0" layoutY="3.0" prefHeight="85.0" prefWidth="77.0">
+                            <children>
+                                <ImageView fx:id="imageViewSettings" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
+                            </children>
+                        </HBox>
                     </children>
-                </HBox>
+                </AnchorPane>
             </graphic>
             <content>
 
@@ -402,25 +389,5 @@
                 </AnchorPane>
             </content>
         </Tab>
-      <Tab text="About">
-        <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-               <children>
-                  <ImageView fx:id="imgPichler" fitHeight="150.0" fitWidth="200.0" layoutX="58.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="imgKrauck" fitHeight="150.0" fitWidth="200.0" layoutX="328.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="imgPanz" fitHeight="150.0" fitWidth="200.0" layoutX="58.0" layoutY="261.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="imgRiedl" fitHeight="150.0" fitWidth="200.0" layoutX="328.0" layoutY="253.0" pickOnBounds="true" preserveRatio="true" />
-                  <Button fx:id="btnAbout" alignment="CENTER_RIGHT" layoutX="517.0" layoutY="622.0" mnemonicParsing="false" onAction="#handleBtnAbout" text="?" textAlignment="CENTER" textOverrun="CLIP" />
-                  <Label layoutX="84.0" layoutY="233.0" text="Alexander Pichler" />
-                  <Label layoutX="348.0" layoutY="233.0" text="Alexander Krauck" />
-                  <Label layoutX="78.0" layoutY="411.0" text="Philipp Panzenböck" />
-                  <Label layoutX="354.0" layoutY="411.0" text="Lukas Hoden" />
-                  <ImageView fx:id="imgJava" fitHeight="100.0" fitWidth="98.0" layoutX="63.0" layoutY="509.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="imgArduino" fitHeight="138.0" fitWidth="98.0" layoutX="161.0" layoutY="509.0" pickOnBounds="true" preserveRatio="true" />
-                  <Label layoutX="297.0" layoutY="626.0" text="Betreuungslehrer:     Thomas Stütz" />
-               </children>
-            </AnchorPane>
-        </content>
-      </Tab>
     </tabs>
 </TabPane>

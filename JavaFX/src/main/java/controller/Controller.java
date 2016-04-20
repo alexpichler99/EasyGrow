@@ -372,14 +372,6 @@ public class Controller implements Observer {
       //  imageViewSunlight.setImage(new Image("file:" + new File(imagesPath,"flat sun.png").getAbsolutePath()));
         //imageViewSettings.setImage(new Image("file:" + new File(imagesPath,"settingsIcon.png").getAbsolutePath()));
 
-        //PANZ
-        imgJava.setImage(new Image("file:" + new File(imagesPath, "java.jpg").getAbsolutePath()));
-        imgArduino.setImage(new Image("file:" + new File(imagesPath, "arduino.png").getAbsolutePath()));
-
-        imgPichler.setImage(new Image("file:" + new File(imagesPath, "pichler.jpg").getAbsolutePath()));
-        imgKrauck.setImage(new Image("file:" + new File(imagesPath, "krauck.jpg").getAbsolutePath()));
-        imgPanz.setImage(new Image("file:" + new File(imagesPath, "panz.jpg").getAbsolutePath()));
-        imgRiedl.setImage(new Image("file:" + new File(imagesPath, "riedl.jpg").getAbsolutePath()));
 
         //moisture
         hboxMoistureHistory.widthProperty().addListener((observable, oldValue, newValue) -> {
@@ -604,8 +596,7 @@ public class Controller implements Observer {
             graphicsContext.strokeLine(i* (width / 7) + width / 7, 0, i * (width / 7) + width / 7, height);
     }
 
-    private void setLanguage(String language, String country)
-    {
+    private void setLanguage(String language, String country) {
             Locale locale = new Locale(language, country);
             ResourceBundle rB = ResourceBundle.getBundle(languagePropertyFile, locale);
         try {
@@ -614,7 +605,7 @@ public class Controller implements Observer {
             tabMoistureText.setText(rB.getString("moisture"));
             tabSettingsText.setText(rB.getString("settings"));
             labelOverviewText.setText(rB.getString("overview"));
-            tabSunlightText.setText(rB.getString("sunlight"));
+            //tabSunlightText.setText(rB.getString("sunlight"));
             tabTemperatureText.setText(rB.getString("temperature"));
             labelOCurrentMoisture.setText(rB.getString("moisture"));
             labelOCurrentHumidity.setText(rB.getString("humidity"));
@@ -622,15 +613,12 @@ public class Controller implements Observer {
             labelCurrentHumidity.setText(rB.getString("currenthumidity"));
             labelCurrentMoisture.setText(rB.getString("currentmoisture"));
             labelCurrentTemperature.setText(rB.getString("currenttemperature"));
-            labelCurrentSunlight.setText(rB.getString("currentsunlight"));
+            //labelCurrentSunlight.setText(rB.getString("currentsunlight"));
             labelSetArduinoIP.setText(rB.getString("setarduinoip"));
             labelSetMoistureOptimum.setText(rB.getString("setmoistureopt"));
             labelSetTemperatureOptimum.setText(rB.getString("settemperatureopt"));
             labelSetHumidityOptimum.setText(rB.getString("sethumidityopt"));
             btnSetIP.setText(rB.getString("setip"));
-
-
-
         } catch (MissingResourceException ex) {
             System.out.println("error");
         }
