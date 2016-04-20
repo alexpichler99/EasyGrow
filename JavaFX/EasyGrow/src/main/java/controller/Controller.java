@@ -44,26 +44,6 @@ public class Controller implements Observer {
     private HBox hboxHumidityHistory;
 
     @FXML
-    private ImageView imgPichler;
-
-    @FXML
-    private ImageView imgKrauck;
-
-    @FXML
-    private ImageView imgPanz;
-
-    @FXML
-    private ImageView imgRiedl;
-
-    @FXML
-    private Button btnAbout;
-
-    @FXML
-    private ImageView imgJava;
-
-    @FXML
-    private ImageView imgArduino;
-    @FXML
     private Circle circleOTemperatureWarning;
 
     @FXML
@@ -238,6 +218,38 @@ public class Controller implements Observer {
 
     @FXML
     private Button btnEnglish;
+
+    @FXML
+    private Tab tabAbout;
+
+    @FXML
+    private ImageView imgPichler;
+
+    @FXML
+    private ImageView imgKrauck;
+
+    @FXML
+    private ImageView imgPanz;
+
+    @FXML
+    private ImageView imgRiedl;
+
+    @FXML
+    private ImageView imgJava;
+
+    @FXML
+    private ImageView imgArduino;
+
+    @FXML
+    private Button btnAbout;
+
+    @FXML
+    private Label labelAboutText;
+
+    @FXML
+    void handleBtnAbout(ActionEvent event) {
+        //TODO
+    }
     //endregion
 
 
@@ -433,6 +445,15 @@ public class Controller implements Observer {
             canvasCurrentHumidity.resize(newValue.doubleValue() / 2, newValue.doubleValue());
             redraw();
         }));
+
+
+        imgJava.setImage(new Image("file:" + new File(imagesPath, "java.jpg").getAbsolutePath()));
+        imgArduino.setImage(new Image("file:" + new File(imagesPath, "arduino.png").getAbsolutePath()));
+
+        imgPichler.setImage(new Image("file:" + new File(imagesPath, "pichler.jpg").getAbsolutePath()));
+        imgKrauck.setImage(new Image("file:" + new File(imagesPath, "krauck.jpg").getAbsolutePath()));
+        imgPanz.setImage(new Image("file:" + new File(imagesPath, "panz.jpg").getAbsolutePath()));
+        imgRiedl.setImage(new Image("file:" + new File(imagesPath, "riedl.jpg").getAbsolutePath()));
     }
 
     //region FXMLEvents
