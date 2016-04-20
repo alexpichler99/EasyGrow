@@ -1,6 +1,8 @@
 package controller;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.*;
 
 import javafx.application.Platform;
@@ -25,6 +27,9 @@ public class Controller implements Observer {
     private PlantModel model;
 
     //region FXMLControls
+    @FXML
+    private Label labelSupportTeacher;
+
     @FXML
     private HBox hboxMoisture;
 
@@ -244,9 +249,6 @@ public class Controller implements Observer {
     private Label labelAboutText;
 
     @FXML
-    private Label labelBetreuung;
-
-    @FXML
     void handleBtnAbout(ActionEvent event) {
         //TODO
     }
@@ -280,8 +282,8 @@ public class Controller implements Observer {
     private float moistureOptimum = defaultMoistureOptimum;
     private float humidityOptimum = defaultHumidityOptimum;
     private float temperatureOptimum = defaultTemperatureOptimum;
-    private String language;
-    private String country;
+    private String language = defaultLanguage;
+    private String country = defaultCountry;
 
     private void loadMainProperties() {
         try {
@@ -368,16 +370,6 @@ public class Controller implements Observer {
     void initialize() {
         resourcesPath = new File(new File("").getAbsolutePath()+File.separator+"src"+File.separator+ "main" +File.separator+"resources");
         imagesPath = new File(resourcesPath, "images");
-        assert tabMoistureText != null : "fx:id=\"tabMoistureText\" was not injected: check your FXML file 'sample.fxml'.";
-        assert flowPane != null : "fx:id=\"flowPane\" was not injected: check your FXML file 'sample.fxml'.";
-        assert canvasCurrentMoisture != null : "fx:id=\"canvasCurrentMoisture\" was not injected: check your FXML file 'sample.fxml'.";
-        assert canvasMoistureHistory != null : "fx:id=\"canvasMoistureHistory\" was not injected: check your FXML file 'sample.fxml'.";
-        assert tabSettings != null : "fx:id=\"tabSettings\" was not injected: check your FXML file 'sample.fxml'.";
-        assert tabSettingsText != null : "fx:id=\"tabSettingsText\" was not injected: check your FXML file 'sample.fxml'.";
-        assert tfSetIP != null : "fx:id=\"tfSetIP\" was not injected: check your FXML file 'sample.fxml'.";
-        assert btnSetIP != null : "fx:id=\"btnSetIP\" was not injected: check your FXML file 'sample.fxml'.";
-        assert comboSetLanguage != null : "fx:id=\"comboSetLanguage\" was not injected: check your FXML file 'sample.fxml'.";
-        assert labelSetLanguage != null : "fx:id=\"labelSetLanguage\" was not injected: check your FXML file 'sample.fxml'.";
 
         loadMainProperties();
         model = new PlantModel(moistureOptimum, humidityOptimum, temperatureOptimum, arduinoIp, this);
@@ -389,13 +381,6 @@ public class Controller implements Observer {
 
         for (int i = (int)PlantModel.minTemperature; i <= PlantModel.maxTemperature; i++)
             comboSetTemperatureOptimum.getItems().add(i);
-
-        //imageViewMoisture.setImage(new Image("file:" + new File(imagesPath,"flat life icon.png").getAbsolutePath()));
-        //imageViewTemperature.setImage(new Image("file:" + new File(imagesPath,"flat temperature icon final.png").getAbsolutePath()));
-        //imageViewHumidity.setImage(new Image("file:" + new File(imagesPath,"flat humidity fin.png").getAbsolutePath()));
-        //imageViewSunlight.setImage(new Image("file:" + new File(imagesPath,"flat sun.png").getAbsolutePath()));
-        //imageViewSettings.setImage(new Image("file:" + new File(imagesPath,"settingsIcon.png").getAbsolutePath()));
-
 
         //moisture
         hboxMoistureHistory.widthProperty().addListener((observable, oldValue, newValue) -> {
@@ -445,7 +430,6 @@ public class Controller implements Observer {
             canvasCurrentHumidity.resize(newValue.doubleValue() / 2, newValue.doubleValue());
             redraw();
         }));
-
 
         //imgJava.setImage(new Image("file:" + new File(imagesPath, "java.jpg").getAbsolutePath()));
         //imgArduino.setImage(new Image("file:" + new File(imagesPath, "arduino.png").getAbsolutePath()));
@@ -539,18 +523,18 @@ public class Controller implements Observer {
     @Override
     public void update(Observable o, Object arg) {
         Platform.runLater(() -> {
-            if (model.getPlant().getMoistureHistory().getFirstMeasurement() != null
-                    && !Float.isNaN(model.getPlant().getMoistureHistory().getFirstMeasurement().getValue()))
+            if (model.getPlant().getMoistureHistory().getFirstMeasurement() != null &&
+                    model.getPlant().getMoistureHistory().getFirstMeasurement().isValid())
                 labelCurrentMoisturePercent.setText(model.getPlant().getMoistureHistory().getFirstMeasurement().getValue() + "%");
             else
                 labelCurrentMoisturePercent.setText("Not available");
-            if (model.getPlant().getTemperatureHistory().getFirstMeasurement() != null
-                    && !Float.isNaN(model.getPlant().getTemperatureHistory().getFirstMeasurement().getValue()))
+            if (model.getPlant().getTemperatureHistory().getFirstMeasurement() != null &&
+                    model.getPlant().getTemperatureHistory().getFirstMeasurement().isValid())
                 labelCurrentTemperatureCelsius.setText(model.getPlant().getTemperatureHistory().getFirstMeasurement().getValue() + "°C");
             else
                 labelCurrentTemperatureCelsius.setText("Not available");
-            if (model.getPlant().getHumidityHistory().getFirstMeasurement() != null
-                    && !Float.isNaN(model.getPlant().getHumidityHistory().getFirstMeasurement().getValue()))
+            if (model.getPlant().getHumidityHistory().getFirstMeasurement() != null &&
+                    model.getPlant().getHumidityHistory().getFirstMeasurement().isValid())
                 labelCurrentHumidityPercent.setText(model.getPlant().getHumidityHistory().getFirstMeasurement().getValue() + "%");
             else
                 labelCurrentHumidityPercent.setText("Not available");
@@ -648,7 +632,9 @@ public class Controller implements Observer {
             tabMoistureText.setText(rB.getString("moisture"));
             tabSettingsText.setText(rB.getString("settings"));
             labelOverviewText.setText(rB.getString("overview"));
+            labelAboutText.setText(rB.getString("about"));
             //tabSunlightText.setText(rB.getString("sunlight"));
+            labelSupportTeacher.setText(rB.getString("supportteacher"));
             tabTemperatureText.setText(rB.getString("temperature"));
             labelOCurrentMoisture.setText(rB.getString("moisture"));
             labelOCurrentHumidity.setText(rB.getString("humidity"));

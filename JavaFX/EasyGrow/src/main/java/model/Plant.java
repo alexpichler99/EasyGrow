@@ -6,6 +6,7 @@ import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.InputStreamReader;
 import java.net.*;
+import java.util.Date;
 import java.util.Random;
 
 /**
@@ -58,6 +59,7 @@ public class Plant {
 
 
     public boolean refreshInformation() {
+        Date date = new Date();
         try {
             float moist = Float.NaN, temp = Float.NaN, hum = Float.NaN;
             boolean mode = true; //used for testing
@@ -66,8 +68,10 @@ public class Plant {
                 Socket clientSocket;
                 clientSocket = new Socket();
                 clientSocket.connect(new InetSocketAddress(ip, 80), 1000);
-                if (!clientSocket.isConnected())
+                if (!clientSocket.isConnected()) {
+                    clientSocket.close();
                     return false;
+                }
                 DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream());
                 BufferedReader inFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
                 outToServer.writeBytes("GET / HTTP/1.1");
@@ -77,13 +81,13 @@ public class Plant {
                     return false;
                 try {
                     moist = Float.parseFloat(split[0]);
-                } catch (Exception ex) { }
+                } catch (NumberFormatException ex) { }
                 try {
                     temp = Float.parseFloat(split[1]);
-                } catch (Exception ex) { }
+                } catch (NumberFormatException ex) { }
                 try {
                     hum = Float.parseFloat(split[2]);
-                } catch (Exception ex) { }
+                } catch (NumberFormatException ex) { }
             }
             else {
                 Random random = new Random();
@@ -102,6 +106,7 @@ public class Plant {
         catch (Exception e) {
             return false;
         }
+        System.out.println("time: " + (new Date().getTime() - date.getTime()));
         return true;
     }
 }

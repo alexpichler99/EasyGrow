@@ -27,17 +27,16 @@ public class MeasurementHistory {
         this.optimum = optimum;
     }
     public void addMeasurement(Measurement measurement) {
-        if(measurement.getValue() <= maximum && measurement.getValue() >= minumum) {
+        if(measurement.getValue() <= maximum && measurement.getValue() >= minumum)
             measurementList.add(measurement);
-            while (new Date().getTime() - measurementList.get(0).getDate().getTime() > PlantModel.spanTime && measurementList.size() != 1) {
-                if (new Date().getTime() - measurementList.get(1).getDate().getTime() > PlantModel.spanTime)
-                    measurementList.remove(0);
-                else
-                    break;
-            }
-        }
         else
-            System.out.println("wrong value");
+            measurementList.add(new Measurement(minumum - 1, measurement.getDate(), false));
+        while (new Date().getTime() - measurementList.get(0).getDate().getTime() > PlantModel.spanTime && measurementList.size() != 1) {
+            if (new Date().getTime() - measurementList.get(1).getDate().getTime() > PlantModel.spanTime)
+                measurementList.remove(0);
+            else
+                break;
+        }
     }
     public List<Measurement> getMeasurements() {
         return measurementList;
