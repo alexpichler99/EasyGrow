@@ -6,13 +6,11 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a07c7f4e-d2f3-495b-87c0-bd8c94b21357" name="Default" comment="update">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/controller/Controller.class" afterPath="$PROJECT_DIR$/target/classes/controller/Controller.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
+    <list default="true" id="a07c7f4e-d2f3-495b-87c0-bd8c94b21357" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mainProperties.prop" afterPath="$PROJECT_DIR$/mainProperties.prop" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/controller/Controller.java" afterPath="$PROJECT_DIR$/src/main/java/controller/Controller.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/fxml/sample.fxml" afterPath="$PROJECT_DIR$/src/main/resources/fxml/sample.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/fxml/sample.fxml" afterPath="$PROJECT_DIR$/target/classes/fxml/sample.fxml" />
     </list>
     <ignored path="easygrow.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -36,12 +34,15 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="sample.fxml" pinned="false" current-in-tab="true">
+      <file leaf-file-name="sample.fxml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/fxml/sample.fxml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.3988183">
-              <caret line="231" column="14" selection-start-line="231" selection-start-column="14" selection-end-line="231" selection-end-column="14" />
-              <folding />
+            <state vertical-scroll-proportion="-2.7">
+              <caret line="27" column="37" selection-start-line="27" selection-start-column="37" selection-end-line="27" selection-end-column="37" />
+              <folding>
+                <element signature="n#content#0;n#Tab#1;n#tabs#0;n#TabPane#0;n#!!top" expanded="false" />
+                <element signature="e#17023#19502#0" expanded="false" />
+              </folding>
             </state>
           </provider>
           <provider editor-type-id="JavaFX-Scene-Builder">
@@ -49,12 +50,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Controller.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Controller.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/controller/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="333" column="45" selection-start-line="333" selection-start-column="45" selection-end-line="333" selection-end-column="45" />
+            <state vertical-scroll-proportion="0.5861601">
+              <caret line="458" column="62" selection-start-line="458" selection-start-column="62" selection-end-line="458" selection-end-column="62" />
               <folding>
+                <element signature="n#!!doc;n#circleOTemperatureWarning#0;n#Controller#0" expanded="false" />
                 <element signature="method#loadMainProperties#0;class#Controller#0" expanded="false" />
                 <element signature="method#storeMainProperties#0;class#Controller#0" expanded="false" />
                 <element signature="n#!!doc;n#onBtnSetIPAction#0;n#Controller#0" expanded="false" />
@@ -100,8 +102,8 @@
         <option value="$PROJECT_DIR$/src/main/resources/LanguageProperty.properties" />
         <option value="$PROJECT_DIR$/src/main/resources/LanguageProperty_en_US.properties" />
         <option value="$PROJECT_DIR$/src/main/resources/LanguageProperty_de_DE.properties" />
-        <option value="$PROJECT_DIR$/src/main/java/controller/Controller.java" />
         <option value="$PROJECT_DIR$/src/main/resources/fxml/sample.fxml" />
+        <option value="$PROJECT_DIR$/src/main/java/controller/Controller.java" />
       </list>
     </option>
   </component>
@@ -785,7 +787,7 @@
       <workItem from="1461072842347" duration="1760000" />
       <workItem from="1461074635765" duration="4082000" />
       <workItem from="1461086727277" duration="904000" />
-      <workItem from="1461139228479" duration="7113000" />
+      <workItem from="1461139228479" duration="10277000" />
     </task>
     <task id="LOCAL-00001" summary="Pichler suxcox">
       <created>1460531104620</created>
@@ -859,11 +861,17 @@
       <option name="project" value="LOCAL" />
       <updated>1461078712924</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="update">
+      <created>1461156274782</created>
+      <option name="number" value="00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1461156274782</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="38101000" />
+    <option name="totallyTimeSpent" value="41265000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="24" width="1855" height="1056" extended-state="6" />
@@ -879,7 +887,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19137749" sideWeight="0.4490566" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21886793" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21886793" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -919,14 +927,6 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/controller/Controller.java</url>
-          <line>387</line>
-          <properties />
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
       <option name="time" value="3" />
     </breakpoint-manager>
     <watches-manager />
@@ -948,7 +948,10 @@
       <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="58" column="0" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="n#content#0;n#Tab#1;n#tabs#0;n#TabPane#0;n#!!top" expanded="false" />
+            <element signature="e#17023#19502#0" expanded="false" />
+          </folding>
         </state>
       </provider>
       <provider selected="true" editor-type-id="JavaFX-Scene-Builder">
@@ -1000,6 +1003,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="299" column="22" selection-start-line="299" selection-start-column="22" selection-end-line="299" selection-end-column="22" />
           <folding>
+            <element signature="n#!!doc;n#circleOTemperatureWarning#0;n#Controller#0" expanded="false" />
             <element signature="method#loadMainProperties#0;class#Controller#0" expanded="false" />
             <element signature="method#storeMainProperties#0;class#Controller#0" expanded="false" />
             <element signature="n#!!doc;n#onBtnSetIPAction#0;n#Controller#0" expanded="false" />
@@ -1060,6 +1064,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="283" column="29" selection-start-line="283" selection-start-column="29" selection-end-line="283" selection-end-column="29" />
           <folding>
+            <element signature="n#!!doc;n#circleOTemperatureWarning#0;n#Controller#0" expanded="false" />
             <element signature="method#loadMainProperties#0;class#Controller#0" expanded="false" />
             <element signature="method#storeMainProperties#0;class#Controller#0" expanded="false" />
             <element signature="n#!!doc;n#onBtnSetIPAction#0;n#Controller#0" expanded="false" />
@@ -1123,6 +1128,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
+            <element signature="n#!!doc;n#circleOTemperatureWarning#0;n#Controller#0" expanded="false" />
             <element signature="method#loadMainProperties#0;class#Controller#0" expanded="false" />
             <element signature="method#storeMainProperties#0;class#Controller#0" expanded="false" />
             <element signature="n#!!doc;n#onBtnSetIPAction#0;n#Controller#0" expanded="false" />
@@ -1160,7 +1166,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="n#content#0;n#Tab#1;n#tabs#0;n#TabPane#0;n#!!top" expanded="false" />
+            <element signature="e#17023#19502#0" expanded="false" />
+          </folding>
         </state>
       </provider>
       <provider editor-type-id="JavaFX-Scene-Builder">
@@ -1172,6 +1181,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
+            <element signature="n#!!doc;n#circleOTemperatureWarning#0;n#Controller#0" expanded="false" />
             <element signature="method#loadMainProperties#0;class#Controller#0" expanded="false" />
             <element signature="method#storeMainProperties#0;class#Controller#0" expanded="false" />
             <element signature="n#!!doc;n#onBtnSetIPAction#0;n#Controller#0" expanded="false" />
@@ -1193,7 +1203,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="n#content#0;n#Tab#1;n#tabs#0;n#TabPane#0;n#!!top" expanded="false" />
+            <element signature="e#17023#19502#0" expanded="false" />
+          </folding>
         </state>
       </provider>
       <provider editor-type-id="JavaFX-Scene-Builder">
@@ -1205,6 +1218,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
+            <element signature="n#!!doc;n#circleOTemperatureWarning#0;n#Controller#0" expanded="false" />
             <element signature="method#loadMainProperties#0;class#Controller#0" expanded="false" />
             <element signature="method#storeMainProperties#0;class#Controller#0" expanded="false" />
             <element signature="n#!!doc;n#onBtnSetIPAction#0;n#Controller#0" expanded="false" />
@@ -1226,7 +1240,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="n#content#0;n#Tab#1;n#tabs#0;n#TabPane#0;n#!!top" expanded="false" />
+            <element signature="e#17023#19502#0" expanded="false" />
+          </folding>
         </state>
       </provider>
       <provider editor-type-id="JavaFX-Scene-Builder">
@@ -1238,6 +1255,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
+            <element signature="n#!!doc;n#circleOTemperatureWarning#0;n#Controller#0" expanded="false" />
             <element signature="method#loadMainProperties#0;class#Controller#0" expanded="false" />
             <element signature="method#storeMainProperties#0;class#Controller#0" expanded="false" />
             <element signature="n#!!doc;n#onBtnSetIPAction#0;n#Controller#0" expanded="false" />
@@ -1259,7 +1277,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="n#content#0;n#Tab#1;n#tabs#0;n#TabPane#0;n#!!top" expanded="false" />
+            <element signature="e#17023#19502#0" expanded="false" />
+          </folding>
         </state>
       </provider>
       <provider editor-type-id="JavaFX-Scene-Builder">
@@ -1271,6 +1292,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
+            <element signature="n#!!doc;n#circleOTemperatureWarning#0;n#Controller#0" expanded="false" />
             <element signature="method#loadMainProperties#0;class#Controller#0" expanded="false" />
             <element signature="method#storeMainProperties#0;class#Controller#0" expanded="false" />
             <element signature="n#!!doc;n#onBtnSetIPAction#0;n#Controller#0" expanded="false" />
@@ -1386,27 +1408,31 @@
         <state />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/fxml/sample.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.7">
+          <caret line="27" column="37" selection-start-line="27" selection-start-column="37" selection-end-line="27" selection-end-column="37" />
+          <folding>
+            <element signature="n#content#0;n#Tab#1;n#tabs#0;n#TabPane#0;n#!!top" expanded="false" />
+            <element signature="e#17023#19502#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/controller/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="333" column="45" selection-start-line="333" selection-start-column="45" selection-end-line="333" selection-end-column="45" />
+        <state vertical-scroll-proportion="0.5861601">
+          <caret line="458" column="62" selection-start-line="458" selection-start-column="62" selection-end-line="458" selection-end-column="62" />
           <folding>
+            <element signature="n#!!doc;n#circleOTemperatureWarning#0;n#Controller#0" expanded="false" />
             <element signature="method#loadMainProperties#0;class#Controller#0" expanded="false" />
             <element signature="method#storeMainProperties#0;class#Controller#0" expanded="false" />
             <element signature="n#!!doc;n#onBtnSetIPAction#0;n#Controller#0" expanded="false" />
           </folding>
         </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/fxml/sample.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3988183">
-          <caret line="231" column="14" selection-start-line="231" selection-start-column="14" selection-end-line="231" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
       </provider>
     </entry>
   </component>

@@ -26,6 +26,15 @@ public class Controller implements Observer {
 
     //region FXMLControls
     @FXML
+    private Circle circleOTemperatureWarning;
+
+    @FXML
+    private Circle circleOHumidityWarning;
+
+    @FXML
+    private Circle circleOMoistureWarning;
+
+    @FXML
     private Circle circleTemperatureWarning;
 
     @FXML
@@ -328,12 +337,11 @@ public class Controller implements Observer {
 
         for (int i = (int)PlantModel.minTemperature; i <= PlantModel.maxTemperature; i++)
             comboSetTemperatureOptimum.getItems().add(i);
-        imageViewMoisture.setImage(new Image("file:" + new File(imagesPath,"moistureIcon.png").getAbsolutePath()));
-        imageViewTemperature.setImage(new Image("file:" + new File(imagesPath,"temperatureIcon.png").getAbsolutePath()));
-        imageViewHumidity.setImage(new Image("file:" + new File(imagesPath,"humidity 3.png").getAbsolutePath()));
-        imageViewSunlight.setImage(new Image("file:" + new File(imagesPath,"sunlightIcon.png").getAbsolutePath()));
-        imageViewSettings.setImage(new Image("file:" + new File(imagesPath,"settingsIcon.png").getAbsolutePath()));
-
+       // imageViewMoisture.setImage(new Image("file:" + new File(imagesPath,"moistureIcon.png").getAbsolutePath()));
+    //    imageViewTemperature.setImage(new Image("file:" + new File(imagesPath,"temperatureIcon.png").getAbsolutePath()));
+      //  imageViewHumidity.setImage(new Image("file:" + new File(imagesPath,"humidity 3.png").getAbsolutePath()));
+        //imageViewSunlight.setImage(new Image("file:" + new File(imagesPath,"sunlightIcon.png").getAbsolutePath()));
+        //imageViewSettings.setImage(new Image("file:" + new File(imagesPath,"settingsIcon.png").getAbsolutePath()));
 
         //moisture
         hboxMoistureHistory.widthProperty().addListener((observable, oldValue, newValue) -> {
@@ -449,6 +457,10 @@ public class Controller implements Observer {
             circleTemperatureWarning.setFill(normalWarning);
         else if (warning == WarningType.Critical)
             circleTemperatureWarning.setFill(criticalWarning);
+
+        circleOHumidityWarning.setFill(circleHumidityWarning.getFill());
+        circleOMoistureWarning.setFill(circleMoistureWarning.getFill());
+        circleOTemperatureWarning.setFill(circleTemperatureWarning.getFill());
     }
 
     @Override
