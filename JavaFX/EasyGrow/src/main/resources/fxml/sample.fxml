@@ -455,18 +455,22 @@
                               <Label text="Lukas Riedl" BorderPane.alignment="CENTER" />
                            </bottom>
                         </BorderPane>
-                        <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
-                           <left>
-                              <ImageView fx:id="imgJava" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER" />
-                           </left>
-                           <right>
-                              <ImageView fx:id="imgArduino" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER" />
-                           </right>
-                        </BorderPane>
                         <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                           <center>
-                              <Button fx:id="btnAbout" mnemonicParsing="false" onAction="#handleBtnAbout" text="?" BorderPane.alignment="CENTER" />
-                           </center>
+                           <bottom>
+                              <HBox prefHeight="100.0" prefWidth="200.0" spacing="50.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <Label fx:id="labelBetreuung" text="Label">
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets>
+                                    </Label>
+                                    <Label text="Thomas Stütz" />
+                                 </children>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                              </HBox>
+                           </bottom>
                         </BorderPane>
                      </children>
                   </GridPane>

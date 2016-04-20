@@ -234,17 +234,17 @@ public class Controller implements Observer {
     @FXML
     private ImageView imgRiedl;
 
-    @FXML
+    /*@FXML
     private ImageView imgJava;
 
     @FXML
-    private ImageView imgArduino;
-
-    @FXML
-    private Button btnAbout;
+    private ImageView imgArduino;*/
 
     @FXML
     private Label labelAboutText;
+
+    @FXML
+    private Label labelBetreuung;
 
     @FXML
     void handleBtnAbout(ActionEvent event) {
@@ -447,8 +447,8 @@ public class Controller implements Observer {
         }));
 
 
-        imgJava.setImage(new Image("file:" + new File(imagesPath, "java.jpg").getAbsolutePath()));
-        imgArduino.setImage(new Image("file:" + new File(imagesPath, "arduino.png").getAbsolutePath()));
+        //imgJava.setImage(new Image("file:" + new File(imagesPath, "java.jpg").getAbsolutePath()));
+        //imgArduino.setImage(new Image("file:" + new File(imagesPath, "arduino.png").getAbsolutePath()));
 
         imgPichler.setImage(new Image("file:" + new File(imagesPath, "pichler.jpg").getAbsolutePath()));
         imgKrauck.setImage(new Image("file:" + new File(imagesPath, "krauck.jpg").getAbsolutePath()));
