@@ -1,4 +1,4 @@
-﻿package controller;
+package controller;
 
 import java.io.*;
 import java.util.*;
@@ -366,11 +366,11 @@ public class Controller implements Observer {
         for (int i = (int)PlantModel.minTemperature; i <= PlantModel.maxTemperature; i++)
             comboSetTemperatureOptimum.getItems().add(i);
 
-        imageViewMoisture.setImage(new Image("file:" + new File(imagesPath,"flat life icon.png").getAbsolutePath()));
-        imageViewTemperature.setImage(new Image("file:" + new File(imagesPath,"flat temperature icon final.png").getAbsolutePath()));
-        imageViewHumidity.setImage(new Image("file:" + new File(imagesPath,"flat humidity fin.png").getAbsolutePath()));
-        imageViewSunlight.setImage(new Image("file:" + new File(imagesPath,"flat sun.png").getAbsolutePath()));
-        imageViewSettings.setImage(new Image("file:" + new File(imagesPath,"settingsIcon.png").getAbsolutePath()));
+//        imageViewMoisture.setImage(new Image("file:" + new File(imagesPath,"flat life icon.png").getAbsolutePath()));
+  //      imageViewTemperature.setImage(new Image("file:" + new File(imagesPath,"flat temperature icon final.png").getAbsolutePath()));
+    //    imageViewHumidity.setImage(new Image("file:" + new File(imagesPath,"flat humidity fin.png").getAbsolutePath()));
+      //  imageViewSunlight.setImage(new Image("file:" + new File(imagesPath,"flat sun.png").getAbsolutePath()));
+        //imageViewSettings.setImage(new Image("file:" + new File(imagesPath,"settingsIcon.png").getAbsolutePath()));
 
         //PANZ
         imgJava.setImage(new Image("file:" + new File(imagesPath, "java.jpg").getAbsolutePath()));
@@ -511,7 +511,7 @@ public class Controller implements Observer {
                 labelCurrentMoisturePercent.setText("Not available");
             if (model.getPlant().getTemperatureHistory().getFirstMeasurement() != null
                     && !Float.isNaN(model.getPlant().getTemperatureHistory().getFirstMeasurement().getValue()))
-                labelCurrentTemperatureCelsius.setText(model.getPlant().getTemperatureHistory().getFirstMeasurement().getValue() + "°C");
+                labelCurrentTemperatureCelsius.setText(model.getPlant().getTemperatureHistory().getFirstMeasurement().getValue() + "�C");
             else
                 labelCurrentTemperatureCelsius.setText("Not available");
             if (model.getPlant().getHumidityHistory().getFirstMeasurement() != null
