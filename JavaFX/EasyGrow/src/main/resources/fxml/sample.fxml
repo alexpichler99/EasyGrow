@@ -412,7 +412,7 @@
          <content>
             <BorderPane prefHeight="200.0" prefWidth="200.0">
                <center>
-                  <GridPane BorderPane.alignment="CENTER">
+                  <GridPane prefHeight="499.0" prefWidth="592.0" BorderPane.alignment="CENTER">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -455,26 +455,24 @@
                               <Label text="Lukas Riedl" BorderPane.alignment="CENTER" />
                            </bottom>
                         </BorderPane>
-                        <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                           <bottom>
-                              <HBox prefHeight="100.0" prefWidth="200.0" spacing="50.0" BorderPane.alignment="CENTER">
-                                 <children>
-                                    <Label fx:id="labelBetreuung" text="Label">
-                                       <opaqueInsets>
-                                          <Insets />
-                                       </opaqueInsets>
-                                    </Label>
-                                    <Label text="Thomas Stütz" />
-                                 </children>
-                                 <opaqueInsets>
-                                    <Insets />
-                                 </opaqueInsets>
-                              </HBox>
-                           </bottom>
-                        </BorderPane>
                      </children>
                   </GridPane>
                </center>
+               <bottom>
+                  <HBox alignment="CENTER" prefHeight="96.0" prefWidth="592.0" spacing="10.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <Label fx:id="labelSupportTeacher" text="Support teacher:">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </Label>
+                        <Label text="Thomas Stütz" />
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </HBox>
+               </bottom>
             </BorderPane>
          </content>
         </Tab>
