@@ -24,7 +24,7 @@ public class Main extends Application {
         String separator = System.getProperty("file.separator");
         primaryStage.getIcons().add(new Image("file:" +System.getProperty("user.dir") + separator + "src" + separator +
                 "main" + separator + "resources" + separator + "images" + separator + "programmIcon.png"));
-        Scene scene = new Scene(root, 675, 500);
+        Scene scene = new Scene(root, 800, 650);
 
        /* scene.widthProperty().addListener(new ChangeListener<Number>() {
             @Override public void changed(ObservableValue<? extends Number> observableValue, Number oldSceneWidth, Number newSceneWidth) {

@@ -210,6 +210,34 @@ public class Controller implements Observer {
     @FXML
     private HBox hboxHumidityHistory;
 
+    @FXML
+    private ImageView imgPichler;
+
+    @FXML
+    private ImageView imgKrauck;
+
+    @FXML
+    private ImageView imgPanz;
+
+    @FXML
+    private ImageView imgRiedl;
+
+    @FXML
+    private Button btnAbout;
+
+    @FXML
+    private ImageView imgJava;
+
+    @FXML
+    private ImageView imgArduino;
+
+    @FXML
+    void handleBtnAbout(ActionEvent event) {
+        //TODO
+        Alert a = new Alert(Alert.AlertType.WARNING, "http://dschihad.eu");
+        a.show();
+    }
+
     //region Constants
     private static final String mainPropertiesFile = "mainProperties.prop";
     private static final String languagePropertyFile = "LanguageProperty";
@@ -328,11 +356,20 @@ public class Controller implements Observer {
 
         for (int i = (int)PlantModel.minTemperature; i <= PlantModel.maxTemperature; i++)
             comboSetTemperatureOptimum.getItems().add(i);
-        imageViewMoisture.setImage(new Image("file:" + new File(imagesPath,"moistureIcon.png").getAbsolutePath()));
-        imageViewTemperature.setImage(new Image("file:" + new File(imagesPath,"temperatureIcon.png").getAbsolutePath()));
-        imageViewHumidity.setImage(new Image("file:" + new File(imagesPath,"humidity 3.png").getAbsolutePath()));
-        imageViewSunlight.setImage(new Image("file:" + new File(imagesPath,"sunlightIcon.png").getAbsolutePath()));
+        imageViewMoisture.setImage(new Image("file:" + new File(imagesPath,"flat life icon.png").getAbsolutePath()));
+        imageViewTemperature.setImage(new Image("file:" + new File(imagesPath,"flat temperature icon final.png").getAbsolutePath()));
+        imageViewHumidity.setImage(new Image("file:" + new File(imagesPath,"flat humidity fin.png").getAbsolutePath()));
+        imageViewSunlight.setImage(new Image("file:" + new File(imagesPath,"flat sun.png").getAbsolutePath()));
         imageViewSettings.setImage(new Image("file:" + new File(imagesPath,"settingsIcon.png").getAbsolutePath()));
+
+        //PANZ
+        imgJava.setImage(new Image("file:" + new File(imagesPath, "java.jpg").getAbsolutePath()));
+        imgArduino.setImage(new Image("file:" + new File(imagesPath, "arduino.png").getAbsolutePath()));
+
+        imgPichler.setImage(new Image("file:" + new File(imagesPath, "pichler.jpg").getAbsolutePath()));
+        imgKrauck.setImage(new Image("file:" + new File(imagesPath, "krauck.jpg").getAbsolutePath()));
+        imgPanz.setImage(new Image("file:" + new File(imagesPath, "panz.jpg").getAbsolutePath()));
+        imgRiedl.setImage(new Image("file:" + new File(imagesPath, "riedl.jpg").getAbsolutePath()));
 
 
         //moisture

@@ -402,5 +402,25 @@
                 </AnchorPane>
             </content>
         </Tab>
+      <Tab text="About">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <ImageView fx:id="imgPichler" fitHeight="150.0" fitWidth="200.0" layoutX="58.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="imgKrauck" fitHeight="150.0" fitWidth="200.0" layoutX="328.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="imgPanz" fitHeight="150.0" fitWidth="200.0" layoutX="58.0" layoutY="261.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="imgRiedl" fitHeight="150.0" fitWidth="200.0" layoutX="328.0" layoutY="253.0" pickOnBounds="true" preserveRatio="true" />
+                  <Button fx:id="btnAbout" alignment="CENTER_RIGHT" layoutX="517.0" layoutY="622.0" mnemonicParsing="false" onAction="#handleBtnAbout" text="?" textAlignment="CENTER" textOverrun="CLIP" />
+                  <Label layoutX="84.0" layoutY="233.0" text="Alexander Pichler" />
+                  <Label layoutX="348.0" layoutY="233.0" text="Alexander Krauck" />
+                  <Label layoutX="78.0" layoutY="411.0" text="Philipp Panzenböck" />
+                  <Label layoutX="354.0" layoutY="411.0" text="Lukas Hoden" />
+                  <ImageView fx:id="imgJava" fitHeight="100.0" fitWidth="98.0" layoutX="63.0" layoutY="509.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="imgArduino" fitHeight="138.0" fitWidth="98.0" layoutX="161.0" layoutY="509.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label layoutX="297.0" layoutY="626.0" text="Betreuungslehrer:     Thomas Stütz" />
+               </children>
+            </AnchorPane>
+        </content>
+      </Tab>
     </tabs>
 </TabPane>
