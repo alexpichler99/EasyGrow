@@ -1,8 +1,6 @@
 package controller;
 
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.*;
 
 import javafx.application.Platform;
@@ -20,7 +18,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.ArcType;
 import javafx.scene.shape.Circle;
 import model.*;
-
+import scene.ResizeableCanvas;
 
 
 public class Controller implements Observer {

@@ -1,4 +1,4 @@
-package model;
+package scene;
 
 import javafx.scene.canvas.Canvas;
 
@@ -25,6 +25,5 @@ public class ResizeableCanvas extends Canvas {
     public void resize(double width, double height) {
         super.setWidth(width);
         super.setHeight(height);
-
     }
 }
