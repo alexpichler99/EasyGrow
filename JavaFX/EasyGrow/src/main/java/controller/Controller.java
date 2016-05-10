@@ -252,11 +252,13 @@ public class Controller implements Observer {
     }
     //endregion
 
-
+    //region TestVars
+    private long testcounter = 0;
+    //endregion
     //region Constants
     private static final String mainPropertiesFile = "mainProperties.prop";
     private static final String languagePropertyFile = "LanguageProperty";
-    private final long historyBeginningDrawTimeMoisture = 0;
+    private final long historyBeginningDrawTimeMoisture = 1000;
     private final long historyEndingDrawTimeMoisture = 30000;
     private final Color temperatureColor = Color.web("#d35400");
     private final Color humidityColor = Color.web("#1abc9c");
@@ -570,12 +572,14 @@ public class Controller implements Observer {
         if (first == null || last == null)
             return;
         long time = first.getDate().getTime();
+        long timeUsed = time;
         double elementSpan= (historyEndingDrawTimeMoisture-historyBeginningDrawTimeMoisture) / width;
         double elementPower= height / (maximum-minimum);
         long mDate;
         double mValue;
         long lastDate = last.getDate().getTime();
         double lastValue = last.getValue();
+        boolean firstTimeTest = true;
 
         GraphicsContext graphicsContext = canvas.getGraphicsContext2D();
         graphicsContext.clearRect(0, 0, width, height);
@@ -592,21 +596,33 @@ public class Controller implements Observer {
             for (Measurement m : list) {
                 mDate = m.getDate().getTime();
                 mValue = m.getValue();
-                double[] xPoints = {
-                        width - 1 - ((lastDate - time) * -1) / elementSpan, width - 0.9 -((mDate - time) * -1) / elementSpan,
-                        width - 0.9 -((mDate - time) * -1) / elementSpan, width - 1 - ((lastDate - time) * -1) / elementSpan
-                };
-                double[] yPoints = {
-                        height - (lastValue - minimum) * elementPower,
-                        height - (mValue - minimum) * elementPower, height, height
-                };
-                graphicsContext.fillPolygon(xPoints, yPoints, 4);
-                graphicsContext.strokeLine(width - ((lastDate - time) * -1) / elementSpan, height - elementPower * (lastValue-minimum),
-                        width - ((mDate - time) * -1) / elementSpan, height - (mValue - minimum) * elementPower);
+                if(time-mDate>=historyBeginningDrawTimeMoisture) {
+                    System.out.println(testcounter++);
+                    if(firstTimeTest){
+                        firstTimeTest = false;
+                        timeUsed = time - historyBeginningDrawTimeMoisture;
+                    }
+                    //DRAW
+                    double[] xPoints = {
+                            width - 1 - ((lastDate - timeUsed) * -1) / elementSpan, width - 0.9 - ((mDate - timeUsed) * -1) / elementSpan,
+                            width - 0.9 - ((mDate - timeUsed) * -1) / elementSpan, width - 1 - ((lastDate - timeUsed) * -1) / elementSpan
+                    };
+                    double[] yPoints = {
+                            height - (lastValue - minimum) * elementPower,
+                            height - (mValue - minimum) * elementPower, height, height
+                    };
+                    graphicsContext.fillPolygon(xPoints, yPoints, 4);
+                    graphicsContext.strokeLine(width - ((lastDate - timeUsed) * -1) / elementSpan, height - elementPower * (lastValue - minimum),
+                            width - ((mDate - timeUsed) * -1) / elementSpan, height - (mValue - minimum) * elementPower);
+                    //DRAW
+                }
+                else if(time-mDate>historyEndingDrawTimeMoisture)
+                    break;
 
                 lastDate = mDate;
                 lastValue = mValue;
             }
+
         }
         graphicsContext.setStroke(new Color(0, 0, 0, 1));
         graphicsContext.setLineWidth(1);
