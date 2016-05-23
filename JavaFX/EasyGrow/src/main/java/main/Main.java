@@ -31,7 +31,6 @@ public class Main extends Application {
         ((Controller)loader.getController()).setStage(primaryStage);
     }
 
-
     public static void main(String[] args) {
         launch(args);
     }

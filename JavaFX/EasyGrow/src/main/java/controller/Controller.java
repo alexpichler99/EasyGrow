@@ -353,6 +353,7 @@ public class Controller implements Observer {
             plantName = prop.getProperty("plantName");
             if (plantName == null)
                 plantName = "";
+            
 
             comboSetHumidityOptimum.setValue((int)humidityOptimum);
             comboSetMoistureOptimum.setValue((int)moistureOptimum);
