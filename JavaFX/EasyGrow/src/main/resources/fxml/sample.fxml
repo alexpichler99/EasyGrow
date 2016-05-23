@@ -20,7 +20,7 @@
 <?import javafx.scene.text.Font?>
 <?import scene.ResizeableCanvas?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="691.0" prefWidth="851.0" side="LEFT" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="250.0" tabMaxWidth="75.0" tabMinHeight="250.0" tabMinWidth="75.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Controller">
+<TabPane fx:id="tabPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="250.0" minWidth="75.0" prefHeight="691.0" prefWidth="851.0" side="LEFT" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="250.0" tabMaxWidth="75.0" tabMinHeight="250.0" tabMinWidth="75.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Controller">
     <tabs>
         <Tab fx:id="tabOverview">
             <content>
@@ -333,7 +333,7 @@
                         <Label fx:id="tabSettingsText" layoutX="90.0" layoutY="3.0" prefHeight="88.0" prefWidth="150.0" text="Settings" />
                         <HBox alignment="CENTER" layoutX="4.0" layoutY="3.0" prefHeight="85.0" prefWidth="77.0">
                             <children>
-                                <ImageView fx:id="imageViewSettings" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
+                                <ImageView fx:id="imageViewSettings" fitHeight="57.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true" />
                             </children>
                         </HBox>
                     </children>
@@ -347,31 +347,30 @@
                     <children>
                         <HBox layoutX="14.0" layoutY="6.0">
                             <children>
-                                <Label fx:id="labelSetArduinoIP" text="Set new Arduino IP:" />
+                                <Label fx:id="labelSetPlantName" text="Set plant name:" />
                             </children>
                         </HBox>
                         <HBox layoutX="14.0" layoutY="23.0" prefHeight="28.0" prefWidth="433.0">
                             <children>
-                                <TextField fx:id="tfSetIP" prefHeight="25.0" prefWidth="201.0" />
-                                <Button fx:id="btnSetIP" mnemonicParsing="false" onAction="#onBtnSetIPAction" text="Set" />
+                                <TextField fx:id="tfSetPlantName" prefHeight="25.0" prefWidth="201.0" />
+                                <Button fx:id="btnSetPlantName" mnemonicParsing="false" onAction="#onBtnSetPlantNameAction" text="Set" />
                             </children>
                         </HBox>
-                        <HBox layoutX="14.0" layoutY="53.0" prefHeight="21.0" prefWidth="264.0">
+                        <HBox layoutX="14.0" layoutY="104.0" prefHeight="21.0" prefWidth="264.0">
                             <children>
                                 <Label fx:id="labelSetMoistureOptimum" prefHeight="21.0" prefWidth="270.0" text="Set Moisture Optimum(%):" />
                             </children>
                         </HBox>
-                        <HBox layoutX="14.0" layoutY="70.0" prefWidth="200.0">
+                        <HBox layoutX="14.0" layoutY="121.0" prefWidth="200.0">
                             <children>
                                 <ComboBox fx:id="comboSetMoistureOptimum" onAction="#onComboSetMoistureOptimumAction" prefWidth="150.0" />
                             </children>
                         </HBox>
-                        <HBox layoutX="14.0" layoutY="102.0" prefHeight="21.0" prefWidth="299.0">
-                            <children>
+                        <HBox layoutX="14.0" layoutY="200.0" prefHeight="21.0" prefWidth="299.0">
+                     <children>
                                 <Label fx:id="labelSetHumidityOptimum" prefHeight="21.0" prefWidth="324.0" text="Set Humidity Optimum(%):" />
-                            </children>
-                        </HBox>
-                        <HBox layoutX="14.0" layoutY="119.0" prefWidth="200.0">
+                     </children></HBox>
+                        <HBox layoutX="14.0" layoutY="217.0" prefWidth="200.0">
                             <children>
                                 <ComboBox fx:id="comboSetHumidityOptimum" onAction="#onComboSetHumidityOptimumAction" prefWidth="150.0" />
                             </children>
@@ -386,9 +385,20 @@
                                 <ComboBox fx:id="comboSetTemperatureOptimum" onAction="#onComboSetTemperatureOptimumAction" prefWidth="150.0" />
                             </children>
                         </HBox>
-                        <Button fx:id="btnGerman" layoutX="21.0" layoutY="235.0" mnemonicParsing="false" onAction="#onBtnGermanAction" prefHeight="31.0" prefWidth="128.0" text="German" />
-                        <Button fx:id="btnEnglish" layoutX="20.0" layoutY="274.0" mnemonicParsing="false" onAction="#onBtnEnglishAction" prefHeight="31.0" prefWidth="130.0" text="English" />
-                        <Label fx:id="labelLanguage" layoutX="21.0" layoutY="207.0" text="Language:" />
+                        <Button fx:id="btnGerman" layoutX="14.0" layoutY="266.0" mnemonicParsing="false" onAction="#onBtnGermanAction" prefHeight="31.0" prefWidth="128.0" text="German" />
+                        <Button fx:id="btnEnglish" layoutX="14.0" layoutY="303.0" mnemonicParsing="false" onAction="#onBtnEnglishAction" prefHeight="31.0" prefWidth="130.0" text="English" />
+                        <Label fx:id="labelLanguage" layoutX="14.0" layoutY="249.0" text="Language:" />
+                  <HBox layoutX="14.0" layoutY="72.0" prefHeight="28.0" prefWidth="433.0">
+                     <children>
+                        <TextField fx:id="tfSetIP" prefHeight="25.0" prefWidth="201.0" />
+                        <Button fx:id="btnSetIP" mnemonicParsing="false" onAction="#onBtnSetIPAction" text="Set" />
+                     </children>
+                  </HBox>
+                  <HBox layoutX="14.0" layoutY="55.0">
+                     <children>
+                        <Label fx:id="labelSetArduinoIP" text="Set new Arduino IP:" />
+                     </children>
+                  </HBox>
                     </children>
                 </AnchorPane>
             </content>

@@ -1,5 +1,6 @@
 package main;
 
+import controller.Controller;
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -19,14 +20,15 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/sample.fxml"));
-        primaryStage.setTitle("EasyGrow");
+        FXMLLoader loader= new FXMLLoader(getClass().getResource("/fxml/sample.fxml"));
         primaryStage.getIcons().add(new Image(getClass().getResource("/images/icon.png").toString()));
-        Scene scene = new Scene(root, 800, 650);
-
-        primaryStage.setScene(scene);
+        Parent root = loader.load();
+        primaryStage.setMinWidth(675);
+        primaryStage.setMinHeight(600);
+        primaryStage.setScene(new Scene(root));
         primaryStage.setResizable(true);
         primaryStage.show();
+        ((Controller)loader.getController()).setStage(primaryStage);
     }
 
 

@@ -18,6 +18,7 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.ArcType;
 import javafx.scene.shape.Circle;
+import javafx.stage.Stage;
 import model.*;
 import scene.ResizeableCanvas;
 
@@ -25,7 +26,19 @@ import scene.ResizeableCanvas;
 public class Controller implements Observer {
     private PlantModel model;
 
-    //region FXMLControls
+    //region FXMLControl
+    @FXML
+    private Label labelSetPlantName;
+
+    @FXML
+    private TextField tfSetPlantName;
+
+    @FXML
+    private Button btnSetPlantName;
+
+    @FXML
+    private TabPane tabPane;
+
     @FXML
     private Label labelSupportTeacher;
 
@@ -276,12 +289,20 @@ public class Controller implements Observer {
     private final String defaultCountry = "US";
     //endregion
 
+    public void setStage(Stage stage) {
+        this.stage = stage;
+        if (stage != null)
+            stage.setTitle("EasyGrow - " + plantName);
+    }
+
+    private Stage stage;
     private String arduinoIp = defaultArduinoIp;
     private float moistureOptimum = defaultMoistureOptimum;
     private float humidityOptimum = defaultHumidityOptimum;
     private float temperatureOptimum = defaultTemperatureOptimum;
     private String language = defaultLanguage;
     private String country = defaultCountry;
+    private String plantName = "";
 
     private void loadMainProperties() {
         try {
@@ -328,11 +349,18 @@ public class Controller implements Observer {
             if (country == null)
                 country = defaultCountry;
 
+            //plantName
+            plantName = prop.getProperty("plantName");
+            if (plantName == null)
+                plantName = "";
+
             comboSetHumidityOptimum.setValue((int)humidityOptimum);
             comboSetMoistureOptimum.setValue((int)moistureOptimum);
             comboSetTemperatureOptimum.setValue((int)temperatureOptimum);
             tfSetIP.setText(arduinoIp);
-
+            tfSetPlantName.setText(plantName);
+            if (stage != null)
+                stage.setTitle("EasyGrow - " + plantName);
             setLanguage(language, country);
 
             if (model != null && model.getPlant() != null) {
@@ -340,6 +368,7 @@ public class Controller implements Observer {
                 model.getPlant().getMoistureHistory().setOptimum(moistureOptimum);
                 model.getPlant().getMoistureHistory().setOptimum(humidityOptimum);
                 model.getPlant().getTemperatureHistory().setOptimum(temperatureOptimum);
+                model.getPlant().setName(plantName);
             }
         }
         catch (Exception e){ }
@@ -356,6 +385,7 @@ public class Controller implements Observer {
             prop.setProperty("tOptimum", String.valueOf(model.getPlant().getTemperatureHistory().getOptimum()));
             prop.setProperty("language", language);
             prop.setProperty("country", country);
+            prop.setProperty("plantName", model.getPlant().getName());
             prop.store(propFile, "");
         } catch (FileNotFoundException e) {
             System.out.println(mainPropertiesFile + " not found!");
@@ -370,6 +400,7 @@ public class Controller implements Observer {
         imgKrauck.setImage(new Image(getClass().getResource("/images/krauck.jpg").toString()));
         imgPanz.setImage(new Image(getClass().getResource("/images/panz.jpg").toString()));
         imgRiedl.setImage(new Image(getClass().getResource("/images/riedl.jpg").toString()));
+        imageViewSettings.setImage(new Image(getClass().getResource("/images/settingsIcon.png").toString()));
 
         loadMainProperties();
         model = new PlantModel(moistureOptimum, humidityOptimum, temperatureOptimum, arduinoIp, this);
@@ -398,6 +429,12 @@ public class Controller implements Observer {
             redraw();
         });
 
+        hboxMoisture.widthProperty().addListener(((observable, oldValue, newValue) -> {
+            canvasCurrentMoisture.resize(hboxMoisture.getHeight() / 2, hboxMoisture.getHeight());
+            redraw();
+        }));
+
+
         //temperature
         hboxTemperatureHistory.widthProperty().addListener(((observable, oldValue, newValue) -> {
             canvasTemperatureHistory.resize(newValue.doubleValue(), canvasTemperatureHistory.getHeight());
@@ -414,6 +451,11 @@ public class Controller implements Observer {
             redraw();
         }));
 
+        hboxTemperature.widthProperty().addListener(((observable, oldValue, newValue) -> {
+            canvasCurrentTemperature.resize(hboxTemperature.getHeight() / 2, hboxTemperature.getHeight());
+            redraw();
+        }));
+
         //humidity
         hboxHumidityHistory.widthProperty().addListener(((observable, oldValue, newValue) -> {
             canvasHumidityHistory.resize(newValue.doubleValue(), canvasHumidityHistory.getHeight());
@@ -427,6 +469,11 @@ public class Controller implements Observer {
 
         hboxHumidity.heightProperty().addListener(((observable, oldValue, newValue) -> {
             canvasCurrentHumidity.resize(newValue.doubleValue() / 2, newValue.doubleValue());
+            redraw();
+        }));
+
+        hboxHumidity.widthProperty().addListener(((observable, oldValue, newValue) -> {
+            canvasCurrentHumidity.resize(hboxHumidity.getHeight() / 2, hboxHumidity.getHeight());
             redraw();
         }));
     }
@@ -472,6 +519,15 @@ public class Controller implements Observer {
         country = "US";
         storeMainProperties();
         setLanguage("en", "US");
+    }
+
+    @FXML
+    void onBtnSetPlantNameAction(ActionEvent event) {
+        plantName = tfSetPlantName.getText();
+        model.getPlant().setName(plantName);
+        if (stage != null)
+            stage.setTitle("EasyGrow - " + plantName);
+        storeMainProperties();
     }
     //endregion
 
@@ -551,6 +607,7 @@ public class Controller implements Observer {
         redrawCurrentMeasurement(model.getPlant().getTemperatureHistory(), canvasCurrentTemperature, temperatureColor, 5, 0);
         redrawHistroy(model.getPlant().getTemperatureHistory(), canvasTemperatureHistory, temperatureColor);
     }
+
     private void redrawHistroy(MeasurementHistory history, Canvas canvas, Color color) {
         List<Measurement> list = history.getMeasurements();
         double width = canvas.getWidth();
