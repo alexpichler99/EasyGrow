@@ -3,6 +3,7 @@ package controller;
 import java.io.*;
 import java.util.*;
 
+import com.sun.javafx.tk.Toolkit;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -275,9 +276,6 @@ public class Controller implements Observer {
     private final String defaultCountry = "US";
     //endregion
 
-    private File resourcesPath;
-    private File imagesPath;
-
     private String arduinoIp = defaultArduinoIp;
     private float moistureOptimum = defaultMoistureOptimum;
     private float humidityOptimum = defaultHumidityOptimum;
@@ -368,8 +366,10 @@ public class Controller implements Observer {
 
     @FXML
     void initialize() {
-        resourcesPath = new File(new File("").getAbsolutePath()+File.separator+"src"+File.separator+ "main" +File.separator+"resources");
-        imagesPath = new File(resourcesPath, "images");
+        imgPichler.setImage(new Image(getClass().getResource("/images/pichler.jpg").toString()));
+        imgKrauck.setImage(new Image(getClass().getResource("/images/krauck.jpg").toString()));
+        imgPanz.setImage(new Image(getClass().getResource("/images/panz.jpg").toString()));
+        imgRiedl.setImage(new Image(getClass().getResource("/images/riedl.jpg").toString()));
 
         loadMainProperties();
         model = new PlantModel(moistureOptimum, humidityOptimum, temperatureOptimum, arduinoIp, this);
@@ -395,7 +395,6 @@ public class Controller implements Observer {
 
         hboxMoisture.heightProperty().addListener((observable, oldValue, newValue) -> {
             canvasCurrentMoisture.resize(newValue.doubleValue() / 2, newValue.doubleValue());
-            System.out.println(newValue);
             redraw();
         });
 
@@ -430,14 +429,6 @@ public class Controller implements Observer {
             canvasCurrentHumidity.resize(newValue.doubleValue() / 2, newValue.doubleValue());
             redraw();
         }));
-
-        //imgJava.setImage(new Image("file:" + new File(imagesPath, "java.jpg").getAbsolutePath()));
-        //imgArduino.setImage(new Image("file:" + new File(imagesPath, "arduino.png").getAbsolutePath()));
-
-        imgPichler.setImage(new Image("file:" + new File(imagesPath, "pichler.jpg").getAbsolutePath()));
-        imgKrauck.setImage(new Image("file:" + new File(imagesPath, "krauck.jpg").getAbsolutePath()));
-        imgPanz.setImage(new Image("file:" + new File(imagesPath, "panz.jpg").getAbsolutePath()));
-        imgRiedl.setImage(new Image("file:" + new File(imagesPath, "riedl.jpg").getAbsolutePath()));
     }
 
     //region FXMLEvents
@@ -597,7 +588,7 @@ public class Controller implements Observer {
                 mDate = m.getDate().getTime();
                 mValue = m.getValue();
                 if(time-mDate>=historyBeginningDrawTimeMoisture) {
-                    System.out.println(testcounter++);
+                    //System.out.println(testcounter++);
                     if(firstTimeTest){
                         firstTimeTest = false;
                         timeUsed = time - historyBeginningDrawTimeMoisture;
@@ -663,7 +654,7 @@ public class Controller implements Observer {
             labelSetHumidityOptimum.setText(rB.getString("sethumidityopt"));
             btnSetIP.setText(rB.getString("setip"));
         } catch (MissingResourceException ex) {
-            System.out.println("error");
+            System.out.println("Error setting language!");
         }
     }
 

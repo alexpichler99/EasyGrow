@@ -62,7 +62,7 @@ public class Plant {
         Date date = new Date();
         try {
             float moist = Float.NaN, temp = Float.NaN, hum = Float.NaN;
-            boolean mode = true; //used for testing
+            boolean mode = false; //used for testing
             if(mode) {
                 String sentence;
                 Socket clientSocket;
@@ -74,7 +74,7 @@ public class Plant {
                 }
                 DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream());
                 BufferedReader inFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-                outToServer.writeBytes("GET / HTTP/1.1");
+                outToServer.writeBytes("get info");
                 sentence = inFromServer.readLine();
                 String split[] = sentence.split(";");
                 if (split.length != 3)

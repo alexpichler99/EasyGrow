@@ -21,21 +21,8 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/sample.fxml"));
         primaryStage.setTitle("EasyGrow");
-        String separator = System.getProperty("file.separator");
-        primaryStage.getIcons().add(new Image("file:" +System.getProperty("user.dir") + separator + "src" + separator +
-                "main" + separator + "resources" + separator + "images" + separator + "programmIcon.png"));
+        primaryStage.getIcons().add(new Image(getClass().getResource("/images/icon.png").toString()));
         Scene scene = new Scene(root, 800, 650);
-
-       /* scene.widthProperty().addListener(new ChangeListener<Number>() {
-            @Override public void changed(ObservableValue<? extends Number> observableValue, Number oldSceneWidth, Number newSceneWidth) {
-                System.out.println("Width: " + newSceneWidth);
-            }
-        });
-        scene.heightProperty().addListener(new ChangeListener<Number>() {
-            @Override public void changed(ObservableValue<? extends Number> observableValue, Number oldSceneHeight, Number newSceneHeight) {
-                System.out.println("Height: " + newSceneHeight);
-            }
-        });*/
 
         primaryStage.setScene(scene);
         primaryStage.setResizable(true);
