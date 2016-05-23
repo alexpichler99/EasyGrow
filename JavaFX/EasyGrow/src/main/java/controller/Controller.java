@@ -353,6 +353,7 @@ public class Controller implements Observer {
             plantName = prop.getProperty("plantName");
             if (plantName == null)
                 plantName = "";
+            ///fsdf
 
             comboSetHumidityOptimum.setValue((int)humidityOptimum);
             comboSetMoistureOptimum.setValue((int)moistureOptimum);
