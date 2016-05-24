@@ -303,6 +303,7 @@ public class Controller implements Observer {
     private String language = defaultLanguage;
     private String country = defaultCountry;
     private String plantName = "";
+    private String notAvailableText = "Not available";
 
     private void loadMainProperties() {
         try {
@@ -575,17 +576,17 @@ public class Controller implements Observer {
                     model.getPlant().getMoistureHistory().getFirstMeasurement().isValid())
                 labelCurrentMoisturePercent.setText(model.getPlant().getMoistureHistory().getFirstMeasurement().getValue() + "%");
             else
-                labelCurrentMoisturePercent.setText("Not available");
+                labelCurrentMoisturePercent.setText(notAvailableText);
             if (model.getPlant().getTemperatureHistory().getFirstMeasurement() != null &&
                     model.getPlant().getTemperatureHistory().getFirstMeasurement().isValid())
                 labelCurrentTemperatureCelsius.setText(model.getPlant().getTemperatureHistory().getFirstMeasurement().getValue() + "°C");
             else
-                labelCurrentTemperatureCelsius.setText("Not available");
+                labelCurrentTemperatureCelsius.setText(notAvailableText);
             if (model.getPlant().getHumidityHistory().getFirstMeasurement() != null &&
                     model.getPlant().getHumidityHistory().getFirstMeasurement().isValid())
                 labelCurrentHumidityPercent.setText(model.getPlant().getHumidityHistory().getFirstMeasurement().getValue() + "%");
             else
-                labelCurrentHumidityPercent.setText("Not available");
+                labelCurrentHumidityPercent.setText(notAvailableText);
 
             //Set text of Overview values
             labelOCurrentMoisturePercent.setText(labelCurrentMoisturePercent.getText());
@@ -711,6 +712,9 @@ public class Controller implements Observer {
             labelSetTemperatureOptimum.setText(rB.getString("settemperatureopt"));
             labelSetHumidityOptimum.setText(rB.getString("sethumidityopt"));
             btnSetIP.setText(rB.getString("setip"));
+            labelSetPlantName.setText(rB.getString("setplant"));
+            btnSetPlantName.setText((rB.getString("setip")));
+            notAvailableText = (rB.getString("notavailable"));
         } catch (MissingResourceException ex) {
             System.out.println("Error setting language!");
         }
