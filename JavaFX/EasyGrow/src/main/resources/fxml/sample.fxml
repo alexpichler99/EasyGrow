@@ -20,7 +20,6 @@
 <?import javafx.scene.text.Font?>
 <?import scene.ResizeableCanvas?>
 
-
 <TabPane fx:id="tabPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="250.0" minWidth="75.0" prefHeight="691.0" prefWidth="851.0" side="LEFT" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="250.0" tabMaxWidth="75.0" tabMinHeight="250.0" tabMinWidth="75.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Controller">
     <tabs>
         <Tab fx:id="tabOverview">
@@ -113,7 +112,7 @@
             <content>
                 <SplitPane dividerPositions="0.4696969696969697" orientation="VERTICAL" prefHeight="438.0" prefWidth="515.0">
                     <items>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                        <AnchorPane minHeight="100.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                             <children>
                                 <HBox fx:id="hboxMoisture" alignment="TOP_RIGHT" layoutX="359.0" layoutY="-1.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="204.0" prefWidth="155.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="359.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                     <children>
@@ -173,7 +172,7 @@
             <content>
                 <SplitPane dividerPositions="0.4696969696969697" orientation="VERTICAL" prefHeight="438.0" prefWidth="515.0">
                     <items>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                        <AnchorPane minHeight="100.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                             <children>
                                 <HBox fx:id="hboxTemperature" alignment="TOP_RIGHT" layoutX="359.0" layoutY="-1.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="204.0" prefWidth="155.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="359.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                     <children>
@@ -234,7 +233,7 @@
             <content>
                 <SplitPane dividerPositions="0.4696969696969697" orientation="VERTICAL" prefHeight="438.0" prefWidth="515.0">
                     <items>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                        <AnchorPane minHeight="100.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                             <children>
                                 <HBox fx:id="hboxHumidity" alignment="TOP_RIGHT" layoutX="359.0" layoutY="-1.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="204.0" prefWidth="155.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="359.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                     <children>
