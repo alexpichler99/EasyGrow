@@ -3,6 +3,8 @@ package controller;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Cursor;
+import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
@@ -308,6 +310,7 @@ public class Controller implements Observer {
     private String country = defaultCountry;
     private String plantName = "";
     private String notAvailableText = "Not available";
+    private boolean isInHistoryCanvas = false;
 
     private void loadMainProperties() {
         try {
@@ -483,6 +486,18 @@ public class Controller implements Observer {
             canvasCurrentHumidity.resize(hboxHumidity.getHeight() / 2, hboxHumidity.getHeight());
             redraw();
         }));
+        canvasMoistureHistory.setOnMouseEntered(event -> {
+            handCursor();
+            isInHistoryCanvas = true;
+        });
+        canvasMoistureHistory.setOnMousePressed(event -> closedHandCursor());
+        canvasMoistureHistory.setOnMouseReleased(event -> {
+            if (isInHistoryCanvas == true) handCursor();
+        });
+        canvasMoistureHistory.setOnMouseExited(event -> {
+            defaultCursor();
+            isInHistoryCanvas = false;
+        });
     }
 
     //region FXMLEvents
@@ -782,5 +797,23 @@ public class Controller implements Observer {
         }
 
     }
+
+    //region functions
+    private Scene scene() {
+        return tabPane.getScene();
+    }
+
+    private void handCursor() {
+        scene().setCursor(Cursor.HAND);
+    }
+
+    private void defaultCursor() {
+        scene().setCursor(Cursor.DEFAULT);
+    }
+
+    private void closedHandCursor() {
+        scene().setCursor(Cursor.CLOSED_HAND);
+    }
+    //endregion
 }
 
