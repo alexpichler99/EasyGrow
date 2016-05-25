@@ -23,16 +23,13 @@ import model.WarningType;
 import scene.ResizeableCanvas;
 
 import java.io.*;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLClassLoader;
 import java.util.*;
 
 
 public class Controller implements Observer {
     private PlantModel model;
 
-    //region FXMLControl
+    //region FXML_OBJECTS
     @FXML
     private Label labelSetPlantName;
 
@@ -271,15 +268,66 @@ public class Controller implements Observer {
         //TODO
     }
     //endregion
+    //region FXML_EVENTS
+    @FXML
+    void onBtnSetIPAction(ActionEvent event) {
+        arduinoIp = tfSetIP.getText();
+        model.getPlant().setIp(arduinoIp);
+        storeMainProperties();
+    }
 
+    @FXML
+    void onComboSetMoistureOptimumAction(ActionEvent event) {
+        moistureOptimum = comboSetMoistureOptimum.getValue();
+        model.getPlant().getMoistureHistory().setOptimum(moistureOptimum);
+        storeMainProperties();
+    }
+
+    @FXML
+    void onComboSetHumidityOptimumAction(ActionEvent event) {
+        humidityOptimum = comboSetHumidityOptimum.getValue();
+        model.getPlant().getHumidityHistory().setOptimum(humidityOptimum);
+        storeMainProperties();
+    }
+
+    @FXML
+    void onComboSetTemperatureOptimumAction(ActionEvent event) {
+        temperatureOptimum = comboSetTemperatureOptimum.getValue();
+        model.getPlant().getTemperatureHistory().setOptimum(temperatureOptimum);
+        storeMainProperties();
+    }
+
+    @FXML
+    void onBtnGermanAction(ActionEvent event) {
+        language = "de";
+        country = "DE";
+        storeMainProperties();
+        setLanguage(language, country);
+    }
+
+    @FXML
+    void onBtnEnglishAction(ActionEvent event) {
+        language = "en";
+        country = "US";
+        storeMainProperties();
+        setLanguage("en", "US");
+    }
+
+    @FXML
+    void onBtnSetPlantNameAction(ActionEvent event) {
+        plantName = tfSetPlantName.getText();
+        model.getPlant().setName(plantName);
+        if (stage != null)
+            stage.setTitle("EasyGrow - " + plantName);
+        storeMainProperties();
+    }
+
+    //endregion
     //region TestVars
-    private long testcounter = 0;
     //endregion
     //region Constants
     private static final String mainPropertiesFile = "mainProperties.prop";
     private static final String languagePropertyFile = "LanguageProperty";
-    private final long historyBeginningDrawTimeMoisture = 0;
-    private final long historyEndingDrawTimeMoisture = 30000;
     private final Color temperatureColor = Color.web("#d35400");
     private final Color humidityColor = Color.web("#1abc9c");
     private final Color moistureColor = Color.web("#2980b9");
@@ -294,13 +342,9 @@ public class Controller implements Observer {
     private final String defaultLanguage = "en";
     private final String defaultCountry = "US";
     //endregion
-
-    public void setStage(Stage stage) {
-        this.stage = stage;
-        if (stage != null)
-            stage.setTitle("EasyGrow - " + plantName);
-    }
-
+    //region Vars
+    private long historyBeginningDrawTimeMoisture = 0;
+    private long historyEndingDrawTimeMoisture = 30000;
     private Stage stage;
     private String arduinoIp = defaultArduinoIp;
     private float moistureOptimum = defaultMoistureOptimum;
@@ -311,6 +355,8 @@ public class Controller implements Observer {
     private String plantName = "";
     private String notAvailableText = "Not available";
     private boolean isInHistoryCanvas = false;
+    //endregion
+
 
     private void loadMainProperties() {
         try {
@@ -404,8 +450,8 @@ public class Controller implements Observer {
         }
     }
 
-    @FXML
-    void initialize() {
+    //region Initialize
+    public void Initialize() {
         imgPichler.setImage(new Image(getClass().getResource("/images/pichler.jpg").toString()));
         imgKrauck.setImage(new Image(getClass().getResource("/images/krauck.jpg").toString()));
         imgPanz.setImage(new Image(getClass().getResource("/images/panz.jpg").toString()));
@@ -500,60 +546,13 @@ public class Controller implements Observer {
         });
     }
 
-    //region FXMLEvents
-    @FXML
-    void onBtnSetIPAction(ActionEvent event) {
-        arduinoIp = tfSetIP.getText();
-        model.getPlant().setIp(arduinoIp);
-        storeMainProperties();
-    }
-
-    @FXML
-    void onComboSetMoistureOptimumAction(ActionEvent event) {
-        moistureOptimum = comboSetMoistureOptimum.getValue();
-        model.getPlant().getMoistureHistory().setOptimum(moistureOptimum);
-        storeMainProperties();
-    }
-
-    @FXML
-    void onComboSetHumidityOptimumAction(ActionEvent event) {
-        humidityOptimum = comboSetHumidityOptimum.getValue();
-        model.getPlant().getHumidityHistory().setOptimum(humidityOptimum);
-        storeMainProperties();
-    }
-
-    @FXML
-    void onComboSetTemperatureOptimumAction(ActionEvent event) {
-        temperatureOptimum = comboSetTemperatureOptimum.getValue();
-        model.getPlant().getTemperatureHistory().setOptimum(temperatureOptimum);
-        storeMainProperties();
-    }
-
-    @FXML
-    void onBtnGermanAction(ActionEvent event) {
-        language = "de";
-        country = "DE";
-        storeMainProperties();
-        setLanguage(language, country);
-    }
-
-    @FXML
-    void onBtnEnglishAction(ActionEvent event) {
-        language = "en";
-        country = "US";
-        storeMainProperties();
-        setLanguage("en", "US");
-    }
-
-    @FXML
-    void onBtnSetPlantNameAction(ActionEvent event) {
-        plantName = tfSetPlantName.getText();
-        model.getPlant().setName(plantName);
+    public void postInitialize(Stage stage) {
+        this.stage = stage;
         if (stage != null)
             stage.setTitle("EasyGrow - " + plantName);
-        storeMainProperties();
     }
     //endregion
+
 
     private void warnings() {
         WarningType warning = model.getPlant().getMoistureHistory().getWarning();
