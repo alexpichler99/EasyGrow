@@ -21,9 +21,6 @@ import model.WarningType;
 import scene.ResizeableCanvas;
 
 import java.io.*;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLClassLoader;
 import java.util.*;
 
 
@@ -274,7 +271,7 @@ public class Controller implements Observer {
     private long testcounter = 0;
     //endregion
     //region Constants
-    private static final String mainPropertiesFile = "mainProperties.prop";
+    private static final String mainPropertiesFile = "MainProperties.properties";
     private static final String languagePropertyFile = "LanguageProperty";
     private final long historyBeginningDrawTimeMoisture = 0;
     private final long historyEndingDrawTimeMoisture = 30000;
@@ -376,7 +373,11 @@ public class Controller implements Observer {
                 model.getPlant().getTemperatureHistory().setOptimum(temperatureOptimum);
                 model.getPlant().setName(plantName);
             }
-        } catch (Exception e) {
+            propFile.close();
+        } catch (FileNotFoundException e) {
+            System.out.println(mainPropertiesFile + " not found!");
+        } catch (IOException e) {
+            System.out.println("Error loading properties.\n" + e.getMessage());
         }
     }
 
@@ -394,6 +395,7 @@ public class Controller implements Observer {
             prop.setProperty("country", country);
             prop.setProperty("plantName", model.getPlant().getName());
             prop.store(propFile, "");
+            propFile.close();
         } catch (FileNotFoundException e) {
             System.out.println(mainPropertiesFile + " not found!");
         } catch (IOException e) {
