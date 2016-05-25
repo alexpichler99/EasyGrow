@@ -22,10 +22,10 @@ import model.PlantModel;
 import model.WarningType;
 import scene.ResizeableCanvas;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLClassLoader;
 import java.util.*;
 
 
@@ -712,30 +712,34 @@ public class Controller implements Observer {
         Locale locale = new Locale(language, country);
         ResourceBundle rB = ResourceBundle.getBundle(languagePropertyFile, locale);
         try {
-            labelLanguage.setText(rB.getString("language"));
-            tabHumidityText.setText(rB.getString("humidity")); //rename to label
-            tabMoistureText.setText(rB.getString("moisture"));
-            tabSettingsText.setText(rB.getString("settings"));
-            labelOverviewText.setText(rB.getString("overview"));
-            labelAboutText.setText(rB.getString("about"));
-            //tabSunlightText.setText(rB.getString("sunlight"));
-            labelSupportTeacher.setText(rB.getString("supportteacher"));
-            tabTemperatureText.setText(rB.getString("temperature"));
-            labelOCurrentMoisture.setText(rB.getString("moisture"));
-            labelOCurrentHumidity.setText(rB.getString("humidity"));
-            labelOCurrentTemperature.setText(rB.getString("temperature"));
-            labelCurrentHumidity.setText(rB.getString("currenthumidity"));
-            labelCurrentMoisture.setText(rB.getString("currentmoisture"));
-            labelCurrentTemperature.setText(rB.getString("currenttemperature"));
-            //labelCurrentSunlight.setText(rB.getString("currentsunlight"));
-            labelSetArduinoIP.setText(rB.getString("setarduinoip"));
-            labelSetMoistureOptimum.setText(rB.getString("setmoistureopt"));
-            labelSetTemperatureOptimum.setText(rB.getString("settemperatureopt"));
-            labelSetHumidityOptimum.setText(rB.getString("sethumidityopt"));
-            btnSetIP.setText(rB.getString("setip"));
-            labelSetPlantName.setText(rB.getString("setplant"));
-            btnSetPlantName.setText((rB.getString("setip")));
-            notAvailableText = (rB.getString("notavailable"));
+            try {
+                labelLanguage.setText(new String(rB.getString("language").getBytes("ISO-8859-1"), "UTF-8"));
+                tabHumidityText.setText(new String(rB.getString("humidity").getBytes("ISO-8859-1"), "UTF-8")); //rename to label
+                tabMoistureText.setText(new String(rB.getString("moisture").getBytes("ISO-8859-1"), "UTF-8"));
+                tabSettingsText.setText(new String(rB.getString("settings").getBytes("ISO-8859-1"), "UTF-8"));
+                labelAboutText.setText(new String(rB.getString("about").getBytes("ISO-8859-1"), "UTF-8"));
+                //tabSunlightText.setText(rB.getString("sunlight"));
+                labelSupportTeacher.setText(new String(rB.getString("supportteacher").getBytes("ISO-8859-1"), "UTF-8"));
+                tabTemperatureText.setText(new String(rB.getString("temperature").getBytes("ISO-8859-1"), "UTF-8"));
+                labelOCurrentMoisture.setText(new String(rB.getString("moisture").getBytes("ISO-8859-1"), "UTF-8"));
+                labelOCurrentHumidity.setText(new String(rB.getString("humidity").getBytes("ISO-8859-1"), "UTF-8"));
+                labelOCurrentTemperature.setText(new String(rB.getString("temperature").getBytes("ISO-8859-1"), "UTF-8"));
+                labelCurrentHumidity.setText(new String(rB.getString("currenthumidity").getBytes("ISO-8859-1"), "UTF-8"));
+                labelCurrentMoisture.setText(new String(rB.getString("currentmoisture").getBytes("ISO-8859-1"), "UTF-8"));
+                labelCurrentTemperature.setText(new String(rB.getString("currenttemperature").getBytes("ISO-8859-1"), "UTF-8"));
+                //labelCurrentSunlight.setText(rB.getString("currentsunlight"));
+                labelSetArduinoIP.setText(new String(rB.getString("setarduinoip").getBytes("ISO-8859-1"), "UTF-8"));
+                labelSetMoistureOptimum.setText(new String(rB.getString("setmoistureopt").getBytes("ISO-8859-1"), "UTF-8"));
+                labelSetTemperatureOptimum.setText(new String(rB.getString("settemperatureopt").getBytes("ISO-8859-1"), "UTF-8"));
+                labelSetHumidityOptimum.setText(new String(rB.getString("sethumidityopt").getBytes("ISO-8859-1"), "UTF-8"));
+                btnSetIP.setText(new String(rB.getString("setip").getBytes("ISO-8859-1"), "UTF-8"));
+                labelSetPlantName.setText(new String(rB.getString("setplant").getBytes("ISO-8859-1"), "UTF-8"));
+                btnSetPlantName.setText(new String(rB.getString("setip").getBytes("ISO-8859-1"), "UTF-8"));
+                notAvailableText = (new String(rB.getString("notavailable").getBytes("ISO-8859-1"), "UTF-8"));
+                labelOverviewText.setText(new String(rB.getString("overview").getBytes("ISO-8859-1"), "UTF-8"));
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
         } catch (MissingResourceException ex) {
             System.out.println("Error setting language!");
         }
