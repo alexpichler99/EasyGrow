@@ -554,7 +554,7 @@ public class Controller implements Observer, Initializable {
         });
     }
 
-    public void postInitialize(Stage stage) {
+    public void setStage(Stage stage) {
         this.stage = stage;
         if (stage != null)
             stage.setTitle("EasyGrow - " + plantName);
