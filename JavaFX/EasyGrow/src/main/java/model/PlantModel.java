@@ -1,6 +1,9 @@
 package model;
 
-import java.util.*;
+import java.util.Observable;
+import java.util.Observer;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * Created by Alex on 03/02/2016.
@@ -14,7 +17,7 @@ public class PlantModel extends Observable {
 
     private Plant plant;
 
-    public  PlantModel(float moistureOptimum, float humidityOptimum, float temperatureOptimum, String ip, Observer obs) {
+    public PlantModel(float moistureOptimum, float humidityOptimum, float temperatureOptimum, String ip, Observer obs) {
         addObserver(obs);
         plant = new Plant(moistureOptimum, humidityOptimum, temperatureOptimum, ip, "");
         Timer timer = new Timer(true);
@@ -28,6 +31,7 @@ public class PlantModel extends Observable {
             }
         }, 100, refreshTime);
     }
+
     public Plant getPlant() {
         return plant;
     }

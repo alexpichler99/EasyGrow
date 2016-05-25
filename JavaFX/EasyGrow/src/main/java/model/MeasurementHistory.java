@@ -13,6 +13,7 @@ public class MeasurementHistory {
     private float optimum;
     private float tolerance;
     List<Measurement> measurementList;
+
     public MeasurementHistory(float maximum, float minimum, float optimum, float tolerance) {
         this.maximum = maximum;
         this.minumum = minimum;
@@ -20,14 +21,16 @@ public class MeasurementHistory {
         this.tolerance = tolerance;
         this.measurementList = new LinkedList<>();
     }
+
     public MeasurementHistory(LinkedList<Measurement> linkedList, float maximum, float minumum, float optimum) {
         this.measurementList = linkedList;
         this.maximum = maximum;
         this.minumum = minumum;
         this.optimum = optimum;
     }
+
     public void addMeasurement(Measurement measurement) {
-        if(measurement.getValue() <= maximum && measurement.getValue() >= minumum)
+        if (measurement.getValue() <= maximum && measurement.getValue() >= minumum)
             measurementList.add(measurement);
         else
             measurementList.add(new Measurement(minumum - 1, measurement.getDate(), false));
@@ -38,17 +41,37 @@ public class MeasurementHistory {
                 break;
         }
     }
+
     public List<Measurement> getMeasurements() {
         return measurementList;
     }
+
     public Measurement getLastMeasurement() {
-        if(measurementList.size() != 0)
+        if (measurementList.size() != 0)
             return measurementList.get(0);
         return null;
     }
+
     public Measurement getFirstMeasurement() {
-        if(measurementList.size() != 0)
+        if (measurementList.size() != 0)
             return measurementList.get(measurementList.size() - 1);
+        return null;
+    }
+
+    public Measurement getFirstMeasurementInTime(long delayed) {
+        if (measurementList.size() > 1) {
+            long time = getFirstMeasurement().getDate().getTime() - delayed;
+            for (Measurement m : measurementList) {
+                if (m.getDate().getTime() > time) {
+                    int index = measurementList.indexOf(m) - 1;
+                    if (index < 0)
+                        return null;
+                    return measurementList.get(index);
+                }
+
+            }
+
+        }
         return null;
     }
 
@@ -69,7 +92,7 @@ public class MeasurementHistory {
     }
 
     public WarningType getWarning() {
-        Measurement mes =getFirstMeasurement();
+        Measurement mes = getFirstMeasurement();
         if (mes != null) {
             if (mes.getValue() <= optimum + tolerance && mes.getValue() >= optimum - tolerance)
                 return WarningType.Optimum;

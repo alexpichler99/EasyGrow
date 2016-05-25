@@ -1,26 +1,30 @@
 package controller;
 
-import java.io.*;
-import java.util.*;
-
-import com.sun.javafx.tk.Toolkit;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.image.*;
-import javafx.scene.layout.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.ArcType;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
-import model.*;
+import model.Measurement;
+import model.MeasurementHistory;
+import model.PlantModel;
+import model.WarningType;
 import scene.ResizeableCanvas;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.*;
 
 
 public class Controller implements Observer {
@@ -272,7 +276,7 @@ public class Controller implements Observer {
     //region Constants
     private static final String mainPropertiesFile = "mainProperties.prop";
     private static final String languagePropertyFile = "LanguageProperty";
-    private final long historyBeginningDrawTimeMoisture = 1000;
+    private final long historyBeginningDrawTimeMoisture = 0;
     private final long historyEndingDrawTimeMoisture = 30000;
     private final Color temperatureColor = Color.web("#d35400");
     private final Color humidityColor = Color.web("#1abc9c");
@@ -354,11 +358,11 @@ public class Controller implements Observer {
             plantName = prop.getProperty("plantName");
             if (plantName == null)
                 plantName = "";
-            
 
-            comboSetHumidityOptimum.setValue((int)humidityOptimum);
-            comboSetMoistureOptimum.setValue((int)moistureOptimum);
-            comboSetTemperatureOptimum.setValue((int)temperatureOptimum);
+
+            comboSetHumidityOptimum.setValue((int) humidityOptimum);
+            comboSetMoistureOptimum.setValue((int) moistureOptimum);
+            comboSetTemperatureOptimum.setValue((int) temperatureOptimum);
             tfSetIP.setText(arduinoIp);
             tfSetPlantName.setText(plantName);
             if (stage != null)
@@ -372,9 +376,10 @@ public class Controller implements Observer {
                 model.getPlant().getTemperatureHistory().setOptimum(temperatureOptimum);
                 model.getPlant().setName(plantName);
             }
+        } catch (Exception e) {
         }
-        catch (Exception e){ }
     }
+
     private void storeMainProperties() {
         try {
             if (model == null || model.getPlant() == null)
@@ -407,12 +412,12 @@ public class Controller implements Observer {
         loadMainProperties();
         model = new PlantModel(moistureOptimum, humidityOptimum, temperatureOptimum, arduinoIp, this);
 
-        for(int i = 0; i <= 10; i++) {
+        for (int i = 0; i <= 10; i++) {
             comboSetMoistureOptimum.getItems().add(i * 10);
             comboSetHumidityOptimum.getItems().add(i * 10);
         }
 
-        for (int i = (int)PlantModel.minTemperature; i <= PlantModel.maxTemperature; i++)
+        for (int i = (int) PlantModel.minTemperature; i <= PlantModel.maxTemperature; i++)
             comboSetTemperatureOptimum.getItems().add(i);
 
         //moisture
@@ -487,12 +492,14 @@ public class Controller implements Observer {
         model.getPlant().setIp(arduinoIp);
         storeMainProperties();
     }
+
     @FXML
     void onComboSetMoistureOptimumAction(ActionEvent event) {
         moistureOptimum = comboSetMoistureOptimum.getValue();
         model.getPlant().getMoistureHistory().setOptimum(moistureOptimum);
         storeMainProperties();
     }
+
     @FXML
     void onComboSetHumidityOptimumAction(ActionEvent event) {
         humidityOptimum = comboSetHumidityOptimum.getValue();
@@ -596,9 +603,10 @@ public class Controller implements Observer {
             redraw();
         });
     }
+
     private void redraw() {
         //moisture
-        redrawCurrentMeasurement(model.getPlant().getMoistureHistory(),canvasCurrentMoisture,moistureColor, 5, 0);
+        redrawCurrentMeasurement(model.getPlant().getMoistureHistory(), canvasCurrentMoisture, moistureColor, 5, 0);
         redrawHistroy(model.getPlant().getMoistureHistory(), canvasMoistureHistory, moistureColor);
 
         //humidity
@@ -623,35 +631,34 @@ public class Controller implements Observer {
             return;
         long time = first.getDate().getTime();
         long timeUsed = time;
-        double elementSpan= (historyEndingDrawTimeMoisture-historyBeginningDrawTimeMoisture) / width;
-        double elementPower= height / (maximum-minimum);
+        double elementSpan = (historyEndingDrawTimeMoisture - historyBeginningDrawTimeMoisture) / width;
+        double elementPower = height / (maximum - minimum);
         long mDate;
         double mValue;
         long lastDate = last.getDate().getTime();
         double lastValue = last.getValue();
         boolean firstTimeTest = true;
-
+        Measurement mInTime = history.getFirstMeasurementInTime(historyBeginningDrawTimeMoisture);
+        if (mInTime == null)
+            timeUsed = time;
+        else
+            timeUsed = mInTime.getDate().getTime();
         GraphicsContext graphicsContext = canvas.getGraphicsContext2D();
         graphicsContext.clearRect(0, 0, width, height);
         graphicsContext.setFill(Color.web("#ecf0f1"));
         graphicsContext.fillRect(0, 0, width, height);
         graphicsContext.setFill(Color.LIGHTBLUE);
-        if(minimum < 0)
+        if (minimum < 0)
             graphicsContext.fillRect(0, height + (minimum * elementPower), width, height);
         graphicsContext.setLineWidth(2);
         graphicsContext.setStroke(color);
-        Color fillColor = new Color(color.getRed(), color.getGreen(),color.getBlue(), 0.5);
+        Color fillColor = new Color(color.getRed(), color.getGreen(), color.getBlue(), 0.5);
         graphicsContext.setFill(fillColor);
-        if(last != null) {
+        if (last != null) {
             for (Measurement m : list) {
                 mDate = m.getDate().getTime();
                 mValue = m.getValue();
-                if(time-mDate>=historyBeginningDrawTimeMoisture) {
-                    //System.out.println(testcounter++);
-                    if(firstTimeTest){
-                        firstTimeTest = false;
-                        timeUsed = time - historyBeginningDrawTimeMoisture;
-                    }
+                if (time - mDate >= historyBeginningDrawTimeMoisture) {
                     //DRAW
                     double[] xPoints = {
                             width - 1 - ((lastDate - timeUsed) * -1) / elementSpan, width - 0.9 - ((mDate - timeUsed) * -1) / elementSpan,
@@ -665,8 +672,7 @@ public class Controller implements Observer {
                     graphicsContext.strokeLine(width - ((lastDate - timeUsed) * -1) / elementSpan, height - elementPower * (lastValue - minimum),
                             width - ((mDate - timeUsed) * -1) / elementSpan, height - (mValue - minimum) * elementPower);
                     //DRAW
-                }
-                else if(time-mDate>historyEndingDrawTimeMoisture)
+                } else if (time - mDate > historyEndingDrawTimeMoisture)
                     break;
 
                 lastDate = mDate;
@@ -680,11 +686,11 @@ public class Controller implements Observer {
         graphicsContext.strokeLine(0, height - (optimum - minimum) * elementPower, width, height - (optimum - minimum) * elementPower);
         graphicsContext.setLineWidth(1);
         int textOffset = -5;
-        if((optimum * elementPower * 100) / height > 90)
+        if ((optimum * elementPower * 100) / height > 90)
             textOffset = 15;
         graphicsContext.strokeText("Optimum", width / 200, height - (optimum - minimum) * elementPower + textOffset);
-        for(int i = 0; i < 6; i++)
-            graphicsContext.strokeLine(i* (width / 7) + width / 7, 0, i * (width / 7) + width / 7, height);
+        for (int i = 0; i < 6; i++)
+            graphicsContext.strokeLine(i * (width / 7) + width / 7, 0, i * (width / 7) + width / 7, height);
     }
 
     private void setLanguage(String language, String country) {
@@ -752,26 +758,26 @@ public class Controller implements Observer {
                         width - lineWidth * 2, 180, 180, ArcType.OPEN);
 
                 graphicsContext.strokeLine(lineWidth, 0, lineWidth, height - width / 2 - lineWidth + 1);
-                graphicsContext.strokeLine(width - lineWidth, 0, width - lineWidth, height - width / 2 - lineWidth + 1 );
+                graphicsContext.strokeLine(width - lineWidth, 0, width - lineWidth, height - width / 2 - lineWidth + 1);
                 break;
             case 1: //temperature
-                double circlewidth = width-4*lineWidth;
-                double stickwidth = circlewidth*0.66;
+                double circlewidth = width - 4 * lineWidth;
+                double stickwidth = circlewidth * 0.66;
                 graphicsContext.fillArc(lineWidth * 2, height - circlewidth - lineWidth * 2, circlewidth, circlewidth,
                         360, 360, ArcType.OPEN);
-                graphicsContext.fillArc(lineWidth*2+(circlewidth-stickwidth)/2,lineWidth*2,stickwidth,stickwidth,360,360,ArcType.OPEN);
-                graphicsContext.fillRect(lineWidth*2+(circlewidth-stickwidth)/2,lineWidth*2+stickwidth/2,stickwidth,height-(lineWidth*2+stickwidth/2)-lineWidth*2-circlewidth/2);
+                graphicsContext.fillArc(lineWidth * 2 + (circlewidth - stickwidth) / 2, lineWidth * 2, stickwidth, stickwidth, 360, 360, ArcType.OPEN);
+                graphicsContext.fillRect(lineWidth * 2 + (circlewidth - stickwidth) / 2, lineWidth * 2 + stickwidth / 2, stickwidth, height - (lineWidth * 2 + stickwidth / 2) - lineWidth * 2 - circlewidth / 2);
 
-                double per =1-(value-minimum)/(maximum-minimum);
-                graphicsContext.clearRect(0,0,width,lineWidth*2+(height-lineWidth*4)*per);
+                double per = 1 - (value - minimum) / (maximum - minimum);
+                graphicsContext.clearRect(0, 0, width, lineWidth * 2 + (height - lineWidth * 4) * per);
 
-                double angle = Math.atan((stickwidth/2+lineWidth*2)/(circlewidth/2+lineWidth*2))/Math.PI*180;
-                angle=90-angle;
-                double newwidth = circlewidth/2 - Math.tan(angle/180*Math.PI)*(stickwidth/2);
+                double angle = Math.atan((stickwidth / 2 + lineWidth * 2) / (circlewidth / 2 + lineWidth * 2)) / Math.PI * 180;
+                angle = 90 - angle;
+                double newwidth = circlewidth / 2 - Math.tan(angle / 180 * Math.PI) * (stickwidth / 2);
                 //System.out.println((stickwidth/2+lineWidth*2)/(circlewidth/2+lineWidth*2));
-                graphicsContext.strokeLine((width-stickwidth-lineWidth*4)/2+lineWidth/2,lineWidth/2+stickwidth/2+lineWidth*2,(width-stickwidth-lineWidth*4)/2+lineWidth/2,height-lineWidth/2-lineWidth*2-circlewidth+newwidth);
+                graphicsContext.strokeLine((width - stickwidth - lineWidth * 4) / 2 + lineWidth / 2, lineWidth / 2 + stickwidth / 2 + lineWidth * 2, (width - stickwidth - lineWidth * 4) / 2 + lineWidth / 2, height - lineWidth / 2 - lineWidth * 2 - circlewidth + newwidth);
 
-                graphicsContext.strokeArc(lineWidth/2,height-circlewidth-lineWidth/2-lineWidth*3,circlewidth+lineWidth*3,circlewidth+lineWidth*3,180-90+angle,360-angle*2,ArcType.OPEN);
+                graphicsContext.strokeArc(lineWidth / 2, height - circlewidth - lineWidth / 2 - lineWidth * 3, circlewidth + lineWidth * 3, circlewidth + lineWidth * 3, 180 - 90 + angle, 360 - angle * 2, ArcType.OPEN);
                 break;
         }
 

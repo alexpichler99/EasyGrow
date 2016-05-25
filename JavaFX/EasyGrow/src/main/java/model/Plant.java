@@ -1,11 +1,11 @@
 package model;
 
 
-
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.InputStreamReader;
-import java.net.*;
+import java.net.InetSocketAddress;
+import java.net.Socket;
 import java.util.Date;
 import java.util.Random;
 
@@ -23,27 +23,29 @@ public class Plant {
     public void setIp(String ip) {
         this.ip = ip;
     }
+
     public String getIp() {
         return ip;
     }
+
     public void setName(String name) {
         this.name = name;
     }
+
     public String getName() {
         return name;
     }
 
 
-    public MeasurementHistory getTemperatureHistory()
-    {
+    public MeasurementHistory getTemperatureHistory() {
         return temperatureHistory;
     }
-    public MeasurementHistory getHumidityHistory()
-    {
+
+    public MeasurementHistory getHumidityHistory() {
         return humidityHistory;
     }
-    public MeasurementHistory getMoistureHistory()
-    {
+
+    public MeasurementHistory getMoistureHistory() {
         return moistureHistory;
     }
 
@@ -54,7 +56,7 @@ public class Plant {
         this.name = name;
         moistureHistory = new MeasurementHistory(100, 0, moistureOptimum, 10);
         humidityHistory = new MeasurementHistory(100, 0, humidityOptimum, 10);
-        temperatureHistory=new MeasurementHistory(PlantModel.maxTemperature, PlantModel.minTemperature, temperatureOptimum, 5);
+        temperatureHistory = new MeasurementHistory(PlantModel.maxTemperature, PlantModel.minTemperature, temperatureOptimum, 5);
     }
 
 
@@ -63,7 +65,7 @@ public class Plant {
         try {
             float moist = Float.NaN, temp = Float.NaN, hum = Float.NaN;
             boolean mode = false; //used for testing
-            if(mode) {
+            if (mode) {
                 String sentence;
                 Socket clientSocket;
                 clientSocket = new Socket();
@@ -81,29 +83,30 @@ public class Plant {
                     return false;
                 try {
                     moist = Float.parseFloat(split[0]);
-                } catch (NumberFormatException ex) { }
+                } catch (NumberFormatException ex) {
+                }
                 try {
                     temp = Float.parseFloat(split[1]);
-                } catch (NumberFormatException ex) { }
+                } catch (NumberFormatException ex) {
+                }
                 try {
                     hum = Float.parseFloat(split[2]);
-                } catch (NumberFormatException ex) { }
-            }
-            else {
+                } catch (NumberFormatException ex) {
+                }
+            } else {
                 Random random = new Random();
                 int i = random.nextInt();
                 i = (i % 60);
                 if (i < 0)
                     i *= -1;
-                moist=i;
-                temp=i;
-                hum=i;
+                moist = i;
+                temp = i;
+                hum = i;
             }
             moistureHistory.addMeasurement(new Measurement(moist));
             temperatureHistory.addMeasurement(new Measurement(temp));
             humidityHistory.addMeasurement(new Measurement(hum));
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             return false;
         }
         System.out.println("time: " + (new Date().getTime() - date.getTime()));

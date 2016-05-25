@@ -15,11 +15,12 @@ public class Measurement {
 
     private boolean valid;
 
-    public Measurement(float value, Date date)  {
+    public Measurement(float value, Date date) {
         this.date = date;
         this.value = value;
         this.valid = true;
     }
+
     public Measurement(float value) {
         this.value = value;
         this.date = new Date();
@@ -31,6 +32,7 @@ public class Measurement {
         this.date = date;
         this.valid = valid;
     }
+
     public float getValue() {
         return value;
     }
