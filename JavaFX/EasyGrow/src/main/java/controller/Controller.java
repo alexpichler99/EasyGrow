@@ -3,6 +3,7 @@ package controller;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -23,10 +24,11 @@ import model.WarningType;
 import scene.ResizeableCanvas;
 
 import java.io.*;
+import java.net.URL;
 import java.util.*;
 
 
-public class Controller implements Observer {
+public class Controller implements Observer, Initializable {
     private PlantModel model;
 
     //region FXML_OBJECTS
@@ -456,7 +458,8 @@ public class Controller implements Observer {
     }
 
     //region Initialize
-    public void Initialize() {
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
         imgPichler.setImage(new Image(getClass().getResource("/images/pichler.jpg").toString()));
         imgKrauck.setImage(new Image(getClass().getResource("/images/krauck.jpg").toString()));
         imgPanz.setImage(new Image(getClass().getResource("/images/panz.jpg").toString()));
