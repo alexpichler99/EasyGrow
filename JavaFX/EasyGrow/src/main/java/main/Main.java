@@ -20,6 +20,7 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(root));
         primaryStage.setResizable(true);
         primaryStage.show();
+
         ((Controller) loader.getController()).setStage(primaryStage);
     }
 

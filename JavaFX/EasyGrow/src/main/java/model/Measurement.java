@@ -1,43 +1,52 @@
 package model;
 
-import java.util.Date;
-
 /**
- * Created by alexa on 11.03.2016.
+ * Created by alex on 12.06.16.
  */
 public class Measurement {
-    private Date date;
-    private float value;
+    private long time;
+    private float moisture;
+    private float humidity;
+    private float temperature;
 
-    public boolean isValid() {
-        return valid;
+    public void setTime (long date) {
+        this.time = date;
     }
 
-    private boolean valid;
-
-    public Measurement(float value, Date date) {
-        this.date = date;
-        this.value = value;
-        this.valid = true;
+    public void setMoisture(float moisture) {
+        this.moisture = moisture;
     }
 
-    public Measurement(float value) {
-        this.value = value;
-        this.date = new Date();
-        this.valid = true;
+    public void setHumidity(float humidity) {
+        this.humidity = humidity;
     }
 
-    public Measurement(float value, Date date, boolean valid) {
-        this.value = value;
-        this.date = date;
-        this.valid = valid;
+    public void setTemperature(float temperature) {
+        this.temperature = temperature;
     }
 
-    public float getValue() {
-        return value;
+    public long getTime() {
+
+        return time;
     }
 
-    public Date getDate() {
-        return date;
+    public float getMoisture() {
+        return moisture;
+    }
+
+    public float getHumidity() {
+        return humidity;
+    }
+
+    public float getTemperature() {
+        return temperature;
+    }
+
+    public Measurement(long time, float moisture, float temperature, float humidity) {
+
+        this.time = time;
+        this.moisture = moisture;
+        this.humidity = humidity;
+        this.temperature = temperature;
     }
 }

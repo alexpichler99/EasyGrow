@@ -1,26 +1,33 @@
 package controller;
 
 import javafx.application.Platform;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.chart.AreaChart;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.ArcType;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
-import model.Measurement;
-import model.MeasurementHistory;
-import model.PlantModel;
-import model.WarningType;
+import model.*;
 import scene.ResizeableCanvas;
 
 import java.io.*;
@@ -32,6 +39,33 @@ public class Controller implements Observer, Initializable {
     private PlantModel model;
 
     //region FXML_OBJECTS
+    @FXML
+    private NumberAxis yAxisaChartTemperature;
+
+    @FXML
+    private NumberAxis yAxisaChartHumidity;
+
+    @FXML
+    private NumberAxis yAxisaChartMoisture;
+
+    @FXML
+    private NumberAxis xAxislChartOverview;
+
+    @FXML
+    private NumberAxis yAxislChartOverview;
+
+    @FXML
+    private LineChart<Long, Double> lChartOverview;
+
+    @FXML
+    private AreaChart<Long, Double> aChartMoisture;
+
+    @FXML
+    private AreaChart<Long, Double> aChartHumidity;
+
+    @FXML
+    private AreaChart<Long, Double> aChartTemperature;
+
     @FXML
     private Label labelSetPlantName;
 
@@ -281,38 +315,41 @@ public class Controller implements Observer, Initializable {
     @FXML
     void onComboSetMoistureOptimumAction(ActionEvent event) {
         moistureOptimum = comboSetMoistureOptimum.getValue();
-        model.getPlant().getMoistureHistory().setOptimum(moistureOptimum);
+        model.getPlant().setMoistureOptimum(moistureOptimum);
         storeMainProperties();
+        refreshWarnings();
     }
 
     @FXML
     void onComboSetHumidityOptimumAction(ActionEvent event) {
         humidityOptimum = comboSetHumidityOptimum.getValue();
-        model.getPlant().getHumidityHistory().setOptimum(humidityOptimum);
+        model.getPlant().setHumidityOptimum(humidityOptimum);
         storeMainProperties();
+        refreshWarnings();
     }
 
     @FXML
     void onComboSetTemperatureOptimumAction(ActionEvent event) {
         temperatureOptimum = comboSetTemperatureOptimum.getValue();
-        model.getPlant().getTemperatureHistory().setOptimum(temperatureOptimum);
+        model.getPlant().setTemperatureOptimum(temperatureOptimum);
         storeMainProperties();
+        refreshWarnings();
     }
 
     @FXML
     void onBtnGermanAction(ActionEvent event) {
         language = "de";
         country = "DE";
-        storeMainProperties();
         setLanguage(language, country);
+        storeMainProperties();
     }
 
     @FXML
     void onBtnEnglishAction(ActionEvent event) {
         language = "en";
         country = "US";
-        storeMainProperties();
         setLanguage("en", "US");
+        storeMainProperties();
     }
 
     @FXML
@@ -333,6 +370,9 @@ public class Controller implements Observer, Initializable {
     private final Color temperatureColor = Color.web("#d35400");
     private final Color humidityColor = Color.web("#1abc9c");
     private final Color moistureColor = Color.web("#2980b9");
+    private final Color humidityFillColor = Color.web("#1abc9c0f");
+    private final Color moistureFillColor = Color.web("#2980b90f");
+    private final Color temperatureFillColor = Color.web("#d354000f");
     private final Color normalWarning = Color.ORANGE; //rename
     private final Color criticalWarning = Color.RED;
     private final Color optimumWarning = Color.LIME;
@@ -359,7 +399,7 @@ public class Controller implements Observer, Initializable {
     private boolean isInHistoryCanvas = false;
     //endregion
 
-
+    //region MainProperties
     private void loadMainProperties() {
         try {
             FileInputStream propFile = new FileInputStream(mainPropertiesFile);
@@ -373,27 +413,40 @@ public class Controller implements Observer, Initializable {
 
             //Moisture optimum
             String tmp = prop.getProperty("mOptimum");
-            try {
-                moistureOptimum = Float.parseFloat(tmp);
-            } catch (NumberFormatException ex) {
-                moistureOptimum = defaultMoistureOptimum;
+            if (tmp != null) {
+                try {
+                    moistureOptimum = Float.parseFloat(tmp);
+                } catch (NumberFormatException ex) {
+                    moistureOptimum = defaultMoistureOptimum;
+                }
             }
+            else
+                moistureOptimum = defaultMoistureOptimum;
 
             //Humidity optimum
             tmp = prop.getProperty("hOptimum");
-            try {
-                humidityOptimum = Float.parseFloat(tmp);
-            } catch (NumberFormatException ex) {
-                humidityOptimum = defaultHumidityOptimum;
+            if (tmp != null) {
+                try {
+                    humidityOptimum = Float.parseFloat(tmp);
+                } catch (NumberFormatException ex) {
+                    humidityOptimum = defaultHumidityOptimum;
+                }
             }
+            else
+                humidityOptimum = defaultHumidityOptimum;
 
             //Temperature optimum
             tmp = prop.getProperty("tOptimum");
-            try {
-                temperatureOptimum = Float.parseFloat(tmp);
-            } catch (NumberFormatException ex) {
-                temperatureOptimum = defaultTemperatureOptimum;
+            if (tmp != null) {
+                try {
+                    temperatureOptimum = Float.parseFloat(tmp);
+                } catch (NumberFormatException ex) {
+                    temperatureOptimum = defaultTemperatureOptimum;
+                }
             }
+            else
+                temperatureOptimum = defaultTemperatureOptimum;
+
 
             //language
             language = prop.getProperty("language");
@@ -422,9 +475,9 @@ public class Controller implements Observer, Initializable {
 
             if (model != null && model.getPlant() != null) {
                 model.getPlant().setIp(arduinoIp);
-                model.getPlant().getMoistureHistory().setOptimum(moistureOptimum);
-                model.getPlant().getMoistureHistory().setOptimum(humidityOptimum);
-                model.getPlant().getTemperatureHistory().setOptimum(temperatureOptimum);
+                model.getPlant().setMoistureOptimum(moistureOptimum);
+                model.getPlant().setHumidityOptimum(humidityOptimum);
+                model.getPlant().setTemperatureOptimum(temperatureOptimum);
                 model.getPlant().setName(plantName);
             }
             propFile.close();
@@ -442,9 +495,9 @@ public class Controller implements Observer, Initializable {
             FileOutputStream propFile = new FileOutputStream(mainPropertiesFile);
             Properties prop = new Properties();
             prop.setProperty("ip", model.getPlant().getIp());
-            prop.setProperty("mOptimum", String.valueOf(model.getPlant().getMoistureHistory().getOptimum()));
-            prop.setProperty("hOptimum", String.valueOf(model.getPlant().getHumidityHistory().getOptimum()));
-            prop.setProperty("tOptimum", String.valueOf(model.getPlant().getTemperatureHistory().getOptimum()));
+            prop.setProperty("mOptimum", String.valueOf(model.getPlant().getMoistureOptimum()));
+            prop.setProperty("hOptimum", String.valueOf(model.getPlant().getHumidityOptimum()));
+            prop.setProperty("tOptimum", String.valueOf(model.getPlant().getTemperatureOptimum()));
             prop.setProperty("language", language);
             prop.setProperty("country", country);
             prop.setProperty("plantName", model.getPlant().getName());
@@ -456,6 +509,7 @@ public class Controller implements Observer, Initializable {
             System.out.println("Error storing properties.\n" + e.getMessage());
         }
     }
+    //endregion
 
     //region Initialize
     @Override
@@ -466,93 +520,47 @@ public class Controller implements Observer, Initializable {
         imgRiedl.setImage(new Image(getClass().getResource("/images/riedl.jpg").toString()));
         imageViewSettings.setImage(new Image(getClass().getResource("/images/settingsIcon.png").toString()));
 
+
         loadMainProperties();
-        model = new PlantModel(moistureOptimum, humidityOptimum, temperatureOptimum, arduinoIp, this);
+        model = new PlantModel(moistureOptimum, humidityOptimum, temperatureOptimum, plantName, arduinoIp, this);
 
         for (int i = 0; i <= 10; i++) {
             comboSetMoistureOptimum.getItems().add(i * 10);
             comboSetHumidityOptimum.getItems().add(i * 10);
         }
 
-        for (int i = (int) PlantModel.minTemperature; i <= PlantModel.maxTemperature; i++)
+        for (int i = (int)PlantModel.minTemperature; i <= PlantModel.maxTemperature; i++)
             comboSetTemperatureOptimum.getItems().add(i);
 
-        //moisture
-        hboxMoistureHistory.widthProperty().addListener((observable, oldValue, newValue) -> {
-            canvasMoistureHistory.resize(newValue.doubleValue(), canvasMoistureHistory.getHeight());
-            redraw();
-        });
-
-        hboxMoistureHistory.heightProperty().addListener((observable, oldValue, newValue) -> {
-            canvasMoistureHistory.resize(canvasMoistureHistory.getWidth(), newValue.doubleValue());
-            redraw();
-        });
-
-        hboxMoisture.heightProperty().addListener((observable, oldValue, newValue) -> {
-            canvasCurrentMoisture.resize(newValue.doubleValue() / 2, newValue.doubleValue());
-            redraw();
-        });
-
-        hboxMoisture.widthProperty().addListener(((observable, oldValue, newValue) -> {
-            canvasCurrentMoisture.resize(hboxMoisture.getHeight() / 2, hboxMoisture.getHeight());
-            redraw();
-        }));
 
 
-        //temperature
-        hboxTemperatureHistory.widthProperty().addListener(((observable, oldValue, newValue) -> {
-            canvasTemperatureHistory.resize(newValue.doubleValue(), canvasTemperatureHistory.getHeight());
-            redraw();
-        }));
+        //charts
+        lChartOverview.setStyle("CHART_COLOR_1: #" + Integer.toHexString(moistureColor.hashCode())   + ";" +
+                "CHART_COLOR_2: #" + Integer.toHexString(temperatureColor.hashCode())   + ";" +
+                "CHART_COLOR_3: #" + Integer.toHexString(humidityColor.hashCode())   + ";");
 
-        hboxTemperatureHistory.heightProperty().addListener(((observable, oldValue, newValue) -> {
-            canvasTemperatureHistory.resize(canvasTemperatureHistory.getWidth(), newValue.doubleValue());
-            redraw();
-        }));
+        aChartMoisture.setStyle("CHART_COLOR_1: #" + Integer.toHexString(moistureColor.hashCode())   +
+                "; CHART_COLOR_1_TRANS_20: #" + Integer.toHexString(moistureFillColor.hashCode())   + ";");
+        aChartTemperature.setStyle("CHART_COLOR_1: #" + Integer.toHexString(temperatureColor.hashCode())   +
+                "; CHART_COLOR_1_TRANS_20: #" + Integer.toHexString(temperatureFillColor.hashCode())   + ";");
+        aChartHumidity.setStyle("CHART_COLOR_1: #" + Integer.toHexString(humidityColor.hashCode())   +
+                "; CHART_COLOR_1_TRANS_20: #" + Integer.toHexString(humidityFillColor.hashCode())   + ";");
 
-        hboxTemperature.heightProperty().addListener(((observable, oldValue, newValue) -> {
-            canvasCurrentTemperature.resize(newValue.doubleValue() / 2, newValue.doubleValue());
-            redraw();
-        }));
 
-        hboxTemperature.widthProperty().addListener(((observable, oldValue, newValue) -> {
-            canvasCurrentTemperature.resize(hboxTemperature.getHeight() / 2, hboxTemperature.getHeight());
-            redraw();
-        }));
+        yAxislChartOverview.setLowerBound(PlantModel.minTemperature);
+        yAxislChartOverview.setUpperBound(PlantModel.maxMoisture);
 
-        //humidity
-        hboxHumidityHistory.widthProperty().addListener(((observable, oldValue, newValue) -> {
-            canvasHumidityHistory.resize(newValue.doubleValue(), canvasHumidityHistory.getHeight());
-            redraw();
-        }));
+        yAxisaChartMoisture.setLowerBound(PlantModel.minMoisture);
+        yAxisaChartMoisture.setUpperBound(PlantModel.maxMoisture);
 
-        hboxHumidityHistory.heightProperty().addListener(((observable, oldValue, newValue) -> {
-            canvasHumidityHistory.resize(canvasHumidityHistory.getWidth(), newValue.doubleValue());
-            redraw();
-        }));
+        yAxisaChartHumidity.setLowerBound(PlantModel.minHumidity);
+        yAxisaChartHumidity.setUpperBound(PlantModel.maxHumidity);
 
-        hboxHumidity.heightProperty().addListener(((observable, oldValue, newValue) -> {
-            canvasCurrentHumidity.resize(newValue.doubleValue() / 2, newValue.doubleValue());
-            redraw();
-        }));
-
-        hboxHumidity.widthProperty().addListener(((observable, oldValue, newValue) -> {
-            canvasCurrentHumidity.resize(hboxHumidity.getHeight() / 2, hboxHumidity.getHeight());
-            redraw();
-        }));
-        canvasMoistureHistory.setOnMouseEntered(event -> {
-            handCursor();
-            isInHistoryCanvas = true;
-        });
-        canvasMoistureHistory.setOnMousePressed(event -> closedHandCursor());
-        canvasMoistureHistory.setOnMouseReleased(event -> {
-            if (isInHistoryCanvas == true) handCursor();
-        });
-        canvasMoistureHistory.setOnMouseExited(event -> {
-            defaultCursor();
-            isInHistoryCanvas = false;
-        });
+        yAxisaChartTemperature.setLowerBound(PlantModel.minTemperature);
+        yAxisaChartTemperature.setUpperBound(PlantModel.maxTemperature);
     }
+    ObservableList<XYChart.Data<Long, Double>> list;// = FXCollections.observableList(model.getPlant().getMoistures());
+
 
     public void setStage(Stage stage) {
         this.stage = stage;
@@ -562,8 +570,8 @@ public class Controller implements Observer, Initializable {
     //endregion
 
 
-    private void warnings() {
-        WarningType warning = model.getPlant().getMoistureHistory().getWarning();
+    private void refreshWarnings() {
+       WarningType warning = model.getPlant().getMoistureWarning();
         if (warning == WarningType.Optimum)
             circleMoistureWarning.setFill(optimumWarning);
         else if (warning == WarningType.Normal)
@@ -573,7 +581,7 @@ public class Controller implements Observer, Initializable {
         else
             circleMoistureWarning.setFill(unknownWarning);
 
-        warning = model.getPlant().getHumidityHistory().getWarning();
+        warning = model.getPlant().getHumidityWarning();
         if (warning == WarningType.Optimum)
             circleHumidityWarning.setFill(optimumWarning);
         else if (warning == WarningType.Normal)
@@ -583,7 +591,7 @@ public class Controller implements Observer, Initializable {
         else
             circleHumidityWarning.setFill(unknownWarning);
 
-        warning = model.getPlant().getTemperatureHistory().getWarning();
+        warning = model.getPlant().getTemperatureWarning();
         if (warning == WarningType.Optimum)
             circleTemperatureWarning.setFill(optimumWarning);
         else if (warning == WarningType.Normal)
@@ -598,121 +606,101 @@ public class Controller implements Observer, Initializable {
         circleOTemperatureWarning.setFill(circleTemperatureWarning.getFill());
     }
 
+
+
+    private void refreshCharts() {
+        lChartOverview.setAnimated(false);
+        lChartOverview.setCreateSymbols(false);
+        lChartOverview.getData().clear();
+
+        XYChart.Series<Long, Double> seriesMoist;
+        XYChart.Series<Long, Double> seriesHum;
+        XYChart.Series<Long, Double> seriesTemp;
+        XYChart.Series<Long, Double> tmp = new XYChart.Series<>();
+
+        seriesMoist = new XYChart.Series<Long, Double>();
+        aChartMoisture.getData().clear();
+        List<XYChart.Data<Long, Double>> li = model.getPlant().getMoistures();
+        list =  FXCollections.observableArrayList();
+        for (XYChart.Data<Long, Double> d : li)
+            list.add(d);
+        seriesMoist.setData(list);
+        seriesMoist.setName("Moisture");
+        tmp.setData(list);
+        tmp.setName("Moisture");
+        aChartMoisture.setAnimated(false);
+        aChartMoisture.getData().add(seriesMoist);
+        lChartOverview.getData().add(tmp);
+
+        seriesTemp = new XYChart.Series<Long, Double>();
+        aChartTemperature.getData().clear();
+        li = model.getPlant().getTemperatures();
+        list =  FXCollections.observableArrayList();
+        for (XYChart.Data<Long, Double> d : li)
+            list.add(d);
+        seriesTemp.setData(list);
+        seriesTemp.setName("Temperature");
+        tmp = new XYChart.Series<>();
+        tmp.setData(list);
+        tmp.setName("Temperature");
+        System.out.println("size: " + li.size());
+        aChartTemperature.setAnimated(false);
+        aChartTemperature.getData().add(seriesTemp);
+        lChartOverview.getData().add(tmp);
+
+        seriesHum = new XYChart.Series<Long, Double>();
+        aChartHumidity.getData().clear();
+        li = model.getPlant().getHumidities();
+        list =  FXCollections.observableArrayList();
+        for (XYChart.Data<Long, Double> d : li)
+            list.add(d);
+        seriesHum.setData(list);
+        seriesHum.setName("Humidity");
+        tmp = new XYChart.Series<>();
+        tmp.setData(list);
+        tmp.setName("Humidity");
+        System.out.println("size: " + li.size());
+        aChartHumidity.setAnimated(false);
+        aChartHumidity.getData().add(seriesHum);
+        lChartOverview.getData().add(tmp);
+
+        lChartOverview.setCreateSymbols(false);
+    }
+
+    private void refreshCurrentValues() {
+        if (model.getPlant().getCurrentMoisture() >= 0 && !Float.isNaN(model.getPlant().getCurrentMoisture()))
+            labelCurrentMoisturePercent.setText(model.getPlant().getCurrentMoisture() + "%");
+        else
+            labelCurrentMoisturePercent.setText(notAvailableText);
+        if (!Float.isNaN(model.getPlant().getCurrentTemperature()))
+            labelCurrentTemperatureCelsius.setText(model.getPlant().getCurrentTemperature() + "°C");
+        else
+            labelCurrentTemperatureCelsius.setText(notAvailableText);
+        if (model.getPlant().getCurrentHumidity() >= 0 && !Float.isNaN(model.getPlant().getCurrentHumidity()))
+            labelCurrentHumidityPercent.setText(model.getPlant().getCurrentHumidity() + "%");
+        else
+            labelCurrentHumidityPercent.setText(notAvailableText);
+
+        labelOCurrentHumidityPercent.setText(labelCurrentHumidityPercent.getText());
+        labelOCurrentTemperatureCelsius.setText(labelCurrentTemperatureCelsius.getText());
+        labelOCurrentMoisturePercent.setText(labelCurrentMoisturePercent.getText());
+
+        refreshWarnings();
+    }
+
     @Override
     public void update(Observable o, Object arg) {
         Platform.runLater(() -> {
-            if (model.getPlant().getMoistureHistory().getFirstMeasurement() != null &&
-                    model.getPlant().getMoistureHistory().getFirstMeasurement().isValid())
-                labelCurrentMoisturePercent.setText(model.getPlant().getMoistureHistory().getFirstMeasurement().getValue() + "%");
+            RefreshType type;
+            if (arg instanceof RefreshType)
+                type = (RefreshType)arg;
             else
-                labelCurrentMoisturePercent.setText(notAvailableText);
-            if (model.getPlant().getTemperatureHistory().getFirstMeasurement() != null &&
-                    model.getPlant().getTemperatureHistory().getFirstMeasurement().isValid())
-                labelCurrentTemperatureCelsius.setText(model.getPlant().getTemperatureHistory().getFirstMeasurement().getValue() + "°C");
-            else
-                labelCurrentTemperatureCelsius.setText(notAvailableText);
-            if (model.getPlant().getHumidityHistory().getFirstMeasurement() != null &&
-                    model.getPlant().getHumidityHistory().getFirstMeasurement().isValid())
-                labelCurrentHumidityPercent.setText(model.getPlant().getHumidityHistory().getFirstMeasurement().getValue() + "%");
-            else
-                labelCurrentHumidityPercent.setText(notAvailableText);
-
-            //Set text of Overview values
-            labelOCurrentMoisturePercent.setText(labelCurrentMoisturePercent.getText());
-            labelOCurrentTemperatureCelsius.setText(labelCurrentTemperatureCelsius.getText());
-            labelOCurrentHumidityPercent.setText(labelCurrentHumidityPercent.getText());
-            warnings();
-            redraw();
+                return;
+            if (type == RefreshType.HISTORY)
+                refreshCharts();
+            if (type == RefreshType.CURRENT)
+                refreshCurrentValues();
         });
-    }
-
-    private void redraw() {
-        //moisture
-        redrawCurrentMeasurement(model.getPlant().getMoistureHistory(), canvasCurrentMoisture, moistureColor, 5, 0);
-        redrawHistroy(model.getPlant().getMoistureHistory(), canvasMoistureHistory, moistureColor);
-
-        //humidity
-        redrawCurrentMeasurement(model.getPlant().getHumidityHistory(), canvasCurrentHumidity, humidityColor, 5, 0);
-        redrawHistroy(model.getPlant().getHumidityHistory(), canvasHumidityHistory, humidityColor);
-
-        //temperature
-        redrawCurrentMeasurement(model.getPlant().getTemperatureHistory(), canvasCurrentTemperature, temperatureColor, 5, 0);
-        redrawHistroy(model.getPlant().getTemperatureHistory(), canvasTemperatureHistory, temperatureColor);
-    }
-
-    private void redrawHistroy(MeasurementHistory history, Canvas canvas, Color color) {
-        List<Measurement> list = history.getMeasurements();
-        double width = canvas.getWidth();
-        double height = canvas.getHeight();
-        float minimum = history.getMinumum();
-        float maximum = history.getMaximum();
-        float optimum = history.getOptimum();
-        Measurement first = history.getFirstMeasurement();
-        Measurement last = history.getLastMeasurement();
-        if (first == null || last == null)
-            return;
-        long time = first.getDate().getTime();
-        long timeUsed = time;
-        double elementSpan = (historyEndingDrawTimeMoisture - historyBeginningDrawTimeMoisture) / width;
-        double elementPower = height / (maximum - minimum);
-        long mDate;
-        double mValue;
-        long lastDate = last.getDate().getTime();
-        double lastValue = last.getValue();
-        boolean firstTimeTest = true;
-        Measurement mInTime = history.getFirstMeasurementInTime(historyBeginningDrawTimeMoisture);
-        if (mInTime == null)
-            timeUsed = time;
-        else
-            timeUsed = mInTime.getDate().getTime();
-        GraphicsContext graphicsContext = canvas.getGraphicsContext2D();
-        graphicsContext.clearRect(0, 0, width, height);
-        graphicsContext.setFill(Color.web("#ecf0f1"));
-        graphicsContext.fillRect(0, 0, width, height);
-        graphicsContext.setFill(Color.LIGHTBLUE);
-        if (minimum < 0)
-            graphicsContext.fillRect(0, height + (minimum * elementPower), width, height);
-        graphicsContext.setLineWidth(2);
-        graphicsContext.setStroke(color);
-        Color fillColor = new Color(color.getRed(), color.getGreen(), color.getBlue(), 0.5);
-        graphicsContext.setFill(fillColor);
-        if (last != null) {
-            for (Measurement m : list) {
-                mDate = m.getDate().getTime();
-                mValue = m.getValue();
-                if (time - mDate >= historyBeginningDrawTimeMoisture) {
-                    //DRAW
-                    double[] xPoints = {
-                            width - 1 - ((lastDate - timeUsed) * -1) / elementSpan, width - 0.9 - ((mDate - timeUsed) * -1) / elementSpan,
-                            width - 0.9 - ((mDate - timeUsed) * -1) / elementSpan, width - 1 - ((lastDate - timeUsed) * -1) / elementSpan
-                    };
-                    double[] yPoints = {
-                            height - (lastValue - minimum) * elementPower,
-                            height - (mValue - minimum) * elementPower, height, height
-                    };
-                    graphicsContext.fillPolygon(xPoints, yPoints, 4);
-                    graphicsContext.strokeLine(width - ((lastDate - timeUsed) * -1) / elementSpan, height - elementPower * (lastValue - minimum),
-                            width - ((mDate - timeUsed) * -1) / elementSpan, height - (mValue - minimum) * elementPower);
-                    //DRAW
-                } else if (time - mDate > historyEndingDrawTimeMoisture)
-                    break;
-
-                lastDate = mDate;
-                lastValue = mValue;
-            }
-
-        }
-        graphicsContext.setStroke(new Color(0, 0, 0, 1));
-        graphicsContext.setLineWidth(1);
-        graphicsContext.strokeRect(0, 0, width, height);
-        graphicsContext.strokeLine(0, height - (optimum - minimum) * elementPower, width, height - (optimum - minimum) * elementPower);
-        graphicsContext.setLineWidth(1);
-        int textOffset = -5;
-        if ((optimum * elementPower * 100) / height > 90)
-            textOffset = 15;
-        graphicsContext.strokeText("Optimum", width / 200, height - (optimum - minimum) * elementPower + textOffset);
-        for (int i = 0; i < 6; i++)
-            graphicsContext.strokeLine(i * (width / 7) + width / 7, 0, i * (width / 7) + width / 7, height);
     }
 
     private void setLanguage(String language, String country) {
@@ -750,63 +738,6 @@ public class Controller implements Observer, Initializable {
         } catch (MissingResourceException ex) {
             System.out.println("Error setting language!");
         }
-    }
-
-
-    //@krauck use enum for mode
-    private void redrawCurrentMeasurement(MeasurementHistory history, Canvas canvas, Color color, int lineWidth, int mode) {
-        double height = canvas.getHeight();
-        double width = canvas.getWidth();
-        Measurement measurement = history.getFirstMeasurement();
-        if (measurement == null)
-            return;
-        float minimum = history.getMinumum();
-        float maximum = history.getMaximum();
-        float value = measurement.getValue();
-        GraphicsContext graphicsContext = canvas.getGraphicsContext2D();
-        graphicsContext.clearRect(0, 0, width, height);
-        graphicsContext.setFill(color);
-        graphicsContext.setLineWidth(lineWidth);
-        switch (mode) {
-            case 0: //moisture
-
-                graphicsContext.fillArc(lineWidth * 2, height - (width - lineWidth * 4) - lineWidth * 2, width - lineWidth * 4, width - lineWidth * 4,
-                        360, 360, ArcType.OPEN);
-
-                graphicsContext.fillRect(lineWidth * 2, 0, width - lineWidth * 4, height - width / 2);//fehler
-
-                double percentage = (measurement.getValue() - history.getMinumum()) / (history.getMaximum() - history.getMinumum());
-                double power = height - ((height - lineWidth * 2) * percentage);
-                graphicsContext.clearRect(0, 0, width, (height - lineWidth * 2) - ((height - lineWidth * 2) *
-                        ((measurement.getValue() - history.getMinumum()) / (history.getMaximum() - history.getMinumum()))));
-
-                graphicsContext.strokeArc(lineWidth, height - (width - lineWidth * 2) - lineWidth, width - lineWidth * 2,
-                        width - lineWidth * 2, 180, 180, ArcType.OPEN);
-
-                graphicsContext.strokeLine(lineWidth, 0, lineWidth, height - width / 2 - lineWidth + 1);
-                graphicsContext.strokeLine(width - lineWidth, 0, width - lineWidth, height - width / 2 - lineWidth + 1);
-                break;
-            case 1: //temperature
-                double circlewidth = width - 4 * lineWidth;
-                double stickwidth = circlewidth * 0.66;
-                graphicsContext.fillArc(lineWidth * 2, height - circlewidth - lineWidth * 2, circlewidth, circlewidth,
-                        360, 360, ArcType.OPEN);
-                graphicsContext.fillArc(lineWidth * 2 + (circlewidth - stickwidth) / 2, lineWidth * 2, stickwidth, stickwidth, 360, 360, ArcType.OPEN);
-                graphicsContext.fillRect(lineWidth * 2 + (circlewidth - stickwidth) / 2, lineWidth * 2 + stickwidth / 2, stickwidth, height - (lineWidth * 2 + stickwidth / 2) - lineWidth * 2 - circlewidth / 2);
-
-                double per = 1 - (value - minimum) / (maximum - minimum);
-                graphicsContext.clearRect(0, 0, width, lineWidth * 2 + (height - lineWidth * 4) * per);
-
-                double angle = Math.atan((stickwidth / 2 + lineWidth * 2) / (circlewidth / 2 + lineWidth * 2)) / Math.PI * 180;
-                angle = 90 - angle;
-                double newwidth = circlewidth / 2 - Math.tan(angle / 180 * Math.PI) * (stickwidth / 2);
-                //System.out.println((stickwidth/2+lineWidth*2)/(circlewidth/2+lineWidth*2));
-                graphicsContext.strokeLine((width - stickwidth - lineWidth * 4) / 2 + lineWidth / 2, lineWidth / 2 + stickwidth / 2 + lineWidth * 2, (width - stickwidth - lineWidth * 4) / 2 + lineWidth / 2, height - lineWidth / 2 - lineWidth * 2 - circlewidth + newwidth);
-
-                graphicsContext.strokeArc(lineWidth / 2, height - circlewidth - lineWidth / 2 - lineWidth * 3, circlewidth + lineWidth * 3, circlewidth + lineWidth * 3, 180 - 90 + angle, 360 - angle * 2, ArcType.OPEN);
-                break;
-        }
-
     }
 
     //region functions
