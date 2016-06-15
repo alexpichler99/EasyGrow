@@ -439,6 +439,7 @@ public class Controller implements Observer, Initializable {
     private String notAvailableText = "Not available";
     private boolean isInHistoryCanvas = false;
     private int displayDays = defaultDisplayDays;
+    private String days = "Day";
     //endregion
 
     //region MainProperties
@@ -859,6 +860,7 @@ public class Controller implements Observer, Initializable {
                 aChartHumidity.setTitle(new String(rB.getString("humidity").getBytes("ISO-8859-1"), "UTF-8"));
                 aChartMoisture.setTitle(new String(rB.getString("moisture").getBytes("ISO-8859-1"), "UTF-8"));
                 aChartTemperature.setTitle(new String(rB.getString("temperature").getBytes("ISO-8859-1"), "UTF-8"));
+                days = new String(rB.getString("days").getBytes("ISO-8859-1"), "UTF-8");
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
