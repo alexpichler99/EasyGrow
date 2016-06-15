@@ -101,7 +101,7 @@
                               </HBox>
                      </children>
                   </VBox>
-                  <LineChart animated="false" fx:id="lChartOverview" createSymbols="false" layoutX="25.0" layoutY="227.0" prefHeight="453.0" prefWidth="592.0" AnchorPane.bottomAnchor="11.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="227.0">
+                  <LineChart title="Overview" animated="false" fx:id="lChartOverview" createSymbols="false" layoutX="25.0" layoutY="227.0" prefHeight="453.0" prefWidth="592.0" AnchorPane.bottomAnchor="11.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="227.0">
                     <xAxis>
                       <NumberAxis autoRanging="false" lowerBound="1" side="BOTTOM" upperBound="120" fx:id="xAxislChartOverview" />
                     </xAxis>
