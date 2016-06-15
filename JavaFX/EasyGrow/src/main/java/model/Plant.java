@@ -12,10 +12,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.InetSocketAddress;
 import java.net.Socket;
-import java.util.Date;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 /**
  * Created by Alex on 03/02/2016.
@@ -132,25 +129,34 @@ public class Plant {
     }
 
     public List<XYChart.Data<Long, Double>> getMoistures() {
+        long t = 0;
+        if (measurements.size() > 0)
+            t = measurements.get(measurements.size() - 1).getTime();
         List<XYChart.Data<Long, Double>> l = new LinkedList<>();
-        for (Measurement m : measurements) {
-            l.add(new XYChart.Data<Long, Double>(m.getTime(), (double) m.getMoisture()));
+        for (int i = measurements.size() - 1; i >= 0; i--) {
+            l.add(new XYChart.Data<Long, Double>(t - measurements.get(i).getTime() + 1, (double) measurements.get(i).getMoisture()));
         }
         return l;
     }
 
     public List<XYChart.Data<Long, Double>> getTemperatures() {
+        long t = 0;
+        if (measurements.size() > 0)
+            t = measurements.get(measurements.size() - 1).getTime();
         List<XYChart.Data<Long, Double>> l = new LinkedList<>();
-        for (Measurement m : measurements) {
-            l.add(new XYChart.Data<Long, Double>(m.getTime(), (double) m.getTemperature()));
+        for (int i = measurements.size() - 1; i >= 0; i--) {
+            l.add(new XYChart.Data<Long, Double>(t - measurements.get(i).getTime() + 1, (double) measurements.get(i).getTemperature()));
         }
         return l;
     }
 
     public List<XYChart.Data<Long, Double>> getHumidities() {
+        long t = 0;
+        if (measurements.size() > 0)
+            t = measurements.get(measurements.size() - 1).getTime();
         List<XYChart.Data<Long, Double>> l = new LinkedList<>();
-        for (Measurement m : measurements) {
-            l.add(new XYChart.Data<Long, Double>(m.getTime(), (double) m.getHumidity()));
+        for (int i = measurements.size() - 1; i >= 0; i--) {
+            l.add(new XYChart.Data<Long, Double>(t - measurements.get(i).getTime() + 1, (double) measurements.get(i).getHumidity()));
         }
         return l;
     }
@@ -232,6 +238,7 @@ public class Plant {
             clientSocket.close();
         } catch (IOException e1) {
         }
+        measurements.sort(null);
         return true;
     }
 

@@ -103,7 +103,7 @@
                   </VBox>
                   <LineChart fx:id="lChartOverview" createSymbols="false" layoutX="25.0" layoutY="227.0" prefHeight="464.0" prefWidth="592.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="227.0">
                     <xAxis>
-                      <NumberAxis autoRanging="true" side="BOTTOM" fx:id="xAxislChartOverview" />
+                      <NumberAxis fx:id="xAxislChartOverview" autoRanging="false" side="BOTTOM" lowerBound="1" upperBound="120"/>
                     </xAxis>
                     <yAxis>
                       <NumberAxis fx:id="yAxislChartOverview" autoRanging="false" side="LEFT" />
@@ -164,7 +164,7 @@
                      <children>
                         <AreaChart fx:id="aChartMoisture" layoutX="46.0" layoutY="-19.0" title="Moisture" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                           <xAxis>
-                            <NumberAxis autoRanging="true" side="BOTTOM" />
+                            <NumberAxis fx:id="xAxisaChartMoisture" autoRanging="false" lowerBound="1" upperBound="120" side="BOTTOM" />
                           </xAxis>
                           <yAxis>
                             <NumberAxis fx:id="yAxisaChartMoisture" autoRanging="false" side="LEFT" />
@@ -226,7 +226,7 @@
                      <children>
                         <AreaChart fx:id="aChartTemperature" title="Temperature" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <xAxis>
-                              <NumberAxis autoRanging="true" side="BOTTOM" />
+                              <NumberAxis fx:id="xAxisaChartTemperature" autoRanging="false" lowerBound="1" upperBound="120" side="BOTTOM" />
                            </xAxis>
                            <yAxis>
                               <NumberAxis fx:id="yAxisaChartTemperature" autoRanging="false" side="LEFT" />
@@ -289,7 +289,7 @@
                      <children>
                         <AreaChart fx:id="aChartHumidity" title="Humidity" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <xAxis>
-                              <NumberAxis autoRanging="true" side="BOTTOM" />
+                              <NumberAxis fx:id="xAxisaChartHumidity" autoRanging="false" lowerBound="1" upperBound="120" side="BOTTOM" />
                            </xAxis>
                            <yAxis>
                               <NumberAxis fx:id="yAxisaChartHumidity" autoRanging="false" side="LEFT" />

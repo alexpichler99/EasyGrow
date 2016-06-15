@@ -3,7 +3,7 @@ package model;
 /**
  * Created by alex on 12.06.16.
  */
-public class Measurement {
+public class Measurement implements Comparable<Measurement> {
     private long time;
     private float moisture;
     private float humidity;
@@ -48,5 +48,14 @@ public class Measurement {
         this.moisture = moisture;
         this.humidity = humidity;
         this.temperature = temperature;
+    }
+
+    @Override
+    public int compareTo(Measurement o) {
+        if (time > o.getTime())
+            return 1;
+        if (time < o.getTime())
+            return  -1;
+        return 0;
     }
 }

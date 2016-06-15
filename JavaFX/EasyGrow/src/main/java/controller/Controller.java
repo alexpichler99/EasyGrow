@@ -27,6 +27,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.ArcType;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
+import javafx.util.StringConverter;
 import model.*;
 import scene.ResizeableCanvas;
 
@@ -39,6 +40,15 @@ public class Controller implements Observer, Initializable {
     private PlantModel model;
 
     //region FXML_OBJECTS
+    @FXML
+    private NumberAxis xAxisaChartMoisture;
+
+    @FXML
+    private NumberAxis xAxisaChartTemperature;
+
+    @FXML
+    private NumberAxis xAxisaChartHumidity;
+
     @FXML
     private NumberAxis yAxisaChartTemperature;
 
@@ -563,13 +573,41 @@ public class Controller implements Observer, Initializable {
 
 
 
+        StringConverter<Number> stringConverter = new StringConverter<Number>() {
+            @Override
+            public String toString(Number object) {
+                int val = object.intValue() - 1;
+                if (val % 4 == 0)
+                    return "Day " + (val / 4);
+                return "";
+            }
+
+            @Override
+            public Number fromString(String string) {
+                return 0;
+            }
+        };
+
+
+        xAxisaChartHumidity.setTickUnit(4);
+        xAxisaChartHumidity.setTickLabelFormatter(stringConverter);
+
+        xAxisaChartTemperature.setTickUnit(4);
+        xAxisaChartTemperature.setTickLabelFormatter(stringConverter);
+
+        xAxisaChartMoisture.setTickUnit(4);
+        xAxisaChartMoisture.setTickLabelFormatter(stringConverter);
+
+        xAxislChartOverview.setTickUnit(4);
+        xAxislChartOverview.setTickLabelFormatter(stringConverter);
+
         hboxMoisture.heightProperty().addListener((observable, oldValue, newValue) -> {
             double width = newValue.doubleValue() / 2;
             if (width >= hboxMoisture.getWidth())
                 width = hboxMoisture.getWidth();
             canvasCurrentMoisture.resize(width, newValue.doubleValue());
             redrawCurrentValue(canvasCurrentMoisture, moistureColor, currentValueLineWidth, model.getPlant().getCurrentMoisture(),
-                    PlantModel.maxMoisture, PlantModel.minMoisture);
+                    PlantModel.minMoisture, PlantModel.maxMoisture);
         });
 
         hboxMoisture.widthProperty().addListener(((observable, oldValue, newValue) -> {
@@ -578,7 +616,7 @@ public class Controller implements Observer, Initializable {
                 width = hboxMoisture.getWidth();
             canvasCurrentMoisture.resize(width, hboxMoisture.getHeight());
             redrawCurrentValue(canvasCurrentMoisture, moistureColor, currentValueLineWidth, model.getPlant().getCurrentMoisture(),
-                    PlantModel.maxMoisture, PlantModel.minMoisture);
+                    PlantModel.minMoisture, PlantModel.maxMoisture);
         }));
 
 
@@ -667,8 +705,6 @@ public class Controller implements Observer, Initializable {
         circleOTemperatureWarning.setFill(circleTemperatureWarning.getFill());
     }
 
-
-
     private void refreshCharts() {
         lChartOverview.setAnimated(false);
         lChartOverview.setCreateSymbols(false);
@@ -693,6 +729,8 @@ public class Controller implements Observer, Initializable {
         aChartMoisture.getData().add(seriesMoist);
         lChartOverview.getData().add(tmp);
 
+        lChartOverview.setCreateSymbols(false);
+
         seriesTemp = new XYChart.Series<Long, Double>();
         aChartTemperature.getData().clear();
         li = model.getPlant().getTemperatures();
@@ -708,6 +746,8 @@ public class Controller implements Observer, Initializable {
         aChartTemperature.setAnimated(false);
         aChartTemperature.getData().add(seriesTemp);
         lChartOverview.getData().add(tmp);
+
+        lChartOverview.setCreateSymbols(false);
 
         seriesHum = new XYChart.Series<Long, Double>();
         aChartHumidity.getData().clear();
@@ -745,6 +785,15 @@ public class Controller implements Observer, Initializable {
         labelOCurrentHumidityPercent.setText(labelCurrentHumidityPercent.getText());
         labelOCurrentTemperatureCelsius.setText(labelCurrentTemperatureCelsius.getText());
         labelOCurrentMoisturePercent.setText(labelCurrentMoisturePercent.getText());
+
+        redrawCurrentValue(canvasCurrentHumidity, humidityColor, currentValueLineWidth, model.getPlant().getCurrentHumidity(),
+                PlantModel.minHumidity, PlantModel.maxHumidity);
+
+        redrawCurrentValue(canvasCurrentTemperature, temperatureColor, currentValueLineWidth, model.getPlant().getCurrentTemperature(),
+                PlantModel.minTemperature, PlantModel.maxTemperature);
+
+        redrawCurrentValue(canvasCurrentMoisture, moistureColor, currentValueLineWidth, model.getPlant().getCurrentMoisture(),
+                PlantModel.minMoisture, PlantModel.maxMoisture);
 
         refreshWarnings();
     }
