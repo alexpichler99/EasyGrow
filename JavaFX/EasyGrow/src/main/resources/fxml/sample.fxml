@@ -135,11 +135,11 @@
                     <items>
                         <AnchorPane minHeight="100.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                             <children>
-                                <HBox fx:id="hboxMoisture" alignment="TOP_RIGHT" layoutX="359.0" layoutY="-1.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="204.0" prefWidth="155.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="359.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                <HBox fx:id="hboxMoisture" alignment="TOP_RIGHT" layoutX="359.0" layoutY="-1.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="304.0" prefWidth="223.0" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="359.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
                                     <children>
-                                        <ResizeableCanvas fx:id="canvasCurrentMoisture" height="203.0" width="155.0">
+                                        <ResizeableCanvas fx:id="canvasCurrentMoisture" height="72.0" width="113.0">
                                             <HBox.margin>
-                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                                <Insets />
                                             </HBox.margin>
                                         </ResizeableCanvas>
                                     </children>
@@ -197,11 +197,11 @@
                     <items>
                         <AnchorPane minHeight="100.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                             <children>
-                                <HBox fx:id="hboxTemperature" alignment="TOP_RIGHT" layoutX="359.0" layoutY="-1.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="204.0" prefWidth="155.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="359.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                <HBox fx:id="hboxTemperature" alignment="TOP_RIGHT" layoutX="359.0" layoutY="-1.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="204.0" prefWidth="155.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="359.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
                                     <children>
                                         <ResizeableCanvas fx:id="canvasCurrentTemperature" height="203.0" width="155.0">
                                             <HBox.margin>
-                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                                <Insets />
                                             </HBox.margin>
                                         </ResizeableCanvas>
                                     </children>
@@ -260,11 +260,11 @@
                     <items>
                         <AnchorPane minHeight="100.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                             <children>
-                                <HBox fx:id="hboxHumidity" alignment="TOP_RIGHT" layoutX="359.0" layoutY="-1.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="204.0" prefWidth="155.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="359.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                <HBox fx:id="hboxHumidity" alignment="TOP_RIGHT" layoutX="359.0" layoutY="-1.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="204.0" prefWidth="155.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="359.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
                                     <children>
-                                        <ResizeableCanvas fx:id="canvasCurrentHumidity" height="203.0" width="155.0">
+                                        <ResizeableCanvas fx:id="canvasCurrentHumidity" height="281.0" width="203.0">
                                             <HBox.margin>
-                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                                <Insets />
                                             </HBox.margin>
                                         </ResizeableCanvas>
                                     </children>

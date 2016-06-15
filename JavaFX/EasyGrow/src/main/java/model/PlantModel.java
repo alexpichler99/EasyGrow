@@ -18,7 +18,7 @@ public class PlantModel extends Observable {
 
     private Plant plant;
 
-    boolean b = true;
+    boolean b = false;
 
     public PlantModel(float moistureOptimum, float humidityOptimum, float temperatureOptimum, String plantName, String ip, Observer obs) {
         addObserver(obs);

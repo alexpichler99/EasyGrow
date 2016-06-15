@@ -383,6 +383,7 @@ public class Controller implements Observer, Initializable {
     private final float defaultTemperatureOptimum = 30;
     private final String defaultLanguage = "en";
     private final String defaultCountry = "US";
+    private final int currentValueLineWidth = 5;
     //endregion
     //region Vars
     private long historyBeginningDrawTimeMoisture = 0;
@@ -558,6 +559,66 @@ public class Controller implements Observer, Initializable {
 
         yAxisaChartTemperature.setLowerBound(PlantModel.minTemperature);
         yAxisaChartTemperature.setUpperBound(PlantModel.maxTemperature);
+
+
+
+
+        hboxMoisture.heightProperty().addListener((observable, oldValue, newValue) -> {
+            double width = newValue.doubleValue() / 2;
+            if (width >= hboxMoisture.getWidth())
+                width = hboxMoisture.getWidth();
+            canvasCurrentMoisture.resize(width, newValue.doubleValue());
+            redrawCurrentValue(canvasCurrentMoisture, moistureColor, currentValueLineWidth, model.getPlant().getCurrentMoisture(),
+                    PlantModel.maxMoisture, PlantModel.minMoisture);
+        });
+
+        hboxMoisture.widthProperty().addListener(((observable, oldValue, newValue) -> {
+            double width = hboxMoisture.getHeight() / 2;
+            if (width >= hboxMoisture.getWidth())
+                width = hboxMoisture.getWidth();
+            canvasCurrentMoisture.resize(width, hboxMoisture.getHeight());
+            redrawCurrentValue(canvasCurrentMoisture, moistureColor, currentValueLineWidth, model.getPlant().getCurrentMoisture(),
+                    PlantModel.maxMoisture, PlantModel.minMoisture);
+        }));
+
+
+        hboxTemperature.heightProperty().addListener(((observable, oldValue, newValue) -> {
+            double width = newValue.doubleValue() / 2;
+            if (width >= hboxTemperature.getWidth())
+                width = hboxTemperature.getWidth();
+            canvasCurrentTemperature.resize(width, newValue.doubleValue());
+            redrawCurrentValue(canvasCurrentTemperature, temperatureColor, currentValueLineWidth, model.getPlant().getCurrentTemperature(),
+                    PlantModel.minTemperature, PlantModel.maxTemperature);
+        }));
+
+        hboxTemperature.widthProperty().addListener(((observable, oldValue, newValue) -> {
+            double width = hboxTemperature.getHeight() / 2;
+            if (width >= hboxTemperature.getWidth())
+                width = hboxTemperature.getWidth();
+            canvasCurrentTemperature.resize(width, hboxTemperature.getHeight());
+            redrawCurrentValue(canvasCurrentTemperature, temperatureColor, currentValueLineWidth, model.getPlant().getCurrentTemperature(),
+                    PlantModel.minTemperature, PlantModel.maxTemperature);
+        }));
+        hboxHumidity.widthProperty().addListener(((observable, oldValue, newValue) -> {
+            double width = hboxHumidity.getHeight() / 2;
+            if (width >= hboxHumidity.getWidth())
+                width = hboxHumidity.getWidth();
+            canvasCurrentHumidity.resize(width, hboxHumidity.getHeight());
+            redrawCurrentValue(canvasCurrentHumidity, humidityColor, currentValueLineWidth, model.getPlant().getCurrentHumidity(),
+                    PlantModel.minHumidity, PlantModel.maxHumidity);
+        }));
+
+        hboxHumidity.heightProperty().addListener(((observable, oldValue, newValue) -> {
+            double width = newValue.doubleValue() / 2;
+            if (width >= hboxHumidity.getWidth())
+                width = hboxHumidity.getWidth();
+            canvasCurrentHumidity.resize(width, newValue.doubleValue());
+            redrawCurrentValue(canvasCurrentHumidity, humidityColor, currentValueLineWidth, model.getPlant().getCurrentHumidity(),
+                    PlantModel.minHumidity, PlantModel.maxHumidity);
+        }));
+
+
+
     }
     ObservableList<XYChart.Data<Long, Double>> list;// = FXCollections.observableList(model.getPlant().getMoistures());
 
@@ -744,18 +805,34 @@ public class Controller implements Observer, Initializable {
     private Scene scene() {
         return tabPane.getScene();
     }
-
-    private void handCursor() {
-        scene().setCursor(Cursor.HAND);
-    }
-
-    private void defaultCursor() {
-        scene().setCursor(Cursor.DEFAULT);
-    }
-
-    private void closedHandCursor() {
-        scene().setCursor(Cursor.CLOSED_HAND);
-    }
     //endregion
+
+
+    private void redrawCurrentValue(Canvas canvas, Color color, int lineWidth, float value, float min, float max) {
+        double height = canvas.getHeight();
+        double width = canvas.getWidth();
+        //if (measurement == null)
+        //  return;
+        GraphicsContext graphicsContext = canvas.getGraphicsContext2D();
+        graphicsContext.clearRect(0, 0, width, height);
+        graphicsContext.setFill(color);
+        graphicsContext.setLineWidth(lineWidth);
+
+        graphicsContext.fillArc(lineWidth * 2, height - (width - lineWidth * 4) - lineWidth * 2, width - lineWidth * 4, width - lineWidth * 4,
+                360, 360, ArcType.OPEN);
+
+        graphicsContext.fillRect(lineWidth * 2, 0, width - lineWidth * 4, height - width / 2);//fehler
+
+        double percentage = (value - min) / (max - min);
+        double power = height - ((height - lineWidth * 2) * percentage);
+        graphicsContext.clearRect(0, 0, width, (height - lineWidth * 2) - ((height - lineWidth * 2) *
+                ((value - min) / (max - min))));
+
+        graphicsContext.strokeArc(lineWidth, height - (width - lineWidth * 2) - lineWidth, width - lineWidth * 2,
+                width - lineWidth * 2, 180, 180, ArcType.OPEN);
+
+        graphicsContext.strokeLine(lineWidth, 0, lineWidth, height - width / 2 - lineWidth + 1);
+        graphicsContext.strokeLine(width - lineWidth, 0, width - lineWidth, height - width / 2 - lineWidth + 1);
+    }
 }
 
