@@ -855,6 +855,10 @@ public class Controller implements Observer, Initializable {
                 btnSetPlantName.setText(new String(rB.getString("setip").getBytes("ISO-8859-1"), "UTF-8"));
                 notAvailableText = (new String(rB.getString("notavailable").getBytes("ISO-8859-1"), "UTF-8"));
                 labelOverviewText.setText(new String(rB.getString("overview").getBytes("ISO-8859-1"), "UTF-8"));
+                labelDisplayDays.setText(new String(rB.getString("displaydays").getBytes("ISO-8859-1"), "UTF-8"));
+                aChartHumidity.setTitle(new String(rB.getString("humidity").getBytes("ISO-8859-1"), "UTF-8"));
+                aChartMoisture.setTitle(new String(rB.getString("moisture").getBytes("ISO-8859-1"), "UTF-8"));
+                aChartTemperature.setTitle(new String(rB.getString("temperature").getBytes("ISO-8859-1"), "UTF-8"));
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
