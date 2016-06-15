@@ -1,0 +1,20 @@
+<component name="ArtifactManager">
+  <artifact type="javafx" name="easygrow">
+    <output-path>$PROJECT_DIR$/classes/artifacts/easygrow</output-path>
+    <properties id="javafx-properties">
+      <options>
+        <option name="appClass" value="main.Main" />
+        <option name="description" value="" />
+        <option name="htmlParamFile" value="" />
+        <option name="paramFile" value="" />
+        <option name="title" value="EasyGrow" />
+        <option name="vendor" value="" />
+      </options>
+    </properties>
+    <root id="root">
+      <element id="archive" name="easygrow.jar">
+        <element id="module-output" name="easygrow" />
+      </element>
+    </root>
+  </artifact>
+</component>
