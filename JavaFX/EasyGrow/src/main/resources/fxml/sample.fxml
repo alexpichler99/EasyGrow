@@ -101,9 +101,9 @@
                               </HBox>
                      </children>
                   </VBox>
-                  <LineChart fx:id="lChartOverview" createSymbols="false" layoutX="25.0" layoutY="227.0" prefHeight="464.0" prefWidth="592.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="227.0">
+                  <LineChart animated="false" fx:id="lChartOverview" createSymbols="false" layoutX="25.0" layoutY="227.0" prefHeight="453.0" prefWidth="592.0" AnchorPane.bottomAnchor="11.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="227.0">
                     <xAxis>
-                      <NumberAxis fx:id="xAxislChartOverview" autoRanging="false" side="BOTTOM" lowerBound="1" upperBound="120"/>
+                      <NumberAxis autoRanging="false" lowerBound="1" side="BOTTOM" upperBound="120" fx:id="xAxislChartOverview" />
                     </xAxis>
                     <yAxis>
                       <NumberAxis fx:id="yAxislChartOverview" autoRanging="false" side="LEFT" />
@@ -162,9 +162,9 @@
                         </AnchorPane>
                         <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="100.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                      <children>
-                        <AreaChart fx:id="aChartMoisture" layoutX="46.0" layoutY="-19.0" title="Moisture" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AreaChart animated="false" fx:id="aChartMoisture" layoutX="46.0" layoutY="-19.0" title="Moisture" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                           <xAxis>
-                            <NumberAxis fx:id="xAxisaChartMoisture" autoRanging="false" lowerBound="1" upperBound="120" side="BOTTOM" />
+                            <NumberAxis autoRanging="false" lowerBound="1" side="BOTTOM" upperBound="120" fx:id="xAxisaChartMoisture" />
                           </xAxis>
                           <yAxis>
                             <NumberAxis fx:id="yAxisaChartMoisture" autoRanging="false" side="LEFT" />
@@ -224,9 +224,9 @@
                         </AnchorPane>
                         <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="100.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                      <children>
-                        <AreaChart fx:id="aChartTemperature" title="Temperature" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AreaChart animated="false" fx:id="aChartTemperature" title="Temperature" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <xAxis>
-                              <NumberAxis fx:id="xAxisaChartTemperature" autoRanging="false" lowerBound="1" upperBound="120" side="BOTTOM" />
+                              <NumberAxis autoRanging="false" lowerBound="1" side="BOTTOM" upperBound="120" fx:id="xAxisaChartTemperature" />
                            </xAxis>
                            <yAxis>
                               <NumberAxis fx:id="yAxisaChartTemperature" autoRanging="false" side="LEFT" />
@@ -287,9 +287,9 @@
                         </AnchorPane>
                         <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="100.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                      <children>
-                        <AreaChart fx:id="aChartHumidity" title="Humidity" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AreaChart animated="false" fx:id="aChartHumidity" title="Humidity" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <xAxis>
-                              <NumberAxis fx:id="xAxisaChartHumidity" autoRanging="false" lowerBound="1" upperBound="120" side="BOTTOM" />
+                              <NumberAxis autoRanging="false" lowerBound="1" side="BOTTOM" upperBound="120" fx:id="xAxisaChartHumidity" />
                            </xAxis>
                            <yAxis>
                               <NumberAxis fx:id="yAxisaChartHumidity" autoRanging="false" side="LEFT" />
@@ -372,61 +372,67 @@
             <content>
                 <AnchorPane prefHeight="200.0" prefWidth="200.0">
                     <children>
-                        <HBox layoutX="14.0" layoutY="6.0">
-                            <children>
-                                <Label fx:id="labelSetPlantName" text="Set plant name:" />
-                            </children>
-                        </HBox>
-                        <HBox layoutX="14.0" layoutY="23.0" prefHeight="28.0" prefWidth="433.0">
-                            <children>
-                                <TextField fx:id="tfSetPlantName" prefHeight="25.0" prefWidth="201.0" />
-                                <Button fx:id="btnSetPlantName" mnemonicParsing="false" onAction="#onBtnSetPlantNameAction" text="Set" />
-                            </children>
-                        </HBox>
-                        <HBox layoutX="14.0" layoutY="55.0">
-                            <children>
-                                <Label fx:id="labelSetArduinoIP" text="Set new Arduino IP:" />
-                            </children>
-                        </HBox>
-                        <HBox layoutX="14.0" layoutY="72.0" prefHeight="28.0" prefWidth="433.0">
-                            <children>
-                                <TextField fx:id="tfSetIP" prefHeight="25.0" prefWidth="201.0" />
-                                <Button fx:id="btnSetIP" mnemonicParsing="false" onAction="#onBtnSetIPAction" text="Set" />
-                            </children>
-                        </HBox>
-                        <HBox layoutX="14.0" layoutY="104.0" prefHeight="21.0" prefWidth="264.0">
-                            <children>
-                                <Label fx:id="labelSetMoistureOptimum" prefHeight="21.0" prefWidth="270.0" text="Set Moisture Optimum(%):" />
-                            </children>
-                        </HBox>
-                        <HBox layoutX="14.0" layoutY="121.0" prefWidth="200.0">
-                            <children>
-                                <ComboBox fx:id="comboSetMoistureOptimum" onAction="#onComboSetMoistureOptimumAction" prefWidth="150.0" />
-                            </children>
-                        </HBox>
-                        <HBox layoutX="14.0" layoutY="151.0" prefHeight="21.0" prefWidth="302.0">
-                            <children>
-                                <Label fx:id="labelSetTemperatureOptimum" prefHeight="21.0" prefWidth="321.0" text="Set Temperature Optimum(°C):" />
-                            </children>
-                        </HBox>
-                        <HBox layoutX="14.0" layoutY="168.0" prefWidth="200.0">
-                            <children>
-                                <ComboBox fx:id="comboSetTemperatureOptimum" onAction="#onComboSetTemperatureOptimumAction" prefWidth="150.0" />
-                            </children>
-                        </HBox>
-                        <HBox layoutX="14.0" layoutY="200.0" prefHeight="21.0" prefWidth="299.0">
-                            <children>
-                                <Label fx:id="labelSetHumidityOptimum" prefHeight="21.0" prefWidth="324.0" text="Set Humidity Optimum(%):" />
-                            </children>
-                        </HBox>
-                        <HBox layoutX="14.0" layoutY="217.0" prefWidth="200.0">
-                            <children>
-                                <ComboBox fx:id="comboSetHumidityOptimum" onAction="#onComboSetHumidityOptimumAction" prefWidth="150.0" />
-                            </children>
-                        </HBox>
-                        <Label fx:id="labelLanguage" layoutX="14.0" layoutY="249.0" text="Language:" />
-                        <Button fx:id="btnGerman" layoutX="14.0" layoutY="266.0" mnemonicParsing="false" onAction="#onBtnGermanAction" prefHeight="31.0" prefWidth="128.0" text="German" />
-                        <Button fx:id="btnEnglish" layoutX="14.0" layoutY="303.0" mnemonicParsing="false" onAction="#onBtnEnglishAction" prefHeight="31.0" prefWidth="130.0" text="English" />
+                        <Label fx:id="labelLanguage" layoutX="14.0" layoutY="350.0" text="Language:" />
+                        <Button fx:id="btnGerman" layoutX="14.0" layoutY="376.0" mnemonicParsing="false" onAction="#onBtnGermanAction" prefHeight="31.0" prefWidth="128.0" text="German" />
+                        <Button fx:id="btnEnglish" layoutX="14.0" layoutY="421.0" mnemonicParsing="false" onAction="#onBtnEnglishAction" prefHeight="31.0" prefWidth="130.0" text="English" />
+                  <VBox layoutX="14.0" layoutY="13.0" prefHeight="316.0" prefWidth="310.0" spacing="5.0">
+                     <children>
+                              <HBox>
+                                  <children>
+                                      <Label fx:id="labelSetPlantName" text="Set plant name:" />
+                                  </children>
+                              </HBox>
+                              <HBox prefHeight="28.0" prefWidth="433.0">
+                                  <children>
+                                      <TextField fx:id="tfSetPlantName" prefHeight="25.0" prefWidth="201.0" />
+                                      <Button fx:id="btnSetPlantName" mnemonicParsing="false" onAction="#onBtnSetPlantNameAction" text="Set" />
+                                  </children>
+                              </HBox>
+                              <HBox>
+                                  <children>
+                                      <Label fx:id="labelSetArduinoIP" text="Set new Arduino IP:" />
+                                  </children>
+                              </HBox>
+                              <HBox prefHeight="28.0" prefWidth="433.0">
+                                  <children>
+                                      <TextField fx:id="tfSetIP" prefHeight="25.0" prefWidth="201.0" />
+                                      <Button fx:id="btnSetIP" mnemonicParsing="false" onAction="#onBtnSetIPAction" text="Set" />
+                                  </children>
+                              </HBox>
+                              <HBox prefHeight="21.0" prefWidth="264.0">
+                                  <children>
+                                      <Label fx:id="labelSetMoistureOptimum" prefHeight="21.0" prefWidth="270.0" text="Set Moisture Optimum(%):" />
+                                  </children>
+                              </HBox>
+                              <HBox prefWidth="200.0">
+                                  <children>
+                                      <ComboBox fx:id="comboSetMoistureOptimum" onAction="#onComboSetMoistureOptimumAction" prefWidth="150.0" />
+                                  </children>
+                              </HBox>
+                              <HBox prefHeight="21.0" prefWidth="302.0">
+                                  <children>
+                                      <Label fx:id="labelSetTemperatureOptimum" prefHeight="21.0" prefWidth="321.0" text="Set Temperature Optimum(°C):" />
+                                  </children>
+                              </HBox>
+                              <HBox prefWidth="200.0">
+                                  <children>
+                                      <ComboBox fx:id="comboSetTemperatureOptimum" onAction="#onComboSetTemperatureOptimumAction" prefWidth="150.0" />
+                                  </children>
+                              </HBox>
+                              <HBox prefHeight="21.0" prefWidth="299.0">
+                                  <children>
+                                      <Label fx:id="labelSetHumidityOptimum" prefHeight="21.0" prefWidth="324.0" text="Set Humidity Optimum(%):" />
+                                  </children>
+                              </HBox>
+                              <HBox prefWidth="200.0">
+                                  <children>
+                                      <ComboBox fx:id="comboSetHumidityOptimum" onAction="#onComboSetHumidityOptimumAction" prefWidth="150.0" />
+                                  </children>
+                              </HBox>
+                        <Label fx:id="labelDisplayDays" text="Display days:" />
+                        <ComboBox fx:id="comboDisplayDays" onAction="#onComboDisplayDaysAction" prefWidth="150.0" />
+                     </children>
+                  </VBox>
                     </children>
                 </AnchorPane>
             </content>

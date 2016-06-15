@@ -1,6 +1,7 @@
 package controller;
 
 import javafx.application.Platform;
+import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,7 +21,9 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.DragEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
@@ -39,7 +42,13 @@ import java.util.*;
 public class Controller implements Observer, Initializable {
     private PlantModel model;
 
-    //region FXML_OBJECTS
+    //region FXML_CONTROLS
+    @FXML
+    private Label labelDisplayDays;
+
+    @FXML
+    private ComboBox<Integer> comboDisplayDays;
+
     @FXML
     private NumberAxis xAxisaChartMoisture;
 
@@ -316,6 +325,12 @@ public class Controller implements Observer, Initializable {
     //endregion
     //region FXML_EVENTS
     @FXML
+    void onComboDisplayDaysAction(ActionEvent event) {
+        setDisplayDays(comboDisplayDays.getValue());
+        storeMainProperties();
+    }
+
+    @FXML
     void onBtnSetIPAction(ActionEvent event) {
         arduinoIp = tfSetIP.getText();
         model.getPlant().setIp(arduinoIp);
@@ -394,6 +409,21 @@ public class Controller implements Observer, Initializable {
     private final String defaultLanguage = "en";
     private final String defaultCountry = "US";
     private final int currentValueLineWidth = 5;
+    private final int defaultDisplayDays = 30;
+    private final StringConverter<Number> displayDaysStringConverter = new StringConverter<Number>() {
+        @Override
+        public String toString(Number object) {
+            int val = object.intValue() - 1;
+            if (val % 4 == 0)
+                return "Day " + (val / 4);
+            return "";
+        }
+
+        @Override
+        public Number fromString(String string) {
+            return 0;
+        }
+    };
     //endregion
     //region Vars
     private long historyBeginningDrawTimeMoisture = 0;
@@ -408,6 +438,7 @@ public class Controller implements Observer, Initializable {
     private String plantName = "";
     private String notAvailableText = "Not available";
     private boolean isInHistoryCanvas = false;
+    private int displayDays = defaultDisplayDays;
     //endregion
 
     //region MainProperties
@@ -459,6 +490,18 @@ public class Controller implements Observer, Initializable {
                 temperatureOptimum = defaultTemperatureOptimum;
 
 
+            //DisplayDays
+            tmp = prop.getProperty("displayDays");
+            if (tmp != null) {
+                try {
+                    displayDays = Integer.parseInt(tmp);
+                } catch (NumberFormatException ex) {
+                    displayDays = defaultDisplayDays;
+                }
+            }
+            else
+                displayDays = defaultDisplayDays;
+
             //language
             language = prop.getProperty("language");
             if (language == null)
@@ -478,6 +521,8 @@ public class Controller implements Observer, Initializable {
             comboSetHumidityOptimum.setValue((int) humidityOptimum);
             comboSetMoistureOptimum.setValue((int) moistureOptimum);
             comboSetTemperatureOptimum.setValue((int) temperatureOptimum);
+            comboDisplayDays.setValue(displayDays);
+            setDisplayDays(displayDays);
             tfSetIP.setText(arduinoIp);
             tfSetPlantName.setText(plantName);
             if (stage != null)
@@ -512,6 +557,7 @@ public class Controller implements Observer, Initializable {
             prop.setProperty("language", language);
             prop.setProperty("country", country);
             prop.setProperty("plantName", model.getPlant().getName());
+            prop.setProperty("displayDays", String.valueOf(displayDays));
             prop.store(propFile, "");
             propFile.close();
         } catch (FileNotFoundException e) {
@@ -543,6 +589,8 @@ public class Controller implements Observer, Initializable {
         for (int i = (int)PlantModel.minTemperature; i <= PlantModel.maxTemperature; i++)
             comboSetTemperatureOptimum.getItems().add(i);
 
+        for (int i = 1; i <= 30; i++)
+            comboDisplayDays.getItems().add(i);
 
 
         //charts
@@ -557,7 +605,6 @@ public class Controller implements Observer, Initializable {
         aChartHumidity.setStyle("CHART_COLOR_1: #" + Integer.toHexString(humidityColor.hashCode())   +
                 "; CHART_COLOR_1_TRANS_20: #" + Integer.toHexString(humidityFillColor.hashCode())   + ";");
 
-
         yAxislChartOverview.setLowerBound(PlantModel.minTemperature);
         yAxislChartOverview.setUpperBound(PlantModel.maxMoisture);
 
@@ -569,37 +616,6 @@ public class Controller implements Observer, Initializable {
 
         yAxisaChartTemperature.setLowerBound(PlantModel.minTemperature);
         yAxisaChartTemperature.setUpperBound(PlantModel.maxTemperature);
-
-
-
-
-        StringConverter<Number> stringConverter = new StringConverter<Number>() {
-            @Override
-            public String toString(Number object) {
-                int val = object.intValue() - 1;
-                if (val % 4 == 0)
-                    return "Day " + (val / 4);
-                return "";
-            }
-
-            @Override
-            public Number fromString(String string) {
-                return 0;
-            }
-        };
-
-
-        xAxisaChartHumidity.setTickUnit(4);
-        xAxisaChartHumidity.setTickLabelFormatter(stringConverter);
-
-        xAxisaChartTemperature.setTickUnit(4);
-        xAxisaChartTemperature.setTickLabelFormatter(stringConverter);
-
-        xAxisaChartMoisture.setTickUnit(4);
-        xAxisaChartMoisture.setTickLabelFormatter(stringConverter);
-
-        xAxislChartOverview.setTickUnit(4);
-        xAxislChartOverview.setTickLabelFormatter(stringConverter);
 
         hboxMoisture.heightProperty().addListener((observable, oldValue, newValue) -> {
             double width = newValue.doubleValue() / 2;
@@ -654,9 +670,6 @@ public class Controller implements Observer, Initializable {
             redrawCurrentValue(canvasCurrentHumidity, humidityColor, currentValueLineWidth, model.getPlant().getCurrentHumidity(),
                     PlantModel.minHumidity, PlantModel.maxHumidity);
         }));
-
-
-
     }
     ObservableList<XYChart.Data<Long, Double>> list;// = FXCollections.observableList(model.getPlant().getMoistures());
 
@@ -882,6 +895,25 @@ public class Controller implements Observer, Initializable {
 
         graphicsContext.strokeLine(lineWidth, 0, lineWidth, height - width / 2 - lineWidth + 1);
         graphicsContext.strokeLine(width - lineWidth, 0, width - lineWidth, height - width / 2 - lineWidth + 1);
+    }
+
+    private void setDisplayDays(int days) {
+        displayDays = days;
+        xAxisaChartHumidity.setTickUnit(4);
+        xAxisaChartHumidity.setTickLabelFormatter(displayDaysStringConverter);
+        xAxisaChartHumidity.setUpperBound(displayDays * 4);
+
+        xAxisaChartTemperature.setTickUnit(4);
+        xAxisaChartTemperature.setTickLabelFormatter(displayDaysStringConverter);
+        xAxisaChartTemperature.setUpperBound(displayDays * 4);
+
+        xAxisaChartMoisture.setTickUnit(4);
+        xAxisaChartMoisture.setTickLabelFormatter(displayDaysStringConverter);
+        xAxisaChartMoisture.setUpperBound(displayDays * 4);
+
+        xAxislChartOverview.setTickUnit(4);
+        xAxislChartOverview.setTickLabelFormatter(displayDaysStringConverter);
+        xAxislChartOverview.setUpperBound(displayDays * 4);
     }
 }
 
