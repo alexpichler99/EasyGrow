@@ -101,7 +101,7 @@
                               </HBox>
                      </children>
                   </VBox>
-                  <LineChart title="Overview" animated="false" fx:id="lChartOverview" createSymbols="false" layoutX="25.0" layoutY="227.0" prefHeight="453.0" prefWidth="592.0" AnchorPane.bottomAnchor="11.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="227.0">
+                  <LineChart fx:id="lChartOverview" animated="false" createSymbols="false" layoutX="25.0" layoutY="227.0" prefHeight="453.0" prefWidth="592.0" title="Overview" AnchorPane.bottomAnchor="11.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="227.0">
                     <xAxis>
                       <NumberAxis autoRanging="false" lowerBound="1" side="BOTTOM" upperBound="120" fx:id="xAxislChartOverview" />
                     </xAxis>
@@ -162,7 +162,7 @@
                         </AnchorPane>
                         <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="100.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                      <children>
-                        <AreaChart animated="false" fx:id="aChartMoisture" layoutX="46.0" layoutY="-19.0" title="Moisture" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AreaChart fx:id="aChartMoisture" animated="false" layoutX="46.0" layoutY="-19.0" title="Moisture" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                           <xAxis>
                             <NumberAxis autoRanging="false" lowerBound="1" side="BOTTOM" upperBound="120" fx:id="xAxisaChartMoisture" />
                           </xAxis>
@@ -224,7 +224,7 @@
                         </AnchorPane>
                         <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="100.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                      <children>
-                        <AreaChart animated="false" fx:id="aChartTemperature" title="Temperature" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AreaChart fx:id="aChartTemperature" animated="false" title="Temperature" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <xAxis>
                               <NumberAxis autoRanging="false" lowerBound="1" side="BOTTOM" upperBound="120" fx:id="xAxisaChartTemperature" />
                            </xAxis>
@@ -287,7 +287,7 @@
                         </AnchorPane>
                         <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="100.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                      <children>
-                        <AreaChart animated="false" fx:id="aChartHumidity" title="Humidity" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AreaChart fx:id="aChartHumidity" animated="false" title="Humidity" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <xAxis>
                               <NumberAxis autoRanging="false" lowerBound="1" side="BOTTOM" upperBound="120" fx:id="xAxisaChartHumidity" />
                            </xAxis>
@@ -429,7 +429,7 @@
                                       <ComboBox fx:id="comboSetHumidityOptimum" onAction="#onComboSetHumidityOptimumAction" prefWidth="150.0" />
                                   </children>
                               </HBox>
-                        <Label fx:id="labelDisplayDays" text="Display days:" />
+                        <Label fx:id="labelDisplayDays" text="Displayed days:" />
                         <ComboBox fx:id="comboDisplayDays" onAction="#onComboDisplayDaysAction" prefWidth="150.0" />
                      </children>
                   </VBox>

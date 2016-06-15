@@ -584,6 +584,8 @@ public class Controller implements Observer, Initializable {
 
         loadMainProperties();
         model = new PlantModel(moistureOptimum, humidityOptimum, temperatureOptimum, plantName, arduinoIp, this);
+        refreshCurrentValues();
+        refreshCharts();
 
         for (int i = 0; i <= 10; i++) {
             comboSetMoistureOptimum.getItems().add(i * 10);
@@ -739,9 +741,9 @@ public class Controller implements Observer, Initializable {
         for (XYChart.Data<Long, Double> d : li)
             list.add(d);
         seriesMoist.setData(list);
-        seriesMoist.setName("Moisture");
+        seriesMoist.setName(moistureText);
         tmp.setData(list);
-        tmp.setName("Moisture");
+        tmp.setName(moistureText);
         aChartMoisture.setAnimated(false);
         aChartMoisture.getData().add(seriesMoist);
         lChartOverview.getData().add(tmp);
@@ -755,10 +757,10 @@ public class Controller implements Observer, Initializable {
         for (XYChart.Data<Long, Double> d : li)
             list.add(d);
         seriesTemp.setData(list);
-        seriesTemp.setName("Temperature");
+        seriesTemp.setName(temperatureText);
         tmp = new XYChart.Series<>();
         tmp.setData(list);
-        tmp.setName("Temperature");
+        tmp.setName(temperatureText);
         System.out.println("size: " + li.size());
         aChartTemperature.setAnimated(false);
         aChartTemperature.getData().add(seriesTemp);
@@ -773,10 +775,10 @@ public class Controller implements Observer, Initializable {
         for (XYChart.Data<Long, Double> d : li)
             list.add(d);
         seriesHum.setData(list);
-        seriesHum.setName("Humidity");
+        seriesHum.setName(humidityText);
         tmp = new XYChart.Series<>();
         tmp.setData(list);
-        tmp.setName("Humidity");
+        tmp.setName(humidityText);
         System.out.println("size: " + li.size());
         aChartHumidity.setAnimated(false);
         aChartHumidity.getData().add(seriesHum);
@@ -873,6 +875,10 @@ public class Controller implements Observer, Initializable {
             }
         } catch (MissingResourceException ex) {
             System.out.println("Error setting language!");
+        }
+        if (model != null) {
+            refreshCharts();
+            refreshCurrentValues();
         }
     }
 
