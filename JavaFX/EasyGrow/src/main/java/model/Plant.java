@@ -76,14 +76,14 @@ public class Plant {
     private float humidityOptimum;
     private float temperatureOptimum;
 
-    private float currentMoisture;
-    private float currentTemperature;
+    private float currentMoisture = Float.NaN;
+    private float currentTemperature = Float.NaN;
 
     public float getCurrentHumidity() {
         return currentHumidity;
     }
 
-    private float currentHumidity;
+    private float currentHumidity = Float.NaN;
 
     public float getCurrentMoisture() {
         return currentMoisture;
