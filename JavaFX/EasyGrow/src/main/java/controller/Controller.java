@@ -440,6 +440,9 @@ public class Controller implements Observer, Initializable {
     private boolean isInHistoryCanvas = false;
     private int displayDays = defaultDisplayDays;
     private String days = "Day";
+    private String moistureText = "Moisture";
+    private String humidityText = "Humidity";
+    private String temperatureText = "Temperature";
     //endregion
 
     //region MainProperties
@@ -860,7 +863,11 @@ public class Controller implements Observer, Initializable {
                 aChartHumidity.setTitle(new String(rB.getString("humidity").getBytes("ISO-8859-1"), "UTF-8"));
                 aChartMoisture.setTitle(new String(rB.getString("moisture").getBytes("ISO-8859-1"), "UTF-8"));
                 aChartTemperature.setTitle(new String(rB.getString("temperature").getBytes("ISO-8859-1"), "UTF-8"));
+                lChartOverview.setTitle(new String(rB.getString("overview").getBytes("ISO-8859-1"), "UTF-8"));
                 days = new String(rB.getString("days").getBytes("ISO-8859-1"), "UTF-8");
+                humidityText = new String(rB.getString("humidity").getBytes("ISO-8859-1"), "UTF-8");
+                moistureText = new String(rB.getString("moisture").getBytes("ISO-8859-1"), "UTF-8");
+                temperatureText = new String(rB.getString("temperature").getBytes("ISO-8859-1"), "UTF-8");
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
