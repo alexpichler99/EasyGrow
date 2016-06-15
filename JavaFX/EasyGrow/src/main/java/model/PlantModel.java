@@ -7,7 +7,7 @@ import java.util.*;
  */
 public class PlantModel extends Observable {
     //constants
-    public static int refreshTime = 1000; //ms
+    public static final int refreshTime = 1000; //ms
 
     public static final float maxMoisture = 100;
     public static final float minMoisture = 0;

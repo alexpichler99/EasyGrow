@@ -1,10 +1,7 @@
 package model;
 
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.scene.chart.XYChart;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
@@ -109,8 +106,6 @@ public class Plant {
         return name;
     }
 
-    List<XYChart.Data<Long, Double>> l1 = new LinkedList< >();
-
     public Plant(String ip, String name) {
         this.name = name;
         this.ip = ip;
@@ -162,7 +157,7 @@ public class Plant {
     }
 
     //region refreshing
-    public boolean refreshHistory() {
+    private boolean refreshHistory() {
         float moist = Float.NaN, temp = Float.NaN, hum = Float.NaN;
         long time = -1;
         Socket clientSocket;
@@ -242,7 +237,7 @@ public class Plant {
         return true;
     }
 
-    public boolean refreshCurrentValues() {
+    private boolean refreshCurrentValues() {
         float moist = Float.NaN, temp = Float.NaN, hum = Float.NaN;
         Socket clientSocket;
         clientSocket = new Socket();

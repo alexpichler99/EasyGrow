@@ -1,16 +1,11 @@
 package controller;
 
 import javafx.application.Platform;
-import javafx.beans.binding.Bindings;
-import javafx.beans.property.SimpleDoubleProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Cursor;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -21,9 +16,7 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.DragEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
@@ -317,11 +310,6 @@ public class Controller implements Observer, Initializable {
 
     @FXML
     private Label labelAboutText;
-
-    @FXML
-    void handleBtnAbout(ActionEvent event) {
-        //TODO
-    }
     //endregion
     //region FXML_EVENTS
     @FXML
@@ -413,9 +401,9 @@ public class Controller implements Observer, Initializable {
     private final StringConverter<Number> displayDaysStringConverter = new StringConverter<Number>() {
         @Override
         public String toString(Number object) {
-            int val = object.intValue() - 1;
-            if (val % 4 == 0)
-                return "Day " + (val / 4);
+            int val = object.intValue();
+            if ((val % 4 == 0 || val == 1) && val != 0)
+                return dayText +  (val == 1 ? 0 : (val / 4));
             return "";
         }
 
@@ -439,7 +427,7 @@ public class Controller implements Observer, Initializable {
     private String notAvailableText = "Not available";
     private boolean isInHistoryCanvas = false;
     private int displayDays = defaultDisplayDays;
-    private String days = "Day";
+    private String dayText = "Day";
     private String moistureText = "Moisture";
     private String humidityText = "Humidity";
     private String temperatureText = "Temperature";
@@ -572,6 +560,106 @@ public class Controller implements Observer, Initializable {
     }
     //endregion
 
+
+
+    //region ChartDragging
+    double chartMouse = -1;
+    @FXML
+    void onaChartMoistureMousePressed(MouseEvent event) {
+        chartMouse = event.getX();
+    }
+    @FXML
+    void onaChartMoistureMouseDragged(MouseEvent event) {
+        if (chartMouse == -1)
+            chartMouse = event.getX();
+
+        if (chartMouse - event.getX() >= 1) {
+            double percent = (chartMouse - event.getX()) / (double)10;
+            xAxisaChartMoisture.setLowerBound(xAxisaChartMoisture.getLowerBound() + percent * (double)displayDays / (double)20);
+            xAxisaChartMoisture.setUpperBound(xAxisaChartMoisture.getUpperBound() + percent * (double)displayDays / (double)20);
+        }
+        if (event.getX() - chartMouse >= 1) {
+            double percent = (event.getX() - chartMouse) / (double)10;
+            xAxisaChartMoisture.setLowerBound(xAxisaChartMoisture.getLowerBound() - percent * (double)displayDays / (double)20);
+            xAxisaChartMoisture.setUpperBound(xAxisaChartMoisture.getUpperBound() - percent * (double)displayDays / (double)20);
+        }
+        chartMouse = event.getX();
+    }
+
+    @FXML
+    void onaChartTemperatureMousePressed(MouseEvent event) {
+        chartMouse = event.getX();
+    }
+
+    @FXML
+    void onaChartTemperatureMouseDragged(MouseEvent event) {
+        if (chartMouse == -1)
+            chartMouse = event.getX();
+
+        if (chartMouse - event.getX() >= 1) {
+            double percent = (chartMouse - event.getX()) / (double)10;
+            xAxisaChartTemperature.setLowerBound(xAxisaChartTemperature.getLowerBound() + percent * (double)displayDays / (double)20);
+            xAxisaChartTemperature.setUpperBound(xAxisaChartTemperature.getUpperBound() + percent * (double)displayDays / (double)20);
+        }
+        if (event.getX() - chartMouse >= 1) {
+            double percent = (event.getX() - chartMouse) / (double)10;
+            xAxisaChartTemperature.setLowerBound(xAxisaChartTemperature.getLowerBound() - percent * (double)displayDays / (double)20);
+            xAxisaChartTemperature.setUpperBound(xAxisaChartTemperature.getUpperBound() - percent * (double)displayDays / (double)20);
+        }
+        chartMouse = event.getX();
+    }
+
+    @FXML
+    void onaChartHumidityMousePressed(MouseEvent event) {
+        chartMouse = event.getX();
+    }
+
+    @FXML
+    void onaChartHumidityMouseDragged(MouseEvent event) {
+        if (chartMouse == -1)
+            chartMouse = event.getX();
+
+        if (chartMouse - event.getX() >= 1) {
+            double percent = (chartMouse - event.getX()) / (double)10;
+            xAxisaChartHumidity.setLowerBound(xAxisaChartHumidity.getLowerBound() + percent * (double)displayDays / (double)20);
+            xAxisaChartHumidity.setUpperBound(xAxisaChartHumidity.getUpperBound() + percent * (double)displayDays / (double)20);
+        }
+        if (event.getX() - chartMouse >= 1) {
+            double percent = (event.getX() - chartMouse) / (double)10;
+            xAxisaChartHumidity.setLowerBound(xAxisaChartHumidity.getLowerBound() - percent * (double)displayDays / (double)20);
+            xAxisaChartHumidity.setUpperBound(xAxisaChartHumidity.getUpperBound() - percent * (double)displayDays / (double)20);
+        }
+        chartMouse = event.getX();
+    }
+
+    @FXML
+    void onlChartOverviewMousePressed(MouseEvent event) {
+        chartMouse = event.getX();
+    }
+    @FXML
+    void onlChartOverviewMouseDragged(MouseEvent event) {
+        if (chartMouse == -1)
+            chartMouse = event.getX();
+
+        if (chartMouse - event.getX() >= 1) {
+            double percent = (chartMouse - event.getX()) / (double)10;
+            xAxislChartOverview.setLowerBound(xAxislChartOverview.getLowerBound() + percent * (double)displayDays / (double)20);
+            xAxislChartOverview.setUpperBound(xAxislChartOverview.getUpperBound() + percent * (double)displayDays / (double)20);
+        }
+        if (event.getX() - chartMouse >= 1) {
+            double percent = (event.getX() - chartMouse) / (double)10;
+            xAxislChartOverview.setLowerBound(xAxislChartOverview.getLowerBound() - percent * (double)displayDays / (double)20);
+            xAxislChartOverview.setUpperBound(xAxislChartOverview.getUpperBound() - percent * (double)displayDays / (double)20);
+        }
+        chartMouse = event.getX();
+    }
+    //endregion
+
+
+
+
+
+
     //region Initialize
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -677,7 +765,6 @@ public class Controller implements Observer, Initializable {
                     PlantModel.minHumidity, PlantModel.maxHumidity);
         }));
     }
-    ObservableList<XYChart.Data<Long, Double>> list;// = FXCollections.observableList(model.getPlant().getMoistures());
 
 
     public void setStage(Stage stage) {
@@ -725,6 +812,8 @@ public class Controller implements Observer, Initializable {
     }
 
     private void refreshCharts() {
+        ObservableList<XYChart.Data<Long, Double>> list;
+
         lChartOverview.setAnimated(false);
         lChartOverview.setCreateSymbols(false);
         lChartOverview.getData().clear();
@@ -866,7 +955,7 @@ public class Controller implements Observer, Initializable {
                 aChartMoisture.setTitle(new String(rB.getString("moisture").getBytes("ISO-8859-1"), "UTF-8"));
                 aChartTemperature.setTitle(new String(rB.getString("temperature").getBytes("ISO-8859-1"), "UTF-8"));
                 lChartOverview.setTitle(new String(rB.getString("overview").getBytes("ISO-8859-1"), "UTF-8"));
-                days = new String(rB.getString("days").getBytes("ISO-8859-1"), "UTF-8");
+                dayText = new String(rB.getString("days").getBytes("ISO-8859-1"), "UTF-8");
                 humidityText = new String(rB.getString("humidity").getBytes("ISO-8859-1"), "UTF-8");
                 moistureText = new String(rB.getString("moisture").getBytes("ISO-8859-1"), "UTF-8");
                 temperatureText = new String(rB.getString("temperature").getBytes("ISO-8859-1"), "UTF-8");
@@ -879,6 +968,7 @@ public class Controller implements Observer, Initializable {
         if (model != null) {
             refreshCharts();
             refreshCurrentValues();
+            refreshxAxis();
         }
     }
 
@@ -921,18 +1011,36 @@ public class Controller implements Observer, Initializable {
         xAxisaChartHumidity.setTickUnit(4);
         xAxisaChartHumidity.setTickLabelFormatter(displayDaysStringConverter);
         xAxisaChartHumidity.setUpperBound(displayDays * 4);
+        xAxisaChartHumidity.setLowerBound(1);
 
         xAxisaChartTemperature.setTickUnit(4);
         xAxisaChartTemperature.setTickLabelFormatter(displayDaysStringConverter);
         xAxisaChartTemperature.setUpperBound(displayDays * 4);
+        xAxisaChartTemperature.setLowerBound(1);
 
         xAxisaChartMoisture.setTickUnit(4);
         xAxisaChartMoisture.setTickLabelFormatter(displayDaysStringConverter);
         xAxisaChartMoisture.setUpperBound(displayDays * 4);
+        xAxisaChartMoisture.setLowerBound(1);
 
         xAxislChartOverview.setTickUnit(4);
         xAxislChartOverview.setTickLabelFormatter(displayDaysStringConverter);
         xAxislChartOverview.setUpperBound(displayDays * 4);
+        xAxislChartOverview.setLowerBound(1);
+    }
+
+    private void refreshxAxis() {
+        xAxisaChartMoisture.setTickUnit(3);
+        xAxisaChartMoisture.setTickUnit(4);
+
+        xAxisaChartTemperature.setTickUnit(3);
+        xAxisaChartTemperature.setTickUnit(4);
+
+        xAxisaChartHumidity.setTickUnit(3);
+        xAxisaChartHumidity.setTickUnit(4);
+
+        xAxislChartOverview.setTickUnit(3);
+        xAxislChartOverview.setTickUnit(4);
     }
 }
 
