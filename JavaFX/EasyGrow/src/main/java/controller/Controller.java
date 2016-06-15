@@ -37,6 +37,24 @@ public class Controller implements Observer, Initializable {
 
     //region FXML_CONTROLS
     @FXML
+    private Label labelOMoistureStatus;
+
+    @FXML
+    private Label labelOHumidityStatus;
+
+    @FXML
+    private Label labelOTemperatureStatus;
+
+    @FXML
+    private Label labelMoistureStatus;
+
+    @FXML
+    private Label labelHumidityStatus;
+
+    @FXML
+    private Label labelTemperatureStatus;
+
+    @FXML
     private Label labelDisplayDays;
 
     @FXML
@@ -413,6 +431,7 @@ public class Controller implements Observer, Initializable {
         }
     };
     //endregion
+
     //region Vars
     private long historyBeginningDrawTimeMoisture = 0;
     private long historyEndingDrawTimeMoisture = 30000;
@@ -431,6 +450,12 @@ public class Controller implements Observer, Initializable {
     private String moistureText = "Moisture";
     private String humidityText = "Humidity";
     private String temperatureText = "Temperature";
+    private String moistureBelow = "You need to water the plant!";
+    private String moistureAbove = "The plant has too much water!";
+    private String humidityBelow = "Air is too dry!";
+    private String humidityAbove = "Air is too wet!";
+    private String temperatureBelow = "It's too cold!";
+    private String temperatureAbove = "It's too hot!";
     //endregion
 
     //region MainProperties
@@ -776,39 +801,67 @@ public class Controller implements Observer, Initializable {
 
 
     private void refreshWarnings() {
-       WarningType warning = model.getPlant().getMoistureWarning();
-        if (warning == WarningType.Optimum)
+        boolean warningB = false;
+        WarningType warning = model.getPlant().getMoistureWarning();
+        if (warning == WarningType.OPTIMUM)
             circleMoistureWarning.setFill(optimumWarning);
-        else if (warning == WarningType.Normal)
+        else if (warning == WarningType.NORMAL)
             circleMoistureWarning.setFill(normalWarning);
-        else if (warning == WarningType.Critical)
+        else if (warning == WarningType.CRITICAL_ABOVE || warning == WarningType.CRITICAL_BELOW) {
             circleMoistureWarning.setFill(criticalWarning);
+            if (warning == WarningType.CRITICAL_BELOW)
+                labelMoistureStatus.setText(moistureBelow);
+            else if (warning == WarningType.CRITICAL_ABOVE)
+                labelMoistureStatus.setText(moistureAbove);
+            warningB = true;
+        }
         else
             circleMoistureWarning.setFill(unknownWarning);
-
+        if (!warningB)
+            labelMoistureStatus.setText("");
+        warningB = false;
         warning = model.getPlant().getHumidityWarning();
-        if (warning == WarningType.Optimum)
+        if (warning == WarningType.OPTIMUM)
             circleHumidityWarning.setFill(optimumWarning);
-        else if (warning == WarningType.Normal)
+        else if (warning == WarningType.NORMAL)
             circleHumidityWarning.setFill(normalWarning);
-        else if (warning == WarningType.Critical)
+        else if (warning == WarningType.CRITICAL_ABOVE || warning == WarningType.CRITICAL_BELOW) {
             circleHumidityWarning.setFill(criticalWarning);
+            if (warning == WarningType.CRITICAL_BELOW)
+                labelHumidityStatus.setText(humidityBelow);
+            else if (warning == WarningType.CRITICAL_ABOVE)
+                labelHumidityStatus.setText(humidityAbove);
+            warningB = true;
+        }
         else
             circleHumidityWarning.setFill(unknownWarning);
-
+        if (!warningB)
+            labelHumidityStatus.setText("");
+        warningB = false;
         warning = model.getPlant().getTemperatureWarning();
-        if (warning == WarningType.Optimum)
+        if (warning == WarningType.OPTIMUM)
             circleTemperatureWarning.setFill(optimumWarning);
-        else if (warning == WarningType.Normal)
+        else if (warning == WarningType.NORMAL)
             circleTemperatureWarning.setFill(normalWarning);
-        else if (warning == WarningType.Critical)
+        else if (warning == WarningType.CRITICAL_ABOVE || warning == WarningType.CRITICAL_BELOW) {
             circleTemperatureWarning.setFill(criticalWarning);
+            if (warning == WarningType.CRITICAL_BELOW)
+                labelTemperatureStatus.setText(temperatureBelow);
+            else if (warning == WarningType.CRITICAL_ABOVE)
+                labelTemperatureStatus.setText(temperatureAbove);
+            warningB = true;
+        }
         else
             circleTemperatureWarning.setFill(unknownWarning);
-
+        if (!warningB)
+            labelTemperatureStatus.setText("");
         circleOHumidityWarning.setFill(circleHumidityWarning.getFill());
         circleOMoistureWarning.setFill(circleMoistureWarning.getFill());
         circleOTemperatureWarning.setFill(circleTemperatureWarning.getFill());
+
+        labelOMoistureStatus.setText(labelMoistureStatus.getText());
+        labelOHumidityStatus.setText(labelHumidityStatus.getText());
+        labelOTemperatureStatus.setText(labelTemperatureStatus.getText());
     }
 
     private void refreshCharts() {
@@ -959,6 +1012,12 @@ public class Controller implements Observer, Initializable {
                 humidityText = new String(rB.getString("humidity").getBytes("ISO-8859-1"), "UTF-8");
                 moistureText = new String(rB.getString("moisture").getBytes("ISO-8859-1"), "UTF-8");
                 temperatureText = new String(rB.getString("temperature").getBytes("ISO-8859-1"), "UTF-8");
+                moistureAbove = new String(rB.getString("moistAbove").getBytes("ISO-8859-1"), "UTF-8");
+                moistureBelow = new String(rB.getString("moistBelow").getBytes("ISO-8859-1"), "UTF-8");
+                humidityAbove = new String(rB.getString("humAbove").getBytes("ISO-8859-1"), "UTF-8");
+                humidityBelow = new String(rB.getString("humBelow").getBytes("ISO-8859-1"), "UTF-8");
+                temperatureAbove = new String(rB.getString("tempAbove").getBytes("ISO-8859-1"), "UTF-8");
+                temperatureBelow = new String(rB.getString("tempBelow").getBytes("ISO-8859-1"), "UTF-8");
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
@@ -969,6 +1028,7 @@ public class Controller implements Observer, Initializable {
             refreshCharts();
             refreshCurrentValues();
             refreshxAxis();
+            refreshWarnings();
         }
     }
 

@@ -29,13 +29,15 @@ public class Plant {
     private WarningType getWarning(float min, float max, float val, float opt, float tol) {
         if (val <= max && val >= min && !Float.isNaN(val)) {
             if (val <= opt + tol && val >= opt - tol)
-                return WarningType.Optimum;
+                return WarningType.OPTIMUM;
             else if (val <= opt + tol * 2 && val >= opt - tol * 2)
-                return WarningType.Normal;
+                return WarningType.NORMAL;
+            else if (val > opt)
+                return WarningType.CRITICAL_ABOVE;
             else
-                return WarningType.Critical;
+                return WarningType.CRITICAL_BELOW;
         }
-        return WarningType.Unknown;
+        return WarningType.UNKNOWN;
     }
 
     public WarningType getTemperatureWarning() {

@@ -54,11 +54,16 @@
                                               <Label fx:id="labelOCurrentMoisture" text="Moisture:" />
                                           </children>
                                       </HBox>
-                                      <HBox alignment="CENTER_LEFT" prefHeight="78.0" prefWidth="241.0">
+                                      <HBox alignment="CENTER_LEFT" prefHeight="65.0" prefWidth="100.0">
                                           <children>
                                               <Label fx:id="labelOCurrentMoisturePercent" text="0%" />
                                           </children>
                                       </HBox>
+                              <HBox alignment="CENTER_LEFT" prefHeight="65.0" prefWidth="203.0">
+                                 <children>
+                                    <Label fx:id="labelOMoistureStatus" />
+                                 </children>
+                              </HBox>
                                   </children>
                               </HBox>
                               <HBox prefHeight="78.0" prefWidth="516.0">
@@ -73,11 +78,16 @@
                                               <Label fx:id="labelOCurrentTemperature" text="Temperature:" />
                                           </children>
                                       </HBox>
-                                      <HBox alignment="CENTER_LEFT" prefHeight="78.0" prefWidth="241.0">
+                                      <HBox alignment="CENTER_LEFT" prefHeight="65.0" prefWidth="100.0">
                                           <children>
                                               <Label fx:id="labelOCurrentTemperatureCelsius" text="0°C" />
                                           </children>
                                       </HBox>
+                              <HBox alignment="CENTER_LEFT" prefHeight="65.0" prefWidth="203.0">
+                                 <children>
+                                    <Label fx:id="labelOTemperatureStatus" />
+                                 </children>
+                              </HBox>
                                   </children>
                               </HBox>
                               <HBox prefHeight="78.0" prefWidth="516.0">
@@ -92,11 +102,16 @@
                                               <Label fx:id="labelOCurrentHumidity" text="Humidity:" />
                                           </children>
                                       </HBox>
-                                      <HBox alignment="CENTER_LEFT" prefHeight="78.0" prefWidth="241.0">
+                                      <HBox alignment="CENTER_LEFT" prefHeight="78.0" prefWidth="100.0">
                                           <children>
                                               <Label fx:id="labelOCurrentHumidityPercent" text="0%" />
                                           </children>
                                       </HBox>
+                              <HBox alignment="CENTER_LEFT" prefHeight="65.0" prefWidth="203.0">
+                                 <children>
+                                    <Label fx:id="labelOHumidityStatus" />
+                                 </children>
+                              </HBox>
                                   </children>
                               </HBox>
                      </children>
@@ -144,7 +159,7 @@
                                         </ResizeableCanvas>
                                     </children>
                                 </HBox>
-                                <HBox alignment="CENTER_LEFT" layoutX="11.0" layoutY="8.0" prefHeight="83.0" prefWidth="322.0" spacing="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
+                                <HBox alignment="CENTER_LEFT" layoutX="11.0" layoutY="8.0" prefHeight="64.0" prefWidth="322.0" spacing="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
                                     <children>
                                         <Label fx:id="labelCurrentMoisture" text="Current Temperature:">
                                             <font>
@@ -158,6 +173,7 @@
                                         </Label>
                                     </children>
                                 </HBox>
+                        <Label fx:id="labelMoistureStatus" layoutX="11.0" layoutY="78.0" />
                             </children>
                         </AnchorPane>
                         <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="100.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
@@ -206,7 +222,7 @@
                                         </ResizeableCanvas>
                                     </children>
                                 </HBox>
-                                <HBox alignment="CENTER_LEFT" layoutX="11.0" layoutY="8.0" prefHeight="83.0" prefWidth="322.0" spacing="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
+                                <HBox alignment="CENTER_LEFT" layoutX="11.0" layoutY="8.0" prefHeight="64.0" prefWidth="322.0" spacing="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
                                     <children>
                                         <Label fx:id="labelCurrentTemperature" text="Current Temperature:">
                                             <font>
@@ -220,6 +236,7 @@
                                         </Label>
                                     </children>
                                 </HBox>
+                        <Label fx:id="labelTemperatureStatus" layoutX="11.0" layoutY="78.0" />
                             </children>
                         </AnchorPane>
                         <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="100.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
@@ -269,7 +286,7 @@
                                         </ResizeableCanvas>
                                     </children>
                                 </HBox>
-                                <HBox alignment="CENTER_LEFT" layoutX="11.0" layoutY="8.0" prefHeight="83.0" prefWidth="322.0" spacing="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
+                                <HBox alignment="CENTER_LEFT" layoutX="11.0" layoutY="8.0" prefHeight="64.0" prefWidth="322.0" spacing="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
                                     <children>
                                         <Label fx:id="labelCurrentHumidity" text="Current Temperature:">
                                             <font>
@@ -283,6 +300,7 @@
                                         </Label>
                                     </children>
                                 </HBox>
+                        <Label fx:id="labelHumidityStatus" layoutX="11.0" layoutY="78.0" />
                             </children>
                         </AnchorPane>
                         <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="100.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
