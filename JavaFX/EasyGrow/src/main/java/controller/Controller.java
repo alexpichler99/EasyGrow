@@ -17,6 +17,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
@@ -682,9 +683,6 @@ public class Controller implements Observer, Initializable {
 
 
 
-
-
-
     //region Initialize
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -1060,8 +1058,6 @@ public class Controller implements Observer, Initializable {
         double power = height - ((height - lineWidth * 2) * percentage);
         graphicsContext.clearRect(0, 0, width, (height - lineWidth * 2) - ((height - lineWidth * 2) *
                 ((value - min) / (max - min))));
-
-        graphicsContext.strokeLine(0, height - (height * percentage), width, height - (height * percentage));
 
         graphicsContext.strokeArc(lineWidth, height - (width - lineWidth * 2) - lineWidth, width - lineWidth * 2,
           width - lineWidth * 2, 180, 180, ArcType.OPEN);
