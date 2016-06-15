@@ -717,7 +717,7 @@ public class Controller implements Observer, Initializable {
                 width = hboxMoisture.getWidth();
             canvasCurrentMoisture.resize(width, newValue.doubleValue());
             redrawCurrentValue(canvasCurrentMoisture, moistureColor, currentValueLineWidth, model.getPlant().getCurrentMoisture(),
-                    PlantModel.minMoisture, PlantModel.maxMoisture);
+                    PlantModel.minMoisture, PlantModel.maxMoisture, model.getPlant().getMoistureOptimum());
         });
 
         hboxMoisture.widthProperty().addListener(((observable, oldValue, newValue) -> {
@@ -726,7 +726,7 @@ public class Controller implements Observer, Initializable {
                 width = hboxMoisture.getWidth();
             canvasCurrentMoisture.resize(width, hboxMoisture.getHeight());
             redrawCurrentValue(canvasCurrentMoisture, moistureColor, currentValueLineWidth, model.getPlant().getCurrentMoisture(),
-                    PlantModel.minMoisture, PlantModel.maxMoisture);
+                    PlantModel.minMoisture, PlantModel.maxMoisture, model.getPlant().getMoistureOptimum());
         }));
 
 
@@ -736,7 +736,7 @@ public class Controller implements Observer, Initializable {
                 width = hboxTemperature.getWidth();
             canvasCurrentTemperature.resize(width, newValue.doubleValue());
             redrawCurrentValue(canvasCurrentTemperature, temperatureColor, currentValueLineWidth, model.getPlant().getCurrentTemperature(),
-                    PlantModel.minTemperature, PlantModel.maxTemperature);
+                    PlantModel.minTemperature, PlantModel.maxTemperature, model.getPlant().getTemperatureOptimum());
         }));
 
         hboxTemperature.widthProperty().addListener(((observable, oldValue, newValue) -> {
@@ -745,7 +745,7 @@ public class Controller implements Observer, Initializable {
                 width = hboxTemperature.getWidth();
             canvasCurrentTemperature.resize(width, hboxTemperature.getHeight());
             redrawCurrentValue(canvasCurrentTemperature, temperatureColor, currentValueLineWidth, model.getPlant().getCurrentTemperature(),
-                    PlantModel.minTemperature, PlantModel.maxTemperature);
+                    PlantModel.minTemperature, PlantModel.maxTemperature, model.getPlant().getTemperatureOptimum());
         }));
         hboxHumidity.widthProperty().addListener(((observable, oldValue, newValue) -> {
             double width = hboxHumidity.getHeight() / 2;
@@ -753,7 +753,7 @@ public class Controller implements Observer, Initializable {
                 width = hboxHumidity.getWidth();
             canvasCurrentHumidity.resize(width, hboxHumidity.getHeight());
             redrawCurrentValue(canvasCurrentHumidity, humidityColor, currentValueLineWidth, model.getPlant().getCurrentHumidity(),
-                    PlantModel.minHumidity, PlantModel.maxHumidity);
+                    PlantModel.minHumidity, PlantModel.maxHumidity, model.getPlant().getHumidityOptimum());
         }));
 
         hboxHumidity.heightProperty().addListener(((observable, oldValue, newValue) -> {
@@ -762,7 +762,7 @@ public class Controller implements Observer, Initializable {
                 width = hboxHumidity.getWidth();
             canvasCurrentHumidity.resize(width, newValue.doubleValue());
             redrawCurrentValue(canvasCurrentHumidity, humidityColor, currentValueLineWidth, model.getPlant().getCurrentHumidity(),
-                    PlantModel.minHumidity, PlantModel.maxHumidity);
+                    PlantModel.minHumidity, PlantModel.maxHumidity, model.getPlant().getHumidityOptimum());
         }));
     }
 
@@ -895,13 +895,13 @@ public class Controller implements Observer, Initializable {
         labelOCurrentMoisturePercent.setText(labelCurrentMoisturePercent.getText());
 
         redrawCurrentValue(canvasCurrentHumidity, humidityColor, currentValueLineWidth, model.getPlant().getCurrentHumidity(),
-                PlantModel.minHumidity, PlantModel.maxHumidity);
+                PlantModel.minHumidity, PlantModel.maxHumidity, model.getPlant().getHumidityOptimum());
 
         redrawCurrentValue(canvasCurrentTemperature, temperatureColor, currentValueLineWidth, model.getPlant().getCurrentTemperature(),
-                PlantModel.minTemperature, PlantModel.maxTemperature);
+                PlantModel.minTemperature, PlantModel.maxTemperature, model.getPlant().getTemperatureOptimum());
 
         redrawCurrentValue(canvasCurrentMoisture, moistureColor, currentValueLineWidth, model.getPlant().getCurrentMoisture(),
-                PlantModel.minMoisture, PlantModel.maxMoisture);
+                PlantModel.minMoisture, PlantModel.maxMoisture, model.getPlant().getMoistureOptimum());
 
         refreshWarnings();
     }
@@ -979,31 +979,37 @@ public class Controller implements Observer, Initializable {
     //endregion
 
 
-    private void redrawCurrentValue(Canvas canvas, Color color, int lineWidth, float value, float min, float max) {
+    private void redrawCurrentValue(Canvas canvas, Color color, int lineWidth, float value, float min, float max, float optimum) {
         double height = canvas.getHeight();
         double width = canvas.getWidth();
-        //if (measurement == null)
-        //  return;
         GraphicsContext graphicsContext = canvas.getGraphicsContext2D();
         graphicsContext.clearRect(0, 0, width, height);
         graphicsContext.setFill(color);
         graphicsContext.setLineWidth(lineWidth);
+
+        if (Float.isNaN(value) ||  value > max || value < min)
+            return;
 
         graphicsContext.fillArc(lineWidth * 2, height - (width - lineWidth * 4) - lineWidth * 2, width - lineWidth * 4, width - lineWidth * 4,
                 360, 360, ArcType.OPEN);
 
         graphicsContext.fillRect(lineWidth * 2, 0, width - lineWidth * 4, height - width / 2);//fehler
 
+
         double percentage = (value - min) / (max - min);
         double power = height - ((height - lineWidth * 2) * percentage);
         graphicsContext.clearRect(0, 0, width, (height - lineWidth * 2) - ((height - lineWidth * 2) *
                 ((value - min) / (max - min))));
 
+        graphicsContext.strokeLine(0, height - (height * percentage), width, height - (height * percentage));
+
         graphicsContext.strokeArc(lineWidth, height - (width - lineWidth * 2) - lineWidth, width - lineWidth * 2,
-                width - lineWidth * 2, 180, 180, ArcType.OPEN);
+          width - lineWidth * 2, 180, 180, ArcType.OPEN);
 
         graphicsContext.strokeLine(lineWidth, 0, lineWidth, height - width / 2 - lineWidth + 1);
         graphicsContext.strokeLine(width - lineWidth, 0, width - lineWidth, height - width / 2 - lineWidth + 1);
+
+
     }
 
     private void setDisplayDays(int days) {

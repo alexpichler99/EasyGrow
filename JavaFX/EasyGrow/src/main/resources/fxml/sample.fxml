@@ -382,7 +382,7 @@
                                       <Label fx:id="labelSetPlantName" text="Set plant name:" />
                                   </children>
                               </HBox>
-                              <HBox prefHeight="28.0" prefWidth="433.0">
+                              <HBox prefHeight="28.0" prefWidth="433.0" spacing="5.0">
                                   <children>
                                       <TextField fx:id="tfSetPlantName" prefHeight="25.0" prefWidth="201.0" />
                                       <Button fx:id="btnSetPlantName" mnemonicParsing="false" onAction="#onBtnSetPlantNameAction" text="Set" />
@@ -393,7 +393,7 @@
                                       <Label fx:id="labelSetArduinoIP" text="Set new Arduino IP:" />
                                   </children>
                               </HBox>
-                              <HBox prefHeight="28.0" prefWidth="433.0">
+                              <HBox prefHeight="28.0" prefWidth="433.0" spacing="5.0">
                                   <children>
                                       <TextField fx:id="tfSetIP" prefHeight="25.0" prefWidth="201.0" />
                                       <Button fx:id="btnSetIP" mnemonicParsing="false" onAction="#onBtnSetIPAction" text="Set" />
