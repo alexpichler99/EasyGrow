@@ -162,7 +162,7 @@ public class Plant {
         Socket clientSocket;
         clientSocket = new Socket();
         try {
-            clientSocket.connect(new InetSocketAddress("192.168.1.2", 80), 1000);
+            clientSocket.connect(new InetSocketAddress(ip, 80), 10000);
         } catch (IOException e1) {
             return false;
         }
@@ -240,7 +240,7 @@ public class Plant {
         Socket clientSocket;
         clientSocket = new Socket();
         try {
-            clientSocket.connect(new InetSocketAddress("192.168.1.2", 80), 1000);
+            clientSocket.connect(new InetSocketAddress(ip, 80), 1000);
         } catch (IOException e1) {
             return false;
         }
@@ -313,12 +313,14 @@ public class Plant {
         //l1.remove(0);
         l1.add(new XYChart.Data<Long, Double>((long)24, (double)100));*/
         if (type == RefreshType.HISTORY) {
+            boolean b = refreshHistory();
             System.out.println("time: " + (new Date().getTime() - date.getTime()));
-            return refreshHistory();
+            return b;
         }
         if (type == RefreshType.CURRENT) {
+            boolean b = refreshCurrentValues();
             System.out.println("time: " + (new Date().getTime() - date.getTime()));
-            return refreshCurrentValues();
+            return b;
         }
         return true;
     }

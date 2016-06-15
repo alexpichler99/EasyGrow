@@ -13,7 +13,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/sample.fxml"));
-        primaryStage.getIcons().add(new Image(getClass().getResource("/images/icon.png").toString()));
+        primaryStage.getIcons().add(new Image(getClass().getResource("/images/icon.png").toExternalForm()));
         Parent root = loader.load();
         primaryStage.setMinWidth(675);
         primaryStage.setMinHeight(600);
