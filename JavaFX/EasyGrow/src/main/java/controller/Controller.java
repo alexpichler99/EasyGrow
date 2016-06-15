@@ -34,7 +34,7 @@ import java.util.*;
 
 
 public class Controller implements Observer, Initializable {
-    private PlantModel model;
+
 
     //region FXML_CONTROLS
     @FXML
@@ -115,20 +115,14 @@ public class Controller implements Observer, Initializable {
     @FXML
     private HBox hboxMoisture;
 
-    @FXML
-    private HBox hboxMoistureHistory;
 
     @FXML
     private HBox hboxTemperature;
 
-    @FXML
-    private HBox hboxTemperatureHistory;
 
     @FXML
     private HBox hboxHumidity;
 
-    @FXML
-    private HBox hboxHumidityHistory;
 
     @FXML
     private Circle circleOTemperatureWarning;
@@ -183,41 +177,18 @@ public class Controller implements Observer, Initializable {
     @FXML
     private Label tabMoistureText;
 
-    @FXML
-    private FlowPane flowPane;
-
-    @FXML
-    private ImageView imageViewMoisture;
 
     @FXML
     private ResizeableCanvas canvasCurrentMoisture;
 
     @FXML
-    private ResizeableCanvas canvasMoistureHistory;
-
-    @FXML
-    private Canvas canvasSunlightHistory;
-
-    @FXML
-    private Canvas canvasCurrentSunlight;
-
-    @FXML
     private Canvas canvasCurrentTemperature;
-
-    @FXML
-    private Canvas canvasTemperatureHistory;
 
     @FXML
     private Canvas canvasCurrentHumidity;
 
     @FXML
-    private Canvas canvasHumidityHistory;
-
-    @FXML
     private Tab tabSettings;
-
-    @FXML
-    private Tab tabSunlight;
 
     @FXML
     private Label tabSettingsText;
@@ -233,21 +204,11 @@ public class Controller implements Observer, Initializable {
 
     @FXML
     private Label tabHumidityText;
-
-    @FXML
-    private Label tabSunlightText;
-
     @FXML
     private TextField tfSetIP;
 
     @FXML
     private Button btnSetIP;
-
-    @FXML
-    private Label labelSetLanguage;
-
-    @FXML
-    private ComboBox<String> comboSetLanguage;
 
     @FXML
     private Label labelSetMoistureOptimum;
@@ -283,18 +244,6 @@ public class Controller implements Observer, Initializable {
     private Label labelCurrentHumidity;
 
     @FXML
-    private Label labelCurrentSunlight;
-
-    @FXML
-    private ImageView imageViewTemperature;
-
-    @FXML
-    private ImageView imageViewHumidity;
-
-    @FXML
-    private ImageView imageViewSunlight;
-
-    @FXML
     private ImageView imageViewSettings;
 
     @FXML
@@ -308,7 +257,6 @@ public class Controller implements Observer, Initializable {
 
     @FXML
     private Tab tabAbout;
-
     @FXML
     private ImageView imgPichler;
 
@@ -320,12 +268,6 @@ public class Controller implements Observer, Initializable {
 
     @FXML
     private ImageView imgRiedl;
-
-    /*@FXML
-    private ImageView imgJava;
-
-    @FXML
-    private ImageView imgArduino;*/
 
     @FXML
     private Label labelAboutText;
@@ -394,9 +336,7 @@ public class Controller implements Observer, Initializable {
     }
 
     //endregion
-    //region TestVars
-    //endregion
-    //region Constants
+    //region CONSTANTS
     private static final String mainPropertiesFile = "MainProperties.properties";
     private static final String languagePropertyFile = "LanguageProperty";
     private final Color temperatureColor = Color.web("#d35400");
@@ -433,9 +373,8 @@ public class Controller implements Observer, Initializable {
     };
     //endregion
 
-    //region Vars
-    private long historyBeginningDrawTimeMoisture = 0;
-    private long historyEndingDrawTimeMoisture = 30000;
+    //region VARS
+    private PlantModel model;
     private Stage stage;
     private String arduinoIp = defaultArduinoIp;
     private float moistureOptimum = defaultMoistureOptimum;
@@ -445,7 +384,6 @@ public class Controller implements Observer, Initializable {
     private String country = defaultCountry;
     private String plantName = "";
     private String notAvailableText = "Not available";
-    private boolean isInHistoryCanvas = false;
     private int displayDays = defaultDisplayDays;
     private String dayText = "Day";
     private String moistureText = "Moisture";
@@ -798,6 +736,136 @@ public class Controller implements Observer, Initializable {
     //endregion
 
 
+
+
+    @Override
+    public void update(Observable o, Object arg) {
+        Platform.runLater(() -> {
+            RefreshType type;
+            if (arg instanceof RefreshType)
+                type = (RefreshType)arg;
+            else
+                return;
+            if (type == RefreshType.HISTORY)
+                refreshCharts();
+            if (type == RefreshType.CURRENT)
+                refreshCurrentValues();
+        });
+    }
+
+    private void setLanguage(String language, String country) {
+        Locale locale = new Locale(language, country);
+        ResourceBundle rB = ResourceBundle.getBundle(languagePropertyFile, locale);
+        try {
+            try {
+                labelLanguage.setText(new String(rB.getString("language").getBytes("ISO-8859-1"), "UTF-8"));
+                tabHumidityText.setText(new String(rB.getString("humidity").getBytes("ISO-8859-1"), "UTF-8")); //rename to label
+                tabMoistureText.setText(new String(rB.getString("moisture").getBytes("ISO-8859-1"), "UTF-8"));
+                tabSettingsText.setText(new String(rB.getString("settings").getBytes("ISO-8859-1"), "UTF-8"));
+                labelAboutText.setText(new String(rB.getString("about").getBytes("ISO-8859-1"), "UTF-8"));
+                //tabSunlightText.setText(rB.getString("sunlight"));
+                labelSupportTeacher.setText(new String(rB.getString("supportteacher").getBytes("ISO-8859-1"), "UTF-8"));
+                tabTemperatureText.setText(new String(rB.getString("temperature").getBytes("ISO-8859-1"), "UTF-8"));
+                labelOCurrentMoisture.setText(new String(rB.getString("moisture").getBytes("ISO-8859-1"), "UTF-8"));
+                labelOCurrentHumidity.setText(new String(rB.getString("humidity").getBytes("ISO-8859-1"), "UTF-8"));
+                labelOCurrentTemperature.setText(new String(rB.getString("temperature").getBytes("ISO-8859-1"), "UTF-8"));
+                labelCurrentHumidity.setText(new String(rB.getString("currenthumidity").getBytes("ISO-8859-1"), "UTF-8"));
+                labelCurrentMoisture.setText(new String(rB.getString("currentmoisture").getBytes("ISO-8859-1"), "UTF-8"));
+                labelCurrentTemperature.setText(new String(rB.getString("currenttemperature").getBytes("ISO-8859-1"), "UTF-8"));
+                //labelCurrentSunlight.setText(rB.getString("currentsunlight"));
+                labelSetArduinoIP.setText(new String(rB.getString("setarduinoip").getBytes("ISO-8859-1"), "UTF-8"));
+                labelSetMoistureOptimum.setText(new String(rB.getString("setmoistureopt").getBytes("ISO-8859-1"), "UTF-8"));
+                labelSetTemperatureOptimum.setText(new String(rB.getString("settemperatureopt").getBytes("ISO-8859-1"), "UTF-8"));
+                labelSetHumidityOptimum.setText(new String(rB.getString("sethumidityopt").getBytes("ISO-8859-1"), "UTF-8"));
+                btnSetIP.setText(new String(rB.getString("setip").getBytes("ISO-8859-1"), "UTF-8"));
+                labelSetPlantName.setText(new String(rB.getString("setplant").getBytes("ISO-8859-1"), "UTF-8"));
+                btnSetPlantName.setText(new String(rB.getString("setip").getBytes("ISO-8859-1"), "UTF-8"));
+                notAvailableText = (new String(rB.getString("notavailable").getBytes("ISO-8859-1"), "UTF-8"));
+                labelOverviewText.setText(new String(rB.getString("overview").getBytes("ISO-8859-1"), "UTF-8"));
+                labelDisplayDays.setText(new String(rB.getString("displaydays").getBytes("ISO-8859-1"), "UTF-8"));
+                aChartHumidity.setTitle(new String(rB.getString("humidity").getBytes("ISO-8859-1"), "UTF-8"));
+                aChartMoisture.setTitle(new String(rB.getString("moisture").getBytes("ISO-8859-1"), "UTF-8"));
+                aChartTemperature.setTitle(new String(rB.getString("temperature").getBytes("ISO-8859-1"), "UTF-8"));
+                lChartOverview.setTitle(new String(rB.getString("overview").getBytes("ISO-8859-1"), "UTF-8"));
+                dayText = new String(rB.getString("days").getBytes("ISO-8859-1"), "UTF-8");
+                humidityText = new String(rB.getString("humidity").getBytes("ISO-8859-1"), "UTF-8");
+                moistureText = new String(rB.getString("moisture").getBytes("ISO-8859-1"), "UTF-8");
+                temperatureText = new String(rB.getString("temperature").getBytes("ISO-8859-1"), "UTF-8");
+                moistureAbove = new String(rB.getString("moistAbove").getBytes("ISO-8859-1"), "UTF-8");
+                moistureBelow = new String(rB.getString("moistBelow").getBytes("ISO-8859-1"), "UTF-8");
+                humidityAbove = new String(rB.getString("humAbove").getBytes("ISO-8859-1"), "UTF-8");
+                humidityBelow = new String(rB.getString("humBelow").getBytes("ISO-8859-1"), "UTF-8");
+                temperatureAbove = new String(rB.getString("tempAbove").getBytes("ISO-8859-1"), "UTF-8");
+                temperatureBelow = new String(rB.getString("tempBelow").getBytes("ISO-8859-1"), "UTF-8");
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+        } catch (MissingResourceException ex) {
+            System.out.println("Error setting language!");
+        }
+        if (model != null) {
+            refreshCharts();
+            refreshCurrentValues();
+            refreshxAxis();
+            refreshWarnings();
+        }
+    }
+
+    private void redrawCurrentValue(Canvas canvas, Color color, int lineWidth, float value, float min, float max, float optimum) {
+        double height = canvas.getHeight();
+        double width = canvas.getWidth();
+        GraphicsContext graphicsContext = canvas.getGraphicsContext2D();
+        graphicsContext.clearRect(0, 0, width, height);
+        graphicsContext.setFill(color);
+        graphicsContext.setLineWidth(lineWidth);
+
+        if (Float.isNaN(value) ||  value > max || value < min)
+            return;
+
+        graphicsContext.fillArc(lineWidth * 2, height - (width - lineWidth * 4) - lineWidth * 2, width - lineWidth * 4, width - lineWidth * 4,
+                360, 360, ArcType.OPEN);
+
+        graphicsContext.fillRect(lineWidth * 2, 0, width - lineWidth * 4, height - width / 2);//fehler
+
+
+        double percentage = (value - min) / (max - min);
+        double power = height - ((height - lineWidth * 2) * percentage);
+        graphicsContext.clearRect(0, 0, width, (height - lineWidth * 2) - ((height - lineWidth * 2) *
+                ((value - min) / (max - min))));
+
+        graphicsContext.strokeArc(lineWidth, height - (width - lineWidth * 2) - lineWidth, width - lineWidth * 2,
+          width - lineWidth * 2, 180, 180, ArcType.OPEN);
+
+        graphicsContext.strokeLine(lineWidth, 0, lineWidth, height - width / 2 - lineWidth + 1);
+        graphicsContext.strokeLine(width - lineWidth, 0, width - lineWidth, height - width / 2 - lineWidth + 1);
+
+
+    }
+
+    private void setDisplayDays(int days) {
+        displayDays = days;
+        xAxisaChartHumidity.setTickUnit(4);
+        xAxisaChartHumidity.setTickLabelFormatter(displayDaysStringConverter);
+        xAxisaChartHumidity.setUpperBound(displayDays * 4);
+        xAxisaChartHumidity.setLowerBound(1);
+
+        xAxisaChartTemperature.setTickUnit(4);
+        xAxisaChartTemperature.setTickLabelFormatter(displayDaysStringConverter);
+        xAxisaChartTemperature.setUpperBound(displayDays * 4);
+        xAxisaChartTemperature.setLowerBound(1);
+
+        xAxisaChartMoisture.setTickUnit(4);
+        xAxisaChartMoisture.setTickLabelFormatter(displayDaysStringConverter);
+        xAxisaChartMoisture.setUpperBound(displayDays * 4);
+        xAxisaChartMoisture.setLowerBound(1);
+
+        xAxislChartOverview.setTickUnit(4);
+        xAxislChartOverview.setTickLabelFormatter(displayDaysStringConverter);
+        xAxislChartOverview.setUpperBound(displayDays * 4);
+        xAxislChartOverview.setLowerBound(1);
+    }
+
+    //region REFRESHING
     private void refreshWarnings() {
         boolean warningB = false;
         WarningType warning = model.getPlant().getMoistureWarning();
@@ -957,140 +1025,6 @@ public class Controller implements Observer, Initializable {
         refreshWarnings();
     }
 
-    @Override
-    public void update(Observable o, Object arg) {
-        Platform.runLater(() -> {
-            RefreshType type;
-            if (arg instanceof RefreshType)
-                type = (RefreshType)arg;
-            else
-                return;
-            if (type == RefreshType.HISTORY)
-                refreshCharts();
-            if (type == RefreshType.CURRENT)
-                refreshCurrentValues();
-        });
-    }
-
-    private void setLanguage(String language, String country) {
-        Locale locale = new Locale(language, country);
-        ResourceBundle rB = ResourceBundle.getBundle(languagePropertyFile, locale);
-        try {
-            try {
-                labelLanguage.setText(new String(rB.getString("language").getBytes("ISO-8859-1"), "UTF-8"));
-                tabHumidityText.setText(new String(rB.getString("humidity").getBytes("ISO-8859-1"), "UTF-8")); //rename to label
-                tabMoistureText.setText(new String(rB.getString("moisture").getBytes("ISO-8859-1"), "UTF-8"));
-                tabSettingsText.setText(new String(rB.getString("settings").getBytes("ISO-8859-1"), "UTF-8"));
-                labelAboutText.setText(new String(rB.getString("about").getBytes("ISO-8859-1"), "UTF-8"));
-                //tabSunlightText.setText(rB.getString("sunlight"));
-                labelSupportTeacher.setText(new String(rB.getString("supportteacher").getBytes("ISO-8859-1"), "UTF-8"));
-                tabTemperatureText.setText(new String(rB.getString("temperature").getBytes("ISO-8859-1"), "UTF-8"));
-                labelOCurrentMoisture.setText(new String(rB.getString("moisture").getBytes("ISO-8859-1"), "UTF-8"));
-                labelOCurrentHumidity.setText(new String(rB.getString("humidity").getBytes("ISO-8859-1"), "UTF-8"));
-                labelOCurrentTemperature.setText(new String(rB.getString("temperature").getBytes("ISO-8859-1"), "UTF-8"));
-                labelCurrentHumidity.setText(new String(rB.getString("currenthumidity").getBytes("ISO-8859-1"), "UTF-8"));
-                labelCurrentMoisture.setText(new String(rB.getString("currentmoisture").getBytes("ISO-8859-1"), "UTF-8"));
-                labelCurrentTemperature.setText(new String(rB.getString("currenttemperature").getBytes("ISO-8859-1"), "UTF-8"));
-                //labelCurrentSunlight.setText(rB.getString("currentsunlight"));
-                labelSetArduinoIP.setText(new String(rB.getString("setarduinoip").getBytes("ISO-8859-1"), "UTF-8"));
-                labelSetMoistureOptimum.setText(new String(rB.getString("setmoistureopt").getBytes("ISO-8859-1"), "UTF-8"));
-                labelSetTemperatureOptimum.setText(new String(rB.getString("settemperatureopt").getBytes("ISO-8859-1"), "UTF-8"));
-                labelSetHumidityOptimum.setText(new String(rB.getString("sethumidityopt").getBytes("ISO-8859-1"), "UTF-8"));
-                btnSetIP.setText(new String(rB.getString("setip").getBytes("ISO-8859-1"), "UTF-8"));
-                labelSetPlantName.setText(new String(rB.getString("setplant").getBytes("ISO-8859-1"), "UTF-8"));
-                btnSetPlantName.setText(new String(rB.getString("setip").getBytes("ISO-8859-1"), "UTF-8"));
-                notAvailableText = (new String(rB.getString("notavailable").getBytes("ISO-8859-1"), "UTF-8"));
-                labelOverviewText.setText(new String(rB.getString("overview").getBytes("ISO-8859-1"), "UTF-8"));
-                labelDisplayDays.setText(new String(rB.getString("displaydays").getBytes("ISO-8859-1"), "UTF-8"));
-                aChartHumidity.setTitle(new String(rB.getString("humidity").getBytes("ISO-8859-1"), "UTF-8"));
-                aChartMoisture.setTitle(new String(rB.getString("moisture").getBytes("ISO-8859-1"), "UTF-8"));
-                aChartTemperature.setTitle(new String(rB.getString("temperature").getBytes("ISO-8859-1"), "UTF-8"));
-                lChartOverview.setTitle(new String(rB.getString("overview").getBytes("ISO-8859-1"), "UTF-8"));
-                dayText = new String(rB.getString("days").getBytes("ISO-8859-1"), "UTF-8");
-                humidityText = new String(rB.getString("humidity").getBytes("ISO-8859-1"), "UTF-8");
-                moistureText = new String(rB.getString("moisture").getBytes("ISO-8859-1"), "UTF-8");
-                temperatureText = new String(rB.getString("temperature").getBytes("ISO-8859-1"), "UTF-8");
-                moistureAbove = new String(rB.getString("moistAbove").getBytes("ISO-8859-1"), "UTF-8");
-                moistureBelow = new String(rB.getString("moistBelow").getBytes("ISO-8859-1"), "UTF-8");
-                humidityAbove = new String(rB.getString("humAbove").getBytes("ISO-8859-1"), "UTF-8");
-                humidityBelow = new String(rB.getString("humBelow").getBytes("ISO-8859-1"), "UTF-8");
-                temperatureAbove = new String(rB.getString("tempAbove").getBytes("ISO-8859-1"), "UTF-8");
-                temperatureBelow = new String(rB.getString("tempBelow").getBytes("ISO-8859-1"), "UTF-8");
-            } catch (UnsupportedEncodingException e) {
-                e.printStackTrace();
-            }
-        } catch (MissingResourceException ex) {
-            System.out.println("Error setting language!");
-        }
-        if (model != null) {
-            refreshCharts();
-            refreshCurrentValues();
-            refreshxAxis();
-            refreshWarnings();
-        }
-    }
-
-    //region functions
-    private Scene scene() {
-        return tabPane.getScene();
-    }
-    //endregion
-
-
-    private void redrawCurrentValue(Canvas canvas, Color color, int lineWidth, float value, float min, float max, float optimum) {
-        double height = canvas.getHeight();
-        double width = canvas.getWidth();
-        GraphicsContext graphicsContext = canvas.getGraphicsContext2D();
-        graphicsContext.clearRect(0, 0, width, height);
-        graphicsContext.setFill(color);
-        graphicsContext.setLineWidth(lineWidth);
-
-        if (Float.isNaN(value) ||  value > max || value < min)
-            return;
-
-        graphicsContext.fillArc(lineWidth * 2, height - (width - lineWidth * 4) - lineWidth * 2, width - lineWidth * 4, width - lineWidth * 4,
-                360, 360, ArcType.OPEN);
-
-        graphicsContext.fillRect(lineWidth * 2, 0, width - lineWidth * 4, height - width / 2);//fehler
-
-
-        double percentage = (value - min) / (max - min);
-        double power = height - ((height - lineWidth * 2) * percentage);
-        graphicsContext.clearRect(0, 0, width, (height - lineWidth * 2) - ((height - lineWidth * 2) *
-                ((value - min) / (max - min))));
-
-        graphicsContext.strokeArc(lineWidth, height - (width - lineWidth * 2) - lineWidth, width - lineWidth * 2,
-          width - lineWidth * 2, 180, 180, ArcType.OPEN);
-
-        graphicsContext.strokeLine(lineWidth, 0, lineWidth, height - width / 2 - lineWidth + 1);
-        graphicsContext.strokeLine(width - lineWidth, 0, width - lineWidth, height - width / 2 - lineWidth + 1);
-
-
-    }
-
-    private void setDisplayDays(int days) {
-        displayDays = days;
-        xAxisaChartHumidity.setTickUnit(4);
-        xAxisaChartHumidity.setTickLabelFormatter(displayDaysStringConverter);
-        xAxisaChartHumidity.setUpperBound(displayDays * 4);
-        xAxisaChartHumidity.setLowerBound(1);
-
-        xAxisaChartTemperature.setTickUnit(4);
-        xAxisaChartTemperature.setTickLabelFormatter(displayDaysStringConverter);
-        xAxisaChartTemperature.setUpperBound(displayDays * 4);
-        xAxisaChartTemperature.setLowerBound(1);
-
-        xAxisaChartMoisture.setTickUnit(4);
-        xAxisaChartMoisture.setTickLabelFormatter(displayDaysStringConverter);
-        xAxisaChartMoisture.setUpperBound(displayDays * 4);
-        xAxisaChartMoisture.setLowerBound(1);
-
-        xAxislChartOverview.setTickUnit(4);
-        xAxislChartOverview.setTickLabelFormatter(displayDaysStringConverter);
-        xAxislChartOverview.setUpperBound(displayDays * 4);
-        xAxislChartOverview.setLowerBound(1);
-    }
-
     private void refreshxAxis() {
         xAxisaChartMoisture.setTickUnit(3);
         xAxisaChartMoisture.setTickUnit(4);
@@ -1104,5 +1038,6 @@ public class Controller implements Observer, Initializable {
         xAxislChartOverview.setTickUnit(3);
         xAxislChartOverview.setTickUnit(4);
     }
+    //endregion
 }
 

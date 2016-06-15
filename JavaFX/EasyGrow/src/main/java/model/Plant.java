@@ -159,6 +159,11 @@ public class Plant {
     }
 
     //region refreshing
+
+    /**
+     * Refreshes the history
+     * @return returns true if succeeded
+     */
     private boolean refreshHistory() {
         float moist = Float.NaN, temp = Float.NaN, hum = Float.NaN;
         long time = -1;
@@ -239,6 +244,10 @@ public class Plant {
         return true;
     }
 
+    /**
+     * Refreshes the current values
+     * @return returns true if succeeded
+     */
     private boolean refreshCurrentValues() {
         float moist = Float.NaN, temp = Float.NaN, hum = Float.NaN;
         Socket clientSocket;
@@ -305,7 +314,11 @@ public class Plant {
         return true;
     }
 
-
+    /**
+     * Refreshes information of the given type.
+     * @param type determines whether to refresh the history or the current values
+     * @return returns true if succeeded
+     */
     public boolean refreshInformation(RefreshType type) {
         Date date = new Date();
         /*for (int i = l1.size() - 1; i >= 0; i--)
