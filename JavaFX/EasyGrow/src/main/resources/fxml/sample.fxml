@@ -23,7 +23,7 @@
 <?import javafx.scene.text.Font?>
 <?import scene.ResizeableCanvas?>
 
-<TabPane fx:id="tabPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="250.0" minWidth="75.0" prefHeight="691.0" prefWidth="851.0" side="LEFT" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="250.0" tabMaxWidth="75.0" tabMinHeight="250.0" tabMinWidth="75.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Controller">
+<TabPane fx:id="tabPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="250.0" minWidth="75.0" prefHeight="690.0" prefWidth="1046.0" side="LEFT" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="250.0" tabMaxWidth="75.0" tabMinHeight="250.0" tabMinWidth="75.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Controller">
     <tabs>
         <Tab fx:id="tabOverview">
             <graphic>
@@ -54,12 +54,12 @@
                                               <Label fx:id="labelOCurrentMoisture" text="Moisture:" />
                                           </children>
                                       </HBox>
-                                      <HBox alignment="CENTER_LEFT" prefHeight="65.0" prefWidth="100.0">
+                                      <HBox alignment="CENTER_LEFT" prefHeight="65.0" prefWidth="225.0">
                                           <children>
                                               <Label fx:id="labelOCurrentMoisturePercent" text="0%" />
                                           </children>
                                       </HBox>
-                              <HBox alignment="CENTER_LEFT" prefHeight="65.0" prefWidth="203.0">
+                              <HBox alignment="CENTER_LEFT" prefHeight="65.0" prefWidth="277.0">
                                  <children>
                                     <Label fx:id="labelOMoistureStatus" />
                                  </children>
@@ -78,12 +78,12 @@
                                               <Label fx:id="labelOCurrentTemperature" text="Temperature:" />
                                           </children>
                                       </HBox>
-                                      <HBox alignment="CENTER_LEFT" prefHeight="65.0" prefWidth="100.0">
+                                      <HBox alignment="CENTER_LEFT" prefHeight="65.0" prefWidth="225.0">
                                           <children>
                                               <Label fx:id="labelOCurrentTemperatureCelsius" text="0°C" />
                                           </children>
                                       </HBox>
-                              <HBox alignment="CENTER_LEFT" prefHeight="65.0" prefWidth="203.0">
+                              <HBox alignment="CENTER_LEFT" prefHeight="65.0" prefWidth="277.0">
                                  <children>
                                     <Label fx:id="labelOTemperatureStatus" />
                                  </children>
@@ -102,12 +102,12 @@
                                               <Label fx:id="labelOCurrentHumidity" text="Humidity:" />
                                           </children>
                                       </HBox>
-                                      <HBox alignment="CENTER_LEFT" prefHeight="78.0" prefWidth="100.0">
+                                      <HBox alignment="CENTER_LEFT" prefHeight="78.0" prefWidth="225.0">
                                           <children>
                                               <Label fx:id="labelOCurrentHumidityPercent" text="0%" />
                                           </children>
                                       </HBox>
-                              <HBox alignment="CENTER_LEFT" prefHeight="65.0" prefWidth="203.0">
+                              <HBox alignment="CENTER_LEFT" prefHeight="65.0" prefWidth="277.0">
                                  <children>
                                     <Label fx:id="labelOHumidityStatus" />
                                  </children>
