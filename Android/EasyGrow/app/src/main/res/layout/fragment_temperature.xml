@@ -1,0 +1,26 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".view.fragments.MoistureFragment"
+    android:orientation="vertical"
+    android:background="#5a1c9037">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="Temperature"
+        android:textSize="30sp"
+        android:textColor="#fff"/>
+
+    <com.jjoe64.graphview.GraphView
+        android:layout_margin="10dp"
+        android:id="@+id/graph_temperature"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:seriesColor="#8223d146"
+        />
+
+</LinearLayout>

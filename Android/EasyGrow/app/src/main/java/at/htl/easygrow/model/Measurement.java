@@ -1,0 +1,58 @@
+package at.htl.easygrow.model;
+
+public class Measurement implements Comparable<Measurement> {
+    private long time;
+    private float moisture;
+    private float humidity;
+    private float temperature;
+
+    public void setTime (long date) {
+        this.time = date;
+    }
+
+    public void setMoisture(float moisture) {
+        this.moisture = moisture;
+    }
+
+    public void setHumidity(float humidity) {
+        this.humidity = humidity;
+    }
+
+    public void setTemperature(float temperature) {
+        this.temperature = temperature;
+    }
+
+    public long getTime() {
+
+        return time;
+    }
+
+    public float getMoisture() {
+        return moisture;
+    }
+
+    public float getHumidity() {
+        return humidity;
+    }
+
+    public float getTemperature() {
+        return temperature;
+    }
+
+    public Measurement(long time, float moisture, float temperature, float humidity) {
+
+        this.time = time;
+        this.moisture = moisture;
+        this.humidity = humidity;
+        this.temperature = temperature;
+    }
+
+    @Override
+    public int compareTo(Measurement o) {
+        if (time > o.getTime())
+            return -1;
+        if (time < o.getTime())
+            return  1;
+        return 0;
+    }
+}
