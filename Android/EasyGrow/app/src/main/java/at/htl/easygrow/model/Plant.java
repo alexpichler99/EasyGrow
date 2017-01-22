@@ -369,7 +369,7 @@ public class Plant {
             for (InetAddress inetAddress : Collections.list(inetAddresses)) {
                 if (inetAddress instanceof Inet4Address) {
                     byte[] bIp = inetAddress.getAddress();
-                    String strIp = bIp[0] + "." + bIp[1] + "." + bIp[2] + ".";
+                    String strIp = (bIp[0] & 0xFF) + "." + (bIp[1] & 0xFF) + "." + (bIp[2] & 0xFF) + "."; //& 0xFF to make the byte unsigned
                     //Loop through all ips
                     for (int i = 0; i <= 255; i++)
                         if (checkIp(strIp + i)) {

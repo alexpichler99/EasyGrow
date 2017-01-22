@@ -91,11 +91,11 @@ void createTemplateFile() {
   for (int i = 0; i < 120; i++) {
     file.print(i);
     file.print(';');
-    file.print(random(0, 100));
+    file.print(random(30, 80));
     file.print(';');
-    file.print(random(-15, 50));
+    file.print(random(-5, 20));
     file.print(';');
-    file.println(random(0, 100));
+    file.println(random(40, 80));
   }
   file.close();
 }
@@ -189,9 +189,11 @@ void loop() {
   client.flush();
   if (in[3] == '1')
     sendLog(client);
+  else if (in[3] == '3')
+    client.print("hello");
   else
-    sendCurrentValues(client);  
-  
+    sendCurrentValues(client);
   delay(1);
   client.stop();
 }
+
