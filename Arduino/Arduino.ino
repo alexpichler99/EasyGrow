@@ -75,7 +75,7 @@ void setup() {
   }
   addFirstLog();
   
-  //createTemplateFile();
+  createTemplateFile();
 }
 
 void addFirstLog() {
@@ -84,20 +84,6 @@ void addFirstLog() {
   float moist = analogRead(A0);
   moist = 100 * (MAX_MOISTURE - moist) / MAX_MOISTURE;
   addLog(moist, temp, hum);
-}
-
-void createTemplateFile() {
-  File file = SPIFFS.open(LOG_FILE, "a+");
-  for (int i = 0; i < 120; i++) {
-    file.print(i);
-    file.print(';');
-    file.print(random(30, 80));
-    file.print(';');
-    file.print(random(-5, 20));
-    file.print(';');
-    file.println(random(40, 80));
-  }
-  file.close();
 }
 
 void checkLogFile() {
@@ -195,5 +181,128 @@ void loop() {
     sendCurrentValues(client);
   delay(1);
   client.stop();
+}
+
+void createTemplateFile() {
+addLog(50,20,45);
+addLog(50,21,45);
+addLog(52,22,44);
+addLog(54,22,43);
+addLog(56,21,42);
+addLog(57,20,41);
+addLog(60,20,40);
+addLog(65,19,40);
+addLog(65,18,40);
+addLog(65,17,39);
+addLog(65,16,38);
+addLog(65,15,37);
+addLog(64,14,36);
+addLog(64,12,36);
+addLog(62,10,36);
+addLog(62,8,36);
+addLog(60,7,38);
+addLog(58,6,40);
+addLog(55,5,42);
+addLog(54,2,43);
+addLog(53,1,44);
+addLog(50,0,45);
+addLog(49,-1,46);
+addLog(49,-2,47);
+addLog(49,-3,48);
+addLog(49,-3,49);
+addLog(49,-4,50);
+addLog(47,-5,51);
+addLog(46,-5,53);
+addLog(45,-5,55);
+addLog(44,-5,57);
+addLog(43,-5,59);
+addLog(42,-5,60);
+addLog(41,-4,60);
+addLog(40,-3,62);
+addLog(39,-2,62);
+addLog(38,-1,60);
+addLog(37,0,59);
+addLog(36,1,58);
+addLog(35,2,57);
+addLog(35,3,56);
+addLog(35,4,55);
+addLog(35,5,53);
+addLog(45,6,53);
+addLog(46,10,53);
+addLog(47,11,53);
+addLog(48,12,52);
+addLog(49,13,52);
+addLog(50,14,52);
+addLog(51,15,51);
+addLog(52,16,51);
+addLog(52,17,51);
+addLog(51,18,50);
+addLog(50,19,50);
+addLog(50,21,48);
+addLog(50,22,48);
+addLog(49,22,48);
+addLog(49,22,46);
+addLog(49,21,45);
+addLog(49,21,44);
+addLog(50,22,45);
+addLog(51,23,46);
+addLog(52,24,47);
+addLog(53,25,48);
+addLog(53,26,50);
+addLog(54,28,51);
+addLog(55,30,50);
+addLog(52,28,49);
+addLog(50,26,45);
+addLog(47,25,44);
+addLog(46,23,46);
+addLog(44,22,47);
+addLog(42,21,45);
+addLog(39,19,41);
+addLog(40,18,43);
+addLog(41,17,42);
+addLog(38,15,41);
+addLog(37,14,39);
+addLog(35,12,35);
+addLog(33,10,34);
+addLog(32,8,33);
+addLog(30,5,32);
+addLog(34,3,35);
+addLog(35,0,34);
+addLog(35,-1,35);
+addLog(33,-3,37);
+addLog(31,-5,38);
+addLog(27,-6,40);
+addLog(25,-8,42);
+addLog(22,-10,45);
+addLog(26,-9,46);
+addLog(30,-5,49);
+addLog(35,0,50);
+addLog(36,2,55);
+addLog(37,3,57);
+addLog(38,5,58);
+addLog(40,7,60);
+addLog(41,8,61);
+addLog(42,9,62);
+addLog(44,12,61);
+addLog(45,13,62);
+addLog(47,15,61);
+addLog(49,16,60);
+addLog(50,18,59);
+addLog(52,20,61);
+addLog(54,22,63);
+addLog(55,23,61);
+addLog(56,21,59);
+addLog(58,20,56);
+addLog(60,19,52);
+addLog(65,18,53);
+addLog(66,20,49);
+addLog(70,22,45);
+addLog(65,19,49);
+addLog(62,17,55);
+addLog(58,15,60);
+addLog(55,12,65);
+addLog(50,11,70);
+addLog(42,9,75);
+addLog(40,10,72);
 }
 

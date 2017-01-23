@@ -1,5 +1,6 @@
 package at.htl.easygrow.view.fragments;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 import at.htl.easygrow.R;
 import at.htl.easygrow.model.Plant;
 import at.htl.easygrow.model.PlantModel;
+import at.htl.easygrow.view.activities.MainActivity;
 
 public class SettingsFragment extends Fragment {
 
@@ -27,46 +29,6 @@ public class SettingsFragment extends Fragment {
 
     private SeekBar sbHumidityOptimum;
     private TextView tvHumidityOptimum;
-
-    private SeekBar.OnSeekBarChangeListener seekBarChangeListener =
-            new SeekBar.OnSeekBarChangeListener() {
-                @Override
-                public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-                    //Moisture
-                    if (seekBar == sbMoistureOptimum) {
-                        PlantModel.getInstance().getPlant().setMoistureOptimum(i);
-
-                        if (tvMoistureOptimum != null)
-                            tvMoistureOptimum.setText(i + "%");
-                    }
-                    //Humidity
-                    else if (seekBar == sbHumidityOptimum) {
-                        PlantModel.getInstance().getPlant().setHumidityOptimum(i);
-
-                        if (tvHumidityOptimum != null)
-                            tvHumidityOptimum.setText(PlantModel.getInstance().getPlant()
-                                    .getHumidityOptimum() + "%");
-                    }
-                    //Temperature
-                    else if (seekBar == sbTemperatureOptimum) {
-                        PlantModel.getInstance().getPlant().setTemperatureOptimumPerCent(i);
-
-                        if (tvTemperatureOptimum != null)
-                            tvTemperatureOptimum.setText(PlantModel.getInstance().getPlant()
-                                    .getTemperatureOptimum() + "°C");
-                    }
-                }
-
-                @Override
-                public void onStartTrackingTouch(SeekBar seekBar) {
-
-                }
-
-                @Override
-                public void onStopTrackingTouch(SeekBar seekBar) {
-
-                }
-            };
 
     public SettingsFragment() {
         // Required empty public constructor
@@ -84,11 +46,24 @@ public class SettingsFragment extends Fragment {
 
     }
 
+    public void loadPreferences(Activity activity) {
+        if (activity instanceof MainActivity)
+            ((MainActivity)activity).loadPreferences();
+    }
+
+    public void savePreferences(Activity activity) {
+        if (activity instanceof MainActivity)
+            ((MainActivity)activity).savePreferences();
+    }
+
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         etIp = (EditText)getActivity().findViewById(R.id.et_arduino_ip);
+        final Activity activity = getActivity();
+        loadPreferences(activity);
         if (etIp != null) {
+            etIp.setText(PlantModel.getInstance().getPlant().getIp());
             etIp.addTextChangedListener(new TextWatcher() {
                 @Override
                 public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -100,6 +75,7 @@ public class SettingsFragment extends Fragment {
                     Plant plant = PlantModel.getInstance().getPlant();
                     if (plant != null) {
                         plant.setIp(charSequence.toString());
+                        savePreferences(activity);
                     }
                 }
 
@@ -116,6 +92,51 @@ public class SettingsFragment extends Fragment {
         tvHumidityOptimum = (TextView)getActivity().findViewById(R.id.tv_humidity_optimum);
         sbTemperatureOptimum = (SeekBar)getActivity().findViewById(R.id.sb_temperature_optimum);
         tvTemperatureOptimum = (TextView)getActivity().findViewById(R.id.tv_temperature_optimum);
+
+
+
+        SeekBar.OnSeekBarChangeListener seekBarChangeListener =
+                new SeekBar.OnSeekBarChangeListener() {
+                    @Override
+                    public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                        //Moisture
+                        if (seekBar == sbMoistureOptimum) {
+                            PlantModel.getInstance().getPlant().setMoistureOptimum(i);
+
+                            if (tvMoistureOptimum != null)
+                                tvMoistureOptimum.setText(i + "%");
+                        }
+                        //Humidity
+                        else if (seekBar == sbHumidityOptimum) {
+                            PlantModel.getInstance().getPlant().setHumidityOptimum(i);
+
+                            if (tvHumidityOptimum != null)
+                                tvHumidityOptimum.setText(PlantModel.getInstance().getPlant()
+                                        .getHumidityOptimum() + "%");
+                        }
+                        //Temperature
+                        else if (seekBar == sbTemperatureOptimum) {
+                            PlantModel.getInstance().getPlant().setTemperatureOptimumPerCent(i);
+
+                            if (tvTemperatureOptimum != null)
+                                tvTemperatureOptimum.setText(PlantModel.getInstance().getPlant()
+                                        .getTemperatureOptimum() + "°C");
+                        }
+                        savePreferences(activity);
+                    }
+
+                    @Override
+                    public void onStartTrackingTouch(SeekBar seekBar) {
+
+                    }
+
+                    @Override
+                    public void onStopTrackingTouch(SeekBar seekBar) {
+
+                    }
+                };
+
+
 
 
         if (sbMoistureOptimum != null) {

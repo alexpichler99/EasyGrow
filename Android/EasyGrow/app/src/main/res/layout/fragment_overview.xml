@@ -10,7 +10,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:background="@drawable/background"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="at.htl.easygrow.view.MainActivity">
+    tools:context="at.htl.easygrow.view.activities.MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

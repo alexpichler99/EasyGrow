@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.jjoe64.graphview.DefaultLabelFormatter;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
@@ -81,6 +82,23 @@ public class MoistureFragment extends Fragment implements Observer {
 
         graph.getGridLabelRenderer().setHorizontalAxisTitle("Time[h]");
         graph.getGridLabelRenderer().setVerticalAxisTitle("Moisture[%]");
+
+        // custom label formatter to show currency "EUR"
+        graph.getGridLabelRenderer().setLabelFormatter(new DefaultLabelFormatter() {
+            @Override
+            public String formatLabel(double value, boolean isValueX) {
+                if (isValueX) {
+                    // show normal x values
+                    if (value % 24 == 0)
+                        return "Day " + ((int)(value / 24));
+                    else
+                        return "Day " + ((int)(value / 24)) + " Hour " + (int)(value % 24);
+                } else {
+                    // show currency for y values
+                    return super.formatLabel(value, isValueX);
+                }
+            }
+        });
     }
 
     @Override
@@ -108,7 +126,6 @@ public class MoistureFragment extends Fragment implements Observer {
         //create new Series and set properties
         LineGraphSeries<DataPoint> series = new LineGraphSeries<>();
         series.setDrawBackground(true);
-
 
         Plant plant = PlantModel.getInstance().getPlant();
         //don't do anything if plant is null

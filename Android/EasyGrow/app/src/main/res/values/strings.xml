@@ -8,4 +8,14 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <string name="saved_ip">arduino_ip</string>
+    <string name="saved_ip_default"></string>
+
+    <string name="saved_moisture_optimum">moisture_optimum</string>
+
+    <string name="saved_humidity_optimum">humidity_optimum</string>
+
+    <string name="saved_temperature_optimum">temperature_optimum</string>
 </resources>
